@@ -17,7 +17,7 @@ function drawAllCards(G, ctx) {
     }    
 }
 
-function moveRobot(position, direction) {
+function calculateMoveDest(position, direction) {
     let new_position = position
     if (direction == NORTH) {
         // Check for walls here
@@ -33,6 +33,12 @@ function moveRobot(position, direction) {
         new_position.x -= 1
     }
     return new_position
+}
+
+function moveRobot(G, robot, move, direction) {
+    if (G.map[robot.position.y][robot.position.x].)
+    robot.position = calculateMoveDest(robot.position, direction)
+    checkCurrentSquare(G, robot.position, move.player)
 }
 
 function rotate_90_clockwise(cur_direction, times) {
@@ -61,23 +67,19 @@ function checkCurrentSquare(G, position, player) {
 function enactMove(move, G) {
     console.log("enacting move", move)
 
-    const r = G.robots[move.player]
+    let r = G.robots[move.player]
     switch (move.move.type) {
         case MOVE_THREE:
-            r.position = moveRobot(r.position, r.direction)
-            checkCurrentSquare(G, r.position, move.player)
+            moveRobot(G, r, move, r.direction)
         case MOVE_TWO:
-            r.position = moveRobot(r.position, r.direction)
-            checkCurrentSquare(G, r.position, move.player)
+            moveRobot(G, r, move, r.direction)
         case MOVE_ONE:
-            r.position = moveRobot(r.position, r.direction)
-            checkCurrentSquare(G, r.position, move.player)
+            moveRobot(G, r, move, r.direction)
             break
         case BACK_UP:
             r.direction = rotate_90_clockwise(r.direction, 2)
-            r.position = moveRobot(r.position, r.direction)
+            moveRobot(G, r, move, r.direction)
             r.direction = rotate_90_clockwise(r.direction, 2)
-            checkCurrentSquare(G, r.position, move.player)
             break
         case ROTATE_RIGHT:
             r.direction = rotate_90_clockwise(r.direction, 1)
@@ -97,7 +99,7 @@ function findInMap(map, type) {
     for (let [rowId, row] of Object.entries(map)) {
         for (let [columnId, item] of Object.entries(row)) {
             if (item.type === type) {
-                tiles.push({ x: columnId, y: rowId, item })
+                tiles.push({ x: Number(columnId), y: Number(rowId), item })
             }
         }
     }
@@ -155,6 +157,8 @@ export const RobotFight = {
                 lives: 3
             }
         }
+
+        return state
     },
 
     // playerView: PlayerView.STRIP_SECRETS,
