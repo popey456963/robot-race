@@ -34,7 +34,7 @@ export class RobotFightBoard extends React.Component {
     super(props)
 
     this.state = {
-      selected: []
+      selected: [this.props.G.players[this.props.playerID].hand[0]]
     }
   }
 
@@ -52,7 +52,7 @@ export class RobotFightBoard extends React.Component {
       this
         .props
         .moves
-        .submitOrders(this.state.selected);
+        .submitOrders(this.state.selected, this.props.playerID);
     }
   };
 

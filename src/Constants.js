@@ -12,3 +12,5 @@ export const SOUTH = 'SOUTH'
 export const WEST = 'WEST'
 
 export const PLAIN = 'PLAIN'
+export const FLAG = 'FLAG'
+export const HOLE = 'HOLE'

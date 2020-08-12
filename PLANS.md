@@ -30,13 +30,22 @@
         {},
     ], ...]
 
+- meta: 
+{
+    flagCount: 1
+}
+
 - robot:
 {
     position: { x, y },
     direction: (NORTH|WEST|SOUTH|EAST),
     poweredDown: (true|false)
     damage: 0 - 9
-    upgrades: []
+    upgrades: [],
+    flags: [],
+    checkpoint: { x, y },
+    lives: 0 - 3,
+
 }
 
 
