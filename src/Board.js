@@ -26,10 +26,10 @@ const getListStyle = isDraggingOver => ({
     ? 'lightblue'
     : 'lightgrey',
   padding: grid,
-  width: 250
+  width: 250,
 });
 
-export class TicTacToeBoard extends React.Component {
+export class RobotFightBoard extends React.Component {
   constructor(props) {
     super(props)
 
@@ -52,7 +52,7 @@ export class TicTacToeBoard extends React.Component {
       this
         .props
         .moves
-        .submitOrders();
+        .submitOrders(this.state.selected);
     }
   };
 
@@ -125,38 +125,13 @@ export class TicTacToeBoard extends React.Component {
 
     return (
       <div>
-        <Map map={this.props.G.map} robots={this.props.G.robots} />
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                {inHand.map((card, index) => (
-                  <Draggable
-                    key={card.type + card.priority}
-                    draggableId={JSON.stringify(card)}
-                    index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                        {card.type + card.priority}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-          <Droppable droppableId="droppable2">
-            {(provided, snapshot) => (
-              <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                {this
-                  .state
-                  .selected
-                  .map((card, index) => (
+        <div>
+          <h3>Cards in Hand</h3>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                  {inHand.map((card, index) => (
                     <Draggable
                       key={card.type + card.priority}
                       draggableId={JSON.stringify(card)}
@@ -172,13 +147,43 @@ export class TicTacToeBoard extends React.Component {
                       )}
                     </Draggable>
                   ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+            <h3>Cards to Play</h3>
+            <Droppable droppableId="droppable2">
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                  {this
+                    .state
+                    .selected
+                    .map((card, index) => (
+                      <Draggable
+                        key={card.type + card.priority}
+                        draggableId={JSON.stringify(card)}
+                        index={index}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                            {card.type + card.priority}
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
 
-        <button onClick={() => this.onClick(this.props)}>Click me</button>
+        <button onClick={() => this.onClick(this.props)}>Submit Orders</button>
+        <Map map={this.props.G.map} robots={this.props.G.robots} />
+
       </div>
     )
   }

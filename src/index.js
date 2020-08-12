@@ -4,14 +4,14 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
-import { TicTacToe } from "./Game";
-import { TicTacToeBoard } from "./Board";
+import { RobotFight } from "./Game";
+import { RobotFightBoard } from "./Board";
 import logger from 'redux-logger';
 import { applyMiddleware, compose  } from 'redux';
 
-const TicTacToeClient = Client({
-  game: TicTacToe,
-  board: TicTacToeBoard,
+const RobotFightClient = Client({
+  game: RobotFight,
+  board: RobotFightBoard,
   debug: true,
   multiplayer: SocketIO({ server: "localhost:8000" }),
   enhancer: compose(
@@ -34,12 +34,15 @@ class App extends React.Component {
           <button onClick={() => this.setState({ playerID: "1" })}>
             Player 1
           </button>
+          <button onClick={() => this.setState({ playerID: "2" })}>
+            Player 2
+          </button>
         </div>
       );
     }
     return (
       <div>
-        <TicTacToeClient playerID={this.state.playerID} />
+        <RobotFightClient playerID={this.state.playerID} />
       </div>
     );
   }

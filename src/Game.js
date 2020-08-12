@@ -14,7 +14,7 @@ function drawAllCards(G, ctx) {
     }    
 }
 
-export const TicTacToe = {
+export const RobotFight = {
     name: 'robot-fight',
 
     setup: (ctx, setupData) => {
@@ -44,7 +44,7 @@ export const TicTacToe = {
         return state
     },
 
-    playerView: PlayerView.STRIP_SECRETS,
+    // playerView: PlayerView.STRIP_SECRETS,
 
     phases: {
         play: {
@@ -52,7 +52,8 @@ export const TicTacToe = {
                 drawAllCards(G, ctx)
             },
             moves: {
-                submitOrders: (G, ctx) => {
+                submitOrders: (G, ctx, selected) => {
+                    G.players[ctx.currentPlayer].registers = selected
                     ctx.events.endTurn()
                 }
             },
