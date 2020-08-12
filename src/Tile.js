@@ -23,12 +23,12 @@ export default class Tile extends React.Component {
                 className={`col-${pos.x - 5}`}
                 style={{transform: `translateX(${(pos.x - 0) * 4}em)`}}
             >
-                { robot ? <img src='/robot.png' style={{
+                { robot ? (<img src='/robot.png' style={{
                     zIndex: 10,
                     position: 'fixed',
                     width: '55px',
                     transform: robotTransform
-                }}/> : null }
+                }}/>) : null }
                 <div className='tile'>
                     <div className={`tile-${tileType}`}>
                     </div>

@@ -18,7 +18,7 @@ function drawAllCards(G, ctx) {
 }
 
 function calculateMoveDest(position, direction) {
-    let new_position = position
+    let new_position = { x: position.x, y: position.y }
     if (direction == NORTH) {
         // Check for walls here
         new_position.y -= 1
@@ -35,10 +35,22 @@ function calculateMoveDest(position, direction) {
     return new_position
 }
 
-function moveRobot(G, robot, move, direction) {
-    if (G.map[robot.position.y][robot.position.x].)
-    robot.position = calculateMoveDest(robot.position, direction)
-    checkCurrentSquare(G, robot.position, move.player)
+function moveRobot(G, robot, direction) {
+    if (G.map[robot.position.y][robot.position.x].walls[direction]) {
+        return false
+    }
+    
+    const new_position = calculateMoveDest(robot.position, direction)
+    const other_robot = findRobots(new_position, G.robots)
+    if ((other_robot !== undefined && moveRobot(G, other_robot, direction))
+        || other_robot === undefined) {
+
+        robot.position = new_position
+    }
+
+    checkCurrentSquare(G, robot.position, robot.user)
+
+    return true
 }
 
 function rotate_90_clockwise(cur_direction, times) {
@@ -70,15 +82,15 @@ function enactMove(move, G) {
     let r = G.robots[move.player]
     switch (move.move.type) {
         case MOVE_THREE:
-            moveRobot(G, r, move, r.direction)
+            moveRobot(G, r, r.direction)
         case MOVE_TWO:
-            moveRobot(G, r, move, r.direction)
+            moveRobot(G, r, r.direction)
         case MOVE_ONE:
-            moveRobot(G, r, move, r.direction)
+            moveRobot(G, r, r.direction)
             break
         case BACK_UP:
             r.direction = rotate_90_clockwise(r.direction, 2)
-            moveRobot(G, r, move, r.direction)
+            moveRobot(G, r, r.direction)
             r.direction = rotate_90_clockwise(r.direction, 2)
             break
         case ROTATE_RIGHT:
@@ -126,13 +138,22 @@ export const RobotFight = {
     name: 'robot-fight',
 
     setup: (ctx, setupData) => {
+        const NO_WALLS = {
+            [NORTH]: false,
+            [EAST]: true,
+            [SOUTH]: false,
+            [WEST]: false,
+        }
+
         const state = {
             players: {},
-            map: new Array(10).fill(null).map(() => new Array(10).fill(null).map(() => ({ type: PLAIN }))),
+            map: new Array(10).fill(null).map(
+                () => new Array(10).fill(null).map(() => ({ type: PLAIN, walls: NO_WALLS }))
+            ),
             robots: {}
         }
 
-        state.map[2][3] = { type: FLAG, meta: { flagNumber: 1 } }
+        state.map[2][3] = { type: FLAG, walls: NO_WALLS, meta: { flagNumber: 1 } }
 
         state.meta = {
             flagCount: 1
@@ -144,7 +165,7 @@ export const RobotFight = {
 
             state.players[player] = {
                 hand: []
-            }
+            }   
 
             state.robots[player] = {
                 position: { x: 0, y: i },
@@ -154,7 +175,8 @@ export const RobotFight = {
                 upgrades: [],
                 flags: [],
                 checkpoint: { x: 0, y: i },
-                lives: 3
+                lives: 3,
+                user: player
             }
         }
 
