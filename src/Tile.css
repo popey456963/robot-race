@@ -51,7 +51,7 @@ td .tile div {
   background-size: calc(100% * var(--tile-scale)) 100%;
   background-position: -6px 0px;
   background-repeat: no-repeat;
-  background-image: url(/tiles.png);
+  background-image: url(/tiles2.png);
   image-rendering: pixelated;
 }
 
