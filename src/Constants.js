@@ -14,3 +14,15 @@ export const WEST = 'WEST'
 export const PLAIN = 'PLAIN'
 export const FLAG = 'FLAG'
 export const HOLE = 'HOLE'
+export const EXPRESS_CONVEYOR = 'EXPRESS_CONVEYOR'
+export const CONVEYOR = 'CONVEYOR'
+
+export const CONVEYOR_INDEX = 1
+export const FLAG_INDEX = 2
+export const EXPRESS_CONVEYOR_INDEX = 3
+export const PLAIN_INDEX = 0
+
+// export const TILE_SCALE = 16
+// export const TILE_OFFSET = 6.4
+// export const TILE_SIZE = 186
+

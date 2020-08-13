@@ -13,7 +13,6 @@
                 // CONVEYORS
                 exitDirection: (NORTH|SOUTH|WEST|EAST)
                 inputDirections: [true, false, false, false] // nesw
-                isExpressConveyor: true / false
 
                 // FLAGS
                 flagNumber: 0 / 1 / 2

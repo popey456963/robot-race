@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Board.css';
 import Map from './Map';
-import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { ROTATION_CONTEXT } from './ReactConstants'
 
 const grid = 8;
 
@@ -57,21 +58,21 @@ export class RobotFightBoard extends React.Component {
   };
 
   isActive() {
-    if (!this.props.isActive) 
+    if (!this.props.isActive)
       return false;
     return true;
   }
 
   getList = id => {
-    if (id === 'droppable') 
+    if (id === 'droppable')
       return this.props.G.players[this.props.playerID].hand
-    if (id === 'droppable2') 
+    if (id === 'droppable2')
       return this.state.selected
   }
 
   onDragEnd = result => {
     console.log('onDragEnd', result)
-    const {source, destination} = result;
+    const { source, destination } = result;
 
     // dropped outside of list, do nothing
     if (!destination) {
@@ -106,7 +107,7 @@ export class RobotFightBoard extends React.Component {
   render() {
     console.log(this.props)
 
-    const {playerID} = this.props
+    const { playerID } = this.props
     const cards = this.props.G.players[playerID].hand
 
     if (!cards) {
@@ -116,7 +117,7 @@ export class RobotFightBoard extends React.Component {
     const inHand = cards.filter(card => {
       // cards not in selected
       for (let selectedCard of this.state.selected) {
-        if (selectedCard.type === card.type && selectedCard.priority === card.priority) 
+        if (selectedCard.type === card.type && selectedCard.priority === card.priority)
           return false
       }
 
@@ -125,40 +126,16 @@ export class RobotFightBoard extends React.Component {
 
     return (
       <div>
-        <div>
-          <h3>Cards in Hand</h3>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                  {inHand.map((card, index) => (
-                    <Draggable
-                      key={card.type + card.priority}
-                      draggableId={JSON.stringify(card)}
-                      index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                          {card.type + card.priority}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-            <h3>Cards to Play</h3>
-            <Droppable droppableId="droppable2">
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                  {this
-                    .state
-                    .selected
-                    .map((card, index) => (
+        <ROTATION_CONTEXT.Provider value="SE">
+          <div>
+            {this.props.ctx.gameover ? <h1>{`Player ${this.props.ctx.gameover.winner.user} has won the game!`}</h1> : null}
+
+            <h3>Cards in Hand</h3>
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                  <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                    {inHand.map((card, index) => (
                       <Draggable
                         key={card.type + card.priority}
                         draggableId={JSON.stringify(card)}
@@ -174,16 +151,44 @@ export class RobotFightBoard extends React.Component {
                         )}
                       </Draggable>
                     ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </div>
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+              <h3>Cards to Play</h3>
+              <Droppable droppableId="droppable2">
+                {(provided, snapshot) => (
+                  <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                    {this
+                      .state
+                      .selected
+                      .map((card, index) => (
+                        <Draggable
+                          key={card.type + card.priority}
+                          draggableId={JSON.stringify(card)}
+                          index={index}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                              {card.type + card.priority}
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </div>
 
-        <button onClick={() => this.onClick(this.props)}>Submit Orders</button>
-        <Map map={this.props.G.map} robots={this.props.G.robots} />
+          <button onClick={() => this.onClick(this.props)}>Submit Orders</button>
+          <Map map={this.props.G.map} robots={this.props.G.robots} />
 
+        </ROTATION_CONTEXT.Provider>
       </div>
     )
   }
