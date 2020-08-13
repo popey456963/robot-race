@@ -1,11 +1,13 @@
 import React from 'react';
 import Row from './Row';
 import './Tile.css';
-import { convertTouchIfMobile } from './utils'
+import { ROTATION_CONTEXT } from './ReactConstants'
+import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from './utils'
 
 const GameScrollManager = require('./GameScrollManager')
 
 export default class Map extends React.Component {
+    static contextType = ROTATION_CONTEXT
     constructor(props) {
         super(props)
 
@@ -80,7 +82,28 @@ export default class Map extends React.Component {
     }
 
     render() {
-        const { map, robots } = this.props
+        let { map, robots } = this.props
+
+        function rotateMatrix(a) {
+            a = Object.keys(a[0]).map(c => a.map(r => r[c]))
+            for (let i in a) a[i] = a[i].reverse()
+            return a
+        }
+
+        let rotatedMap = map
+        for (let i = 0; i < rotateTileAngleAmount(this.context); i++) {
+            rotatedMap = rotateMatrix(rotatedMap)
+        }
+
+        const rotationalRobots = arrayToObject(Object.entries(robots)
+            .map(([user, robot]) => {
+                const oldPosition = { x: robot.position.x, y: robot.position.y }
+                const newRobot = {
+                    ...robot,
+                    position: translateCoords(robot.position, this.context, { y: map.length, x: map[0].length })
+                }
+                return [user, newRobot]
+            }))
 
         return (
             <div
@@ -91,12 +114,13 @@ export default class Map extends React.Component {
                 onMouseUp={this.onMouseUp}
                 onTouchEnd={this.onMouseUp}
             >
-                <table style={{ left: `${this.state.width / 2 + this.state.offset.x}px`, top: `${this.state.height / 4 + this.state.offset.y}px` }} className='iso' onDrag={this.handleDrag}><tbody>{map.map((row, rowId) =>
+                <table style={{ left: `${this.state.width / 2 + this.state.offset.x}px`, top: `${this.state.height / 4 + this.state.offset.y}px` }} className='iso' onDrag={this.handleDrag}><tbody>{rotatedMap.map((row, rowId) =>
                     (<Row
                         key={rowId}
                         row={row}
+                        sizeY={rotatedMap.length}
                         rowId={rowId}
-                        robots={robots}
+                        robots={rotationalRobots}
                     />)
                 )}</tbody>
                 </table>

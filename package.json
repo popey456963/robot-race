@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "boardgame.io": "^0.39.16",
     "bunyan": "^1.8.14",
+    "clone-deep": "^4.0.1",
     "esm": "^3.2.25",
     "fs-jetpack": "^3.1.0",
     "png-crop": "0.0.2",

@@ -4,6 +4,7 @@ import './Board.css';
 import Map from './Map';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ROTATION_CONTEXT } from './ReactConstants'
+import { rotateTileAngle } from './utils'
 
 const grid = 8;
 
@@ -35,7 +36,8 @@ export class RobotFightBoard extends React.Component {
     super(props)
 
     this.state = {
-      selected: [this.props.G.players[this.props.playerID].hand[0]]
+      selected: [this.props.G.players[this.props.playerID].hand[0]],
+      rotation: 'SE'
     }
   }
 
@@ -104,6 +106,16 @@ export class RobotFightBoard extends React.Component {
     this.setState({ selected: newSelected })
   };
 
+  rotateBoard(clockwise) {
+    const rotation = rotateTileAngle(this.state.rotation, clockwise ? 1 : 3)
+
+    console.log(this.state.rotation, rotation)
+
+    this.setState({
+      rotation
+    })
+  }
+
   render() {
     console.log(this.props)
 
@@ -126,7 +138,7 @@ export class RobotFightBoard extends React.Component {
 
     return (
       <div>
-        <ROTATION_CONTEXT.Provider value="SE">
+        <ROTATION_CONTEXT.Provider value={this.state.rotation}>
           <div>
             {this.props.ctx.gameover ? <h1>{`Player ${this.props.ctx.gameover.winner.user} has won the game!`}</h1> : null}
 
@@ -186,6 +198,8 @@ export class RobotFightBoard extends React.Component {
           </div>
 
           <button onClick={() => this.onClick(this.props)}>Submit Orders</button>
+          <button onClick={() => this.rotateBoard(false)}>Rotate Anticlockwise</button>
+          <button onClick={() => this.rotateBoard(true)}>Rotate Clockwise</button>
           <Map map={this.props.G.map} robots={this.props.G.robots} />
 
         </ROTATION_CONTEXT.Provider>

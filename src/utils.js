@@ -20,18 +20,41 @@ export function convertTouchIfMobile(e) {
 
 export function rotateTileAngleAmount(dir) {
   if (dir === 'SE') return 0
-  if (dir === 'SW') return 1
-  if (dir === 'NW') return 2
-  if (dir === 'NE') return 3
+  else if (dir === 'SW') return 1
+  else if (dir === 'NW') return 2
+  else if (dir === 'NE') return 3
 }
 
 export function rotateTileAngle(dir, amount) {
   for (let i = 0; i < amount; i++) {
     if (dir === 'SE') dir = 'SW'
-    if (dir === 'SW') dir = 'NW'
-    if (dir === 'NW') dir = 'NE'
-    if (dir === 'NE') dir = 'SE'
+    else if (dir === 'SW') dir = 'NW'
+    else if (dir === 'NW') dir = 'NE'
+    else if (dir === 'NE') dir = 'SE'
   }
 
   return dir
+}
+
+export function rotateCoordinates90(coords, mapSize) {
+  let rx = mapSize.y - coords.y - 1
+  let ry = coords.x
+  return { x: rx, y: ry }
+}
+
+export function translateCoords(coords, dir, mapSize) {
+  const amount = rotateTileAngleAmount(dir)
+
+  // console.log('Asked to rotate', coords, 'rotationg', amount, 'times')
+
+  for (let i = 0; i < amount; i++) {
+    coords = rotateCoordinates90(coords, mapSize)
+    mapSize = { x: mapSize.y, y: mapSize.x }
+  }
+
+  return coords
+}
+
+export function arrayToObject(arr) {
+  return arr.reduce((acc, cur) => ({ ...acc, [cur[0]]: cur[1] }), {})
 }

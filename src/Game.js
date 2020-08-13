@@ -7,7 +7,7 @@ import {
 } from './Constants'
 
 import Deck from './Deck'
-import { findRobots } from './utils'
+import { findRobots, arrayToObject } from './utils'
 
 import log from './Logger'
 import logger from 'redux-logger'
@@ -227,10 +227,6 @@ function getPlayerCardCounts(G) {
     .map(([id, player]) => [id, player.hand.length]))
 }
 
-function arrayToObject(arr) {
-  return arr.reduce((acc, cur) => ({ ...acc, [cur[0]]: cur[1] }), {})
-}
-
 export const RobotFight = {
   name: 'robot-fight',
 
@@ -245,7 +241,7 @@ export const RobotFight = {
 
     const state = {
       players: {},
-      map: new Array(10).fill(null).map(
+      map: new Array(7).fill(null).map(
         () => new Array(10).fill(null).map(() => ({ type: PLAIN, walls: NO_DIRECTIONS }))
       ),
       robots: {}
@@ -293,7 +289,7 @@ export const RobotFight = {
     return state
   },
 
-  // playerView: PlayerView.STRIP_SECRETS,
+  playerView: PlayerView.STRIP_SECRETS,
 
   phases: {
     play: {
