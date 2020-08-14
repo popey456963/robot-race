@@ -7,7 +7,8 @@ import { SocketIO } from "boardgame.io/multiplayer";
 import { RobotFight } from "./Game";
 import { RobotFightBoard } from "./Board";
 import logger from 'redux-logger';
-import { applyMiddleware, compose  } from 'redux';
+import { applyMiddleware, compose } from 'redux';
+import { Lobby } from 'boardgame.io/react';
 
 const RobotFightClient = Client({
   game: RobotFight,
@@ -21,30 +22,46 @@ const RobotFightClient = Client({
 });
 
 class App extends React.Component {
-  state = { playerID: null };
+  state = { debug: true };
 
   render() {
-    if (this.state.playerID === null) {
+    if (this.state.debug) {
       return (
         <div>
-          <p>Play as</p>
-          <button onClick={() => this.setState({ playerID: "0" })}>
-            Player 0
-          </button>
-          <button onClick={() => this.setState({ playerID: "1" })}>
-            Player 1
-          </button>
-          <button onClick={() => this.setState({ playerID: "2" })}>
-            Player 2
-          </button>
+          <RobotFightClient playerID="0" />
         </div>
-      );
+      )
     }
+
     return (
-      <div>
-        <RobotFightClient playerID={this.state.playerID} />
-      </div>
-    );
+      <Lobby
+        gameServer={`http://${window.location.hostname}:8000`}
+        lobbyServer={`http://${window.location.hostname}:8000`}
+        gameComponents={[{
+          game: RobotFight,
+          board: RobotFightBoard
+        }]}
+      />
+    )
+
+    // if (this.state.playerID === null) {
+    //   return (
+    //     <div>
+    //       <p>Play as</p>
+    //       <button onClick={() => this.setState({ playerID: "0" })}>
+    //         Player 0
+    //       </button>
+    //       <button onClick={() => this.setState({ playerID: "1" })}>
+    //         Player 1
+    //       </button>
+    //     </div>
+    //   );
+    // }
+    // return (
+    //   <div>
+    //     <RobotFightClient playerID={this.state.playerID} />
+    //   </div>
+    // );
   }
 }
 

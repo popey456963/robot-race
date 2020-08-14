@@ -1,12 +1,20 @@
 UI:
+    == PLAIN ==
+    - There needs to be a plain tile design
+
     == ROBOT ==
-    - Robot characters should rotate
+    (DONE) Robot characters should rotate
     - Robot characters need new icons
+    - Change robot character by player
 
     == CONVEYORS ==
     - Conveyors should rotate to show direction
+        (DONE) For straight lines
+        - For corners
+        - For multi-inputs
     - Conveyors should have an icon for two input directions
     - Conveyors should have an icon for three input directions
+    (DONE) Base FastConveyor off of Conveyor for tile rotation / picking
 
     == FLAGS ==
     - Flags should visibly show if you've visited them or not
@@ -21,13 +29,44 @@ UI:
     == BUTTONS ==
     - The rotation buttons should be arrows
     - The submit orders button should be styled
-    - The submit orders button should be disabled if you can't play
+    (DONE) The submit orders button should be disabled if you can't play
+    (DONE) The cards in hand and in play should be disabled if you can't play
+
+    == WALLS ==
+    - Walls should show up on the map
+
+    == MAP ==
+    (DONE) You should not be able to select tile images by dragging
 
 Gameplay:
     == Server ==
     - We should allow more than two people to play together at once
 
+    == Team Courses ==
+    - Add functionality to allow team courses
+
+    == Design Maps ==
+
 Both:
     == Lobby ==
     - We need a lobby system to let people play together
     - We should let people select their own name
+
+    == Pusher ==
+    - Design & implement pusher
+    - Design & implement gears
+
+    == Repairs ==
+    - Design & implement repair points
+
+    == Lasers ==
+    - Design & implement lasers
+
+    == Option Cards ==
+    - Design & implement option cards
+
+    == Power Down ==
+    - Design & implement power down
+
+    == Map Designer ==
+    - Let people design their own maps!

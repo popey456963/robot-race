@@ -6,25 +6,25 @@ body {
   margin: 0px;
   overflow: hidden;
 }
-table {
+table.iso {
   transform: rotateX(60deg) rotateZ(45deg);
   position: absolute;
   border-spacing: 0px;
 }
-tr {
+tr.row {
   height: 0px;
   width: 0px;
   display: block;
 }
-td {
+td.iso_td {
   height: 0px;
   width: 0px;
   display: block;
   padding: 0px;
 }
-td,
-td .tile,
-td .tile div {
+td.iso_td,
+td.iso_td .tile,
+td.iso_td .tile div {
   font-size: 16px;
   border: none;
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import './Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from './Constants'
-import { FLAG, CONVEYOR, EXPRESS_CONVEYOR } from './Constants'
+import { FLAG, CONVEYOR, FAST_CONVEYOR } from './Constants'
 
 import Conveyor from './Tiles/Conveyor'
-import Express_Conveyor from './Tiles/Express_Conveyor'
+import FastConveyor from './Tiles/FastConveyor'
 import Robot from './Tiles/Robot'
 import Flag from './Tiles/Flag'
 import Plain from './Tiles/Plain'
@@ -47,7 +47,7 @@ export default class Tile extends React.Component {
 
     let tileImage
     if (tile.type === CONVEYOR) tileImage = <Conveyor tile={tile} />
-    else if (tile.type === EXPRESS_CONVEYOR) tileImage = <Express_Conveyor tile={tile} />
+    else if (tile.type === FAST_CONVEYOR) tileImage = <FastConveyor tile={tile} />
     else if (tile.type === FLAG) tileImage = <Flag tile={tile} />
     else tileImage = <Plain tile={tile} />
 
@@ -55,7 +55,7 @@ export default class Tile extends React.Component {
 
     return (
       <td
-        className={`col-${pos.x - 5}`}
+        className={`col-${pos.x - 5} iso_td`}
         style={{
           transform: (this.state.hover ? 'translate3d(-1em, -1em, 0em)' : '') + ` translateX(${(pos.x - 0) * 4}em)`
         }}

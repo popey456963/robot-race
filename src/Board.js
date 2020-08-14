@@ -119,8 +119,11 @@ export class RobotFightBoard extends React.Component {
   render() {
     console.log(this.props)
 
-    const { playerID } = this.props
+    const { playerID, ctx } = this.props
+    let { activePlayers } = ctx
     const cards = this.props.G.players[playerID].hand
+
+    if (activePlayers === null) activePlayers = {}
 
     if (!cards) {
       return <p>No cards</p>
@@ -149,6 +152,7 @@ export class RobotFightBoard extends React.Component {
                   <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                     {inHand.map((card, index) => (
                       <Draggable
+                        isDragDisabled={!(playerID in activePlayers)}
                         key={card.type + card.priority}
                         draggableId={JSON.stringify(card)}
                         index={index}>
@@ -176,6 +180,7 @@ export class RobotFightBoard extends React.Component {
                       .selected
                       .map((card, index) => (
                         <Draggable
+                          isDragDisabled={!(playerID in activePlayers)}
                           key={card.type + card.priority}
                           draggableId={JSON.stringify(card)}
                           index={index}>
@@ -197,7 +202,7 @@ export class RobotFightBoard extends React.Component {
             </DragDropContext>
           </div>
 
-          <button onClick={() => this.onClick(this.props)}>Submit Orders</button>
+          <button disabled={!(playerID in activePlayers)} onClick={() => this.onClick(this.props)}>Submit Orders</button>
           <button onClick={() => this.rotateBoard(false)}>Rotate Anticlockwise</button>
           <button onClick={() => this.rotateBoard(true)}>Rotate Clockwise</button>
           <Map map={this.props.G.map} robots={this.props.G.robots} />

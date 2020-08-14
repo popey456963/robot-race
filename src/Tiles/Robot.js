@@ -1,24 +1,34 @@
 import React from 'react'
 import '../Tile.css'
-import { NORTH, EAST, SOUTH, WEST } from '../Constants'
+import { NORTH, EAST, WEST, SOUTH } from '../Constants'
+import { ROTATION_CONTEXT } from '../ReactConstants'
+import { rotateTileAngleAmount } from '../utils'
+
 
 export default class Robot extends React.Component {
+    static contextType = ROTATION_CONTEXT
     render() {
         const { robot } = this.props
 
-        let robotTransform
-        if (robot.direction === NORTH) robotTransform = 'rotate(180deg)'
-        if (robot.direction === EAST) robotTransform = 'rotate(270deg)'
-        if (robot.direction === WEST) robotTransform = 'rotate(90deg)'
+        const addedRotations = rotateTileAngleAmount(this.context)
+
+        let rotate
+        if (robot.direction === NORTH) rotate = 180
+        if (robot.direction === EAST) rotate = 270
+        if (robot.direction === WEST) rotate = 90
+        if (robot.direction === SOUTH) rotate = 0
+
+        rotate = (rotate + addedRotations * 90) % 360
 
         return (
             <img
                 src='/robot.png'
+                alt='Robot Image'
                 style={{
                     zIndex: 10,
                     position: 'fixed',
                     width: '35px',
-                    transform: robotTransform
+                    transform: `rotate(${rotate}deg)`,
                 }}
             />
         )

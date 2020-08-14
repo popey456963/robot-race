@@ -48,7 +48,7 @@
 }
 
 
-Express Conveyor Belts (move 2)
+Fast Conveyor Belts (move 2)
 Normal Conveyor Belts (move 1)
 Pushers (push if active)
 Gears (rotate 90 degrees in the direction of the arrows)

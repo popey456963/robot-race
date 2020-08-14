@@ -97,7 +97,6 @@ export default class Map extends React.Component {
 
         const rotationalRobots = arrayToObject(Object.entries(robots)
             .map(([user, robot]) => {
-                const oldPosition = { x: robot.position.x, y: robot.position.y }
                 const newRobot = {
                     ...robot,
                     position: translateCoords(robot.position, this.context, { y: map.length, x: map[0].length })
@@ -113,6 +112,7 @@ export default class Map extends React.Component {
                 onTouchMove={this.onMouseMove}
                 onMouseUp={this.onMouseUp}
                 onTouchEnd={this.onMouseUp}
+                className="selectDisable"
             >
                 <table style={{ left: `${this.state.width / 2 + this.state.offset.x}px`, top: `${this.state.height / 4 + this.state.offset.y}px` }} className='iso' onDrag={this.handleDrag}><tbody>{rotatedMap.map((row, rowId) =>
                     (<Row

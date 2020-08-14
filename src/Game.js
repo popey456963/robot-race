@@ -3,7 +3,7 @@ import {
   NORTH, EAST, SOUTH, WEST,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
-  PLAIN, FLAG, HOLE, EXPRESS_CONVEYOR, CONVEYOR
+  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR
 } from './Constants'
 
 import Deck from './Deck'
@@ -80,7 +80,7 @@ function checkCurrentSquare(G, position, player) {
     G.map[position.y][position.x] === undefined ||
     G.map[position.y][position.x].type === HOLE) {
     G.players[player].damage = 10
-    logger.info({ player, position }, `${player} fell into a hole and died!`)
+    log.info({ player, position }, `${player} fell into a hole and died!`)
   }
 }
 
@@ -166,7 +166,7 @@ function moveByConveyor(state, robot) {
   // now we should determine if we rotate...
   const newTile = state.map[robot.position.y][robot.position.x]
 
-  if (newTile.type === CONVEYOR || newTile.type === EXPRESS_CONVEYOR) {
+  if (newTile.type === CONVEYOR || newTile.type === FAST_CONVEYOR) {
     const inDirection = oppositeDirection(conveyor.meta.exitDirection)
     log.debug({ inDirection }, `The new tile is also a conveyor belt.`)
     if (newTile.meta.inputDirections[inDirection]) {
@@ -184,14 +184,14 @@ function moveByConveyor(state, robot) {
 
 function enactEnvironment(state, register) {
   for (const robot of Object.values(state.robots)) {
-    if (state.map[robot.position.y][robot.position.x].type === EXPRESS_CONVEYOR) {
+    if (state.map[robot.position.y][robot.position.x].type === FAST_CONVEYOR) {
       // move them by conveyor
       moveByConveyor(state, robot)
     }
   }
 
   for (const robot of Object.values(state.robots)) {
-    if ([EXPRESS_CONVEYOR, CONVEYOR].includes(state.map[robot.position.y][robot.position.x].type)) {
+    if ([FAST_CONVEYOR, CONVEYOR].includes(state.map[robot.position.y][robot.position.x].type)) {
       // move them by conveyor
       moveByConveyor(state, robot)
     }
@@ -233,16 +233,32 @@ export const RobotFight = {
   setup: (ctx, setupData) => {
     log.info({ users: ctx.playOrder }, 'Setting up a new robot fight.')
     const NO_DIRECTIONS = {
-      [NORTH]: false,
-      [EAST]: false,
-      [SOUTH]: false,
-      [WEST]: false
+      // [NORTH]: false,
+      // [EAST]: false,
+      // [SOUTH]: false,
+      // [WEST]: false
+    }
+
+    const NORTH_DIRECTION = {
+      [NORTH]: true
+    }
+
+    const EAST_DIRECTION = {
+      [EAST]: true
+    }
+
+    const SOUTH_DIRECTION = {
+      [SOUTH]: true
+    }
+
+    const WEST_DIRECTION = {
+      [WEST]: true
     }
 
     const state = {
       players: {},
-      map: new Array(7).fill(null).map(
-        () => new Array(10).fill(null).map(() => ({ type: PLAIN, walls: NO_DIRECTIONS }))
+      map: new Array(16).fill(null).map(
+        () => new Array(12).fill(null).map(() => ({ type: PLAIN, walls: NO_DIRECTIONS }))
       ),
       robots: {}
     }
@@ -250,7 +266,12 @@ export const RobotFight = {
     state.map[2][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 1 } }
     state.map[1][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: NO_DIRECTIONS } }
     state.map[1][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NO_DIRECTIONS } }
-    state.map[0][2] = { type: EXPRESS_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NO_DIRECTIONS } }
+    state.map[0][2] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NO_DIRECTIONS } }
+
+    state.map[1][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
+    state.map[2][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
+    state.map[3][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
+    state.map[4][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: WEST_DIRECTION } }
 
     state.meta = {
       flagCount: 1

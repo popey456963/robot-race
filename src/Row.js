@@ -1,6 +1,6 @@
 import React from 'react'
 import Tile from './Tile'
-import { findRobots, translateCoords } from './utils'
+import { findRobots } from './utils'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import './Tile.css'
 
@@ -10,12 +10,10 @@ export default class Row extends React.Component {
     const { row, rowId, robots, sizeY } = this.props
     const sizeX = row.length
 
-    const mapSize = { x: sizeX, y: sizeY }
-
     return (
       <tr
         key={rowId}
-        className={`row-${rowId - 5}`}
+        className={`row-${rowId - 5} row`}
         style={{ transform: `translateY(${(rowId - 0) * 4}em)` }}
       >{
           row.map((tile, columnId) => {
