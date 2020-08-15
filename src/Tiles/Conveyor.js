@@ -2,7 +2,7 @@ import React from 'react'
 import Tile from './Tile'
 import '../Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
-import { angleRotationAmount } from '../utils'
+import { angleRotationAmount, rotateTileAngle } from '../utils'
 
 export function getConveyorImage(tile, isFast) {
     const exitDirection = tile.meta.exitDirection
@@ -49,7 +49,7 @@ export function getConveyorImage(tile, isFast) {
         }
     } else if (countInputDirections === 2) {
         // this is a t piece
-        conveyor = 'turn_conveyor_t_base'
+        conveyor = ''
         if ((inputDirections[NORTH] && inputDirections[SOUTH]) ||
             (inputDirections[WEST] && inputDirections[EAST])) {
 
@@ -68,7 +68,6 @@ export function getConveyorImage(tile, isFast) {
                 (exitDirection === SOUTH && inputDirections[WEST]) ||
                 (exitDirection === WEST && inputDirections[NORTH])) {
 
-                console.log("exit dir: ", exitDirection, ", input: ", inputDirections)
                 inverse = true
             }
 
@@ -92,7 +91,7 @@ export default class Conveyor extends React.Component {
 
         const { image, dir, inverse } = getConveyorImage(tile, false)
 
-        return <Tile image={image} dir={dir} styles={{
+        return <Tile image={image} inverse={inverse} dir={dir} styles={{
             transform: inverse ? 'rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em) scaleX(-1)' : undefined,
         }} />
     }

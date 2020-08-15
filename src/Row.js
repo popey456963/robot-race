@@ -7,7 +7,7 @@ import './Tile.css'
 export default class Row extends React.Component {
   static contextType = ROTATION_CONTEXT
   render() {
-    const { row, rowId, robots } = this.props
+    const { row, rowId, robots, playerRobot } = this.props
 
     return (
       <tr
@@ -23,6 +23,7 @@ export default class Row extends React.Component {
               tile={tile}
               pos={pos}
               robot={findRobots(pos, robots)}
+              playerRobot={playerRobot}
             />
           })}
       </tr>

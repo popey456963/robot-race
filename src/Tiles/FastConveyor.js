@@ -9,7 +9,7 @@ export default class FastConveyor extends React.Component {
 
         const { image, dir, inverse } = getConveyorImage(tile, true)
 
-        return <Tile image={image} dir={dir} styles={{
+        return <Tile image={image} inverse={inverse} dir={dir} styles={{
             transform: inverse ? 'rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em) scaleX(-1)' : undefined
         }} />
     }

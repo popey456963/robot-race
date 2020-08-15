@@ -94,7 +94,7 @@ export default class Map extends React.Component {
     }
 
     render() {
-        let { map, robots } = this.props
+        let { map, robots, playerRobot } = this.props
 
         function rotateMatrix(a) {
             a = Object.keys(a[0]).map(c => a.map(r => r[c]))
@@ -136,6 +136,7 @@ export default class Map extends React.Component {
                         sizeY={rotatedMap.length}
                         rowId={rowId}
                         robots={rotationalRobots}
+                        playerRobot={playerRobot}
                     />)
                 )}</tbody>
                 </table>

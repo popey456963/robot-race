@@ -1,7 +1,6 @@
 :root {
   --size-multiplier: 0.35;
 }
-
 .card {
     font-family: Candara;
     font-weight: 100;
@@ -50,6 +49,7 @@
     -webkit-animation: fadeInRed 0.7s 0.5s forwards;
     animation: fadeInRed 0.7s 0.5s forwards;
   }
+
   .card .content {
     z-index: 10;
     position: absolute;
@@ -125,7 +125,8 @@
   .dark {
     color: #0C0B13;
   }
-  
+    
+  /*
   @-moz-keyframes fadeInCard {
     from {
       top: calc(40px * var(--size-multiplier));
@@ -165,7 +166,8 @@
       -webkit-transform: scale(1) rotate(0deg);
       transform: scale(1) rotate(0deg);
     }
-  }
+  }*/
+ 
   @-moz-keyframes fadeInDark {
     from {
       opacity: 0;
@@ -315,4 +317,3 @@
       opacity: 1;
     }
   }
-  

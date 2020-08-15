@@ -198,6 +198,17 @@ function enactEnvironment(state, register) {
     }
   }
 
+  for (const robot of Object.values(state.robots)) {
+    let tile = state.map[robot.position.y][robot.position.x]
+    if (tile.type === GEAR) {
+      // rotate them around
+      let rotationAmount = tile.meta.rotationDirection === CLOCKWISE ? 1 : 3
+
+      log.debug({ user: robot.user, rotationAmount }, `Player ${robot.user} is on a gear and is being rotated.`)
+      robot.direction = rotate_90_clockwise(robot.direction, rotationAmount)
+    }
+  }
+
   const flags = findInMap(state.map, FLAG)
 
   for (const flag of flags) {
@@ -205,9 +216,31 @@ function enactEnvironment(state, register) {
 
     if (robot) {
       state.robots[robot.user].checkpoint = flag
+      log.debug({ flag }, `Updated Player ${robot.user} checkpoint`)
       if (!state.robots[robot.user].flags.includes(flag.item.meta.flagNumber)) {
         state.robots[robot.user].flags.push(flag.item.meta.flagNumber)
+        log.debug(`Player ${robot.user} picked up a new flag!`)
       }
+    }
+  }
+
+  for (const robot of Object.values(state.robots)) {
+    let tile = state.map[robot.position.y][robot.position.x]
+    if (tile.type === GRILL) {
+      state.robots[robot.user].checkpoint = { ...tile, x: robot.position.x, y: robot.position.y }
+      log.debug({ tile }, `Updated Player ${robot.user} checkpoint`)
+    }
+  }
+}
+
+function enactCleanup(state) {
+  for (const robot of Object.values(state.robots)) {
+    let tile = state.map[robot.position.y][robot.position.x]
+    if (tile.type === GRILL) {
+      const oldHealth = robot.damage
+      robot.damage = Math.max(0, robot.damage - 1)
+
+      log.debug({ user: robot.user, oldHealth, newHealth: robot.damage }, `Player ${robot.user} is on a grill and is being healed.`)
     }
   }
 }
@@ -271,7 +304,6 @@ export const RobotFight = {
     state.map[9][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 5 } }
     state.map[10][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 6 } }
 
-    state.map[5][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 0 } }
     state.map[6][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 1 } }
     state.map[7][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 2 } }
     state.map[8][4] = { type: HOLE, walls: NO_DIRECTIONS }
@@ -312,7 +344,7 @@ export const RobotFight = {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 3; j++) {
         state.map[5 + i][5 + j] = {
-          type: CONVEYOR, walls: NO_DIRECTIONS, meta: {
+          type: (i % 2 == 0 ? CONVEYOR : FAST_CONVEYOR), walls: NO_DIRECTIONS, meta: {
             exitDirection: direcs[i],
             inputDirections: {
               [direcs[((i + 1) % 4)]]: j !== 0,
@@ -323,9 +355,6 @@ export const RobotFight = {
         }
       }
     }
-
-
-
 
     state.meta = {
       flagCount: 6
@@ -344,7 +373,7 @@ export const RobotFight = {
       }
 
       state.robots[player] = {
-        position: { x: 0, y: i },
+        position: { x: 2, y: i + 8 },
         direction: EAST,
         poweredDown: false,
         damage: 0,
@@ -423,6 +452,9 @@ export const RobotFight = {
 
           log.debug(`End of phase.`)
         }
+
+        log.debug(`Enacting cleanup stage.`)
+        enactCleanup(G)
       },
       turn: {
         order: TurnOrder.ONCE

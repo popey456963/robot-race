@@ -4,8 +4,11 @@ import '../Tile.css'
 
 export default class Plain extends React.Component {
     render() {
-        const { tile } = this.props
+        const { playerRobot, pos } = this.props
 
-        return <Tile image={'/tiles/plain_4/plain_4'} dir={'NE'} />
+        const checkpoint = playerRobot.checkpoint.x === pos.x && playerRobot.checkpoint.y === pos.y
+        let tile = checkpoint ? 'generic_cp' : 'plain_4'
+
+        return <Tile image={`/tiles/${tile}/${tile}`} dir={'NE'} />
     }
 }

@@ -4,9 +4,14 @@ import '../Tile.css'
 
 export default class Flag extends React.Component {
     render() {
-        const { tile } = this.props
+        const { tile, playerRobot, pos } = this.props
         const flagNumber = tile.meta.flagNumber
 
-        return <Tile image={`/tiles/flag_${flagNumber}/flag_${flagNumber}`} dir={'NE'} />
+        const visited = playerRobot.flags.includes(tile.meta.flagNumber)
+        const checkpoint = playerRobot.checkpoint.x === pos.x && playerRobot.checkpoint.y === pos.y
+
+        const name = `flag_${visited ? 'taken_' : ''}${checkpoint ? 'cp_' : ''}${flagNumber}`
+
+        return <Tile image={`/tiles/${name}/${name}`} dir={'NE'} />
     }
 }

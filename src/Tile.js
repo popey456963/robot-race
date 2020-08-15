@@ -19,7 +19,7 @@ function stringify(tile) {
   for (let object in tile) {
     if (typeof tile[object] === 'object') {
       // this is an object
-      if (NORTH in tile[object]) {
+      if (NORTH in tile[object] || EAST in tile[object] || SOUTH in tile[object] || WEST in tile[object]) {
         const N = tile[object][NORTH] ? 'N' : '-'
         const E = tile[object][EAST] ? 'E' : '-'
         const S = tile[object][SOUTH] ? 'S' : '-'
@@ -54,7 +54,7 @@ export default class Tile extends React.Component {
   // }
 
   render() {
-    const { tile, pos, robot } = this.props
+    const { tile, pos, robot, playerRobot } = this.props
 
     let TileType
 
@@ -68,7 +68,7 @@ export default class Tile extends React.Component {
       case GEAR: TileType = Gear; break
     }
 
-    let tileImage = <TileType tile={tile} />
+    let tileImage = <TileType tile={tile} playerRobot={playerRobot} pos={pos} />
 
     let tooltip = stringify(tile).join(' | ')
 

@@ -6,9 +6,12 @@ import { rotateTileAngle, rotateTileAngleAmount } from '../utils'
 export default class Tile extends React.Component {
     static contextType = ROTATION_CONTEXT
     render() {
-        const { image, dir, styles } = this.props
+        const { image, dir, styles, inverse } = this.props
 
-        const tileDirection = rotateTileAngle(dir, rotateTileAngleAmount(this.context))
+        let rotationAmount = rotateTileAngleAmount(this.context)
+        if (inverse) rotationAmount = 4 - rotationAmount
+
+        const tileDirection = rotateTileAngle(dir, rotationAmount)
 
         return <div style={{
             backgroundSize: `100%`,
