@@ -31,7 +31,7 @@ async function main() {
             if (/_(NE|NW|SE|SW)\.png/.test(tile)) {
                 const location = path.join('input', type, 'size3blocky', tile)
                 const outPath = path.join('../', '../', 'public', 'tiles', type, tile.replace('_Size3', ''))
-                jetpack.dir(path.join('output', type))
+                jetpack.dir(path.join('../', '../', 'public', 'tiles', type))
 
                 const png = await getPicture(location)
 

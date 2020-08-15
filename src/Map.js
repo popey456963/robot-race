@@ -5,6 +5,7 @@ import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from './utils'
 
 const GameScrollManager = require('./GameScrollManager')
+const GameZoomManager = require('./GameZoomManager')
 
 export default class Map extends React.Component {
     static contextType = ROTATION_CONTEXT
@@ -18,7 +19,9 @@ export default class Map extends React.Component {
             offset: {
                 x: 0,
                 y: 0
-            }
+            },
+
+            zoom: GameZoomManager.zoom
         }
 
         this.handleResize = this.handleResize.bind(this)
@@ -28,12 +31,20 @@ export default class Map extends React.Component {
         window.addEventListener('resize', this.handleResize)
         GameScrollManager.setDragCallback(this.onDrag);
         GameScrollManager.setClickCallback(this.onClickFinalized);
+        GameZoomManager.setOnZoomChanged(this.onZoomChanged);
+        GameZoomManager.setSaveZoom(false);
+        GameZoomManager.resetZoomToDefault();
+    }
+
+    onZoomChanged = (z) => {
+        this.setState({ zoom: z })
     }
 
     componentWillUnmount() {
         GameScrollManager.handleMouseUp();
         GameScrollManager.setDragCallback(null);
         GameScrollManager.setClickCallback(null);
+        GameZoomManager.setOnZoomChanged(null);
         window.removeEventListener('resize', this.handleResize)
     }
 
@@ -104,6 +115,8 @@ export default class Map extends React.Component {
                 return [user, newRobot]
             }))
 
+        console.log(GameZoomManager)
+
         return (
             <div
                 onMouseDown={this.onMouseDown}
@@ -112,6 +125,7 @@ export default class Map extends React.Component {
                 onTouchMove={this.onMouseMove}
                 onMouseUp={this.onMouseUp}
                 onTouchEnd={this.onMouseUp}
+                onWheel={GameZoomManager.onWheel}
                 className="selectDisable"
             >
                 <table style={{ left: `${this.state.width / 2 + this.state.offset.x}px`, top: `${this.state.height / 4 + this.state.offset.y}px` }} className='iso' onDrag={this.handleDrag}><tbody>{rotatedMap.map((row, rowId) =>

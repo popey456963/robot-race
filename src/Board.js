@@ -109,8 +109,6 @@ export class RobotFightBoard extends React.Component {
   rotateBoard(clockwise) {
     const rotation = rotateTileAngle(this.state.rotation, clockwise ? 1 : 3)
 
-    console.log(this.state.rotation, rotation)
-
     this.setState({
       rotation
     })

@@ -52,7 +52,6 @@ td.iso_td .tile div {
   background-position: 0px 0px;
   background-repeat: no-repeat;
   background-image: url(/tiles5.png);
-  image-rendering: pixelated;
 }
 
 @keyframes showTile {

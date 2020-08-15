@@ -7,8 +7,7 @@ import './Tile.css'
 export default class Row extends React.Component {
   static contextType = ROTATION_CONTEXT
   render() {
-    const { row, rowId, robots, sizeY } = this.props
-    const sizeX = row.length
+    const { row, rowId, robots } = this.props
 
     return (
       <tr

@@ -23,7 +23,7 @@ export default class Robot extends React.Component {
         return (
             <img
                 src='/robot.png'
-                alt='Robot Image'
+                alt='Robot'
                 style={{
                     zIndex: 10,
                     position: 'fixed',

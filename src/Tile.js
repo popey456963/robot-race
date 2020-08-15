@@ -1,13 +1,16 @@
 import React from 'react'
 import './Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from './Constants'
-import { FLAG, CONVEYOR, FAST_CONVEYOR } from './Constants'
+import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN } from './Constants'
+// import * as deepEqual from 'deep-equal'
 
 import Conveyor from './Tiles/Conveyor'
 import FastConveyor from './Tiles/FastConveyor'
 import Robot from './Tiles/Robot'
 import Flag from './Tiles/Flag'
 import Plain from './Tiles/Plain'
+import Grill from './Tiles/Grill'
+import Hole from './Tiles/Hole'
 
 function stringify(tile) {
   let tooltip = []
@@ -42,14 +45,28 @@ export default class Tile extends React.Component {
     }
   }
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.hover !== nextState.hover) return true
+  //   if (!deepEqual(this.props.robot, nextProps.robot)) return true
+
+  //   return false
+  // }
+
   render() {
     const { tile, pos, robot } = this.props
 
-    let tileImage
-    if (tile.type === CONVEYOR) tileImage = <Conveyor tile={tile} />
-    else if (tile.type === FAST_CONVEYOR) tileImage = <FastConveyor tile={tile} />
-    else if (tile.type === FLAG) tileImage = <Flag tile={tile} />
-    else tileImage = <Plain tile={tile} />
+    let TileType
+
+    switch (tile.type) {
+      case CONVEYOR: TileType = Conveyor; break
+      case FAST_CONVEYOR: TileType = FastConveyor; break
+      case FLAG: TileType = Flag; break
+      case PLAIN: TileType = Plain; break
+      case GRILL: TileType = Grill; break
+      case HOLE: TileType = Hole; break
+    }
+
+    let tileImage = <TileType tile={tile} />
 
     let tooltip = stringify(tile).join(' | ')
 

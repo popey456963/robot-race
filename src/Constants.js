@@ -16,6 +16,7 @@ export const FLAG = 'FLAG'
 export const HOLE = 'HOLE'
 export const FAST_CONVEYOR = 'FAST_CONVEYOR'
 export const CONVEYOR = 'CONVEYOR'
+export const GRILL = 'GRILL'
 
 // export const TILE_SCALE = 16
 // export const TILE_OFFSET = 6.4

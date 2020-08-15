@@ -19,10 +19,11 @@ export function convertTouchIfMobile(e) {
 }
 
 export function rotateTileAngleAmount(dir) {
-  if (dir === 'SE') return 0
-  else if (dir === 'SW') return 1
-  else if (dir === 'NW') return 2
-  else if (dir === 'NE') return 3
+  return ['SE', 'SW', 'NW', 'NE'].indexOf(dir)
+}
+
+export function angleRotationAmount(dir) {
+  return ['NORTH', 'EAST', 'SOUTH', 'WEST'].indexOf(dir)
 }
 
 export function rotateTileAngle(dir, amount) {
@@ -44,8 +45,6 @@ export function rotateCoordinates90(coords, mapSize) {
 
 export function translateCoords(coords, dir, mapSize) {
   const amount = rotateTileAngleAmount(dir)
-
-  // console.log('Asked to rotate', coords, 'rotationg', amount, 'times')
 
   for (let i = 0; i < amount; i++) {
     coords = rotateCoordinates90(coords, mapSize)

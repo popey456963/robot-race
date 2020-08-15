@@ -3,14 +3,13 @@ import {
   NORTH, EAST, SOUTH, WEST,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
-  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR
+  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL
 } from './Constants'
 
 import Deck from './Deck'
 import { findRobots, arrayToObject } from './utils'
 
 import log from './Logger'
-import logger from 'redux-logger'
 
 function drawAllCards(G, ctx) {
   const deck = new Deck(ctx)
@@ -257,24 +256,54 @@ export const RobotFight = {
 
     const state = {
       players: {},
-      map: new Array(16).fill(null).map(
+      map: new Array(12).fill(null).map(
         () => new Array(12).fill(null).map(() => ({ type: PLAIN, walls: NO_DIRECTIONS }))
       ),
       robots: {}
     }
 
-    state.map[2][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 1 } }
-    state.map[1][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: NO_DIRECTIONS } }
-    state.map[1][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NO_DIRECTIONS } }
-    state.map[0][2] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NO_DIRECTIONS } }
+    state.map[5][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 1 } }
+    state.map[6][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 2 } }
+    state.map[7][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 3 } }
+    state.map[8][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 4 } }
+    state.map[9][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 5 } }
+    state.map[10][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 6 } }
 
-    state.map[1][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
-    state.map[2][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
-    state.map[3][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
-    state.map[4][2] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: WEST_DIRECTION } }
+    state.map[5][4] = { type: GRILL, walls: NO_DIRECTIONS }
+    state.map[6][4] = { type: HOLE, walls: NO_DIRECTIONS }
+
+    state.map[1][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
+    state.map[2][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
+    state.map[3][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
+    state.map[4][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: EAST_DIRECTION } }
+
+    state.map[1][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: EAST_DIRECTION } }
+    state.map[2][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: SOUTH_DIRECTION } }
+    state.map[3][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: WEST_DIRECTION } }
+    state.map[4][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: NORTH_DIRECTION } }
+
+    state.map[1][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: WEST_DIRECTION } }
+    state.map[2][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NORTH_DIRECTION } }
+    state.map[3][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: EAST_DIRECTION } }
+    state.map[4][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: SOUTH_DIRECTION } }
+
+    state.map[1][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
+    state.map[2][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
+    state.map[3][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
+    state.map[4][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: EAST_DIRECTION } }
+
+    state.map[1][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: EAST_DIRECTION } }
+    state.map[2][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: SOUTH_DIRECTION } }
+    state.map[3][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: WEST_DIRECTION } }
+    state.map[4][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: NORTH_DIRECTION } }
+
+    state.map[1][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: WEST_DIRECTION } }
+    state.map[2][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NORTH_DIRECTION } }
+    state.map[3][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: EAST_DIRECTION } }
+    state.map[4][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: SOUTH_DIRECTION } }
 
     state.meta = {
-      flagCount: 1
+      flagCount: 6
     }
 
     const tileCount = countTiles(state.map)

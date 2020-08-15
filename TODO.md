@@ -1,6 +1,8 @@
 UI:
     == PLAIN ==
-    - There needs to be a plain tile design
+    (DONE) There needs to be a plain tile design
+    - Improve plain tile design to fit in with rest of tiles
+        - Alternatively, update rest of tiles
 
     == ROBOT ==
     (DONE) Robot characters should rotate
@@ -10,7 +12,7 @@ UI:
     == CONVEYORS ==
     - Conveyors should rotate to show direction
         (DONE) For straight lines
-        - For corners
+        (DONE) For corners
         - For multi-inputs
     - Conveyors should have an icon for two input directions
     - Conveyors should have an icon for three input directions
