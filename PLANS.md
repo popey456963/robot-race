@@ -22,6 +22,9 @@
 
                 // PUSHER
                 activationRegisters: [false, true, false, true, false] // 0, 1, 2, 3, 4 register move
+
+                // GRILLS
+                level: 0 / 1 / 2 (0 -> empty, 1 -> spanner, 2 -> spanner + hammer)
             }
             
         },

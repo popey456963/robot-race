@@ -1,34 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Board.css';
+import './Card.css';
 import Map from './Map';
+import Card from './Card';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateTileAngle } from './utils'
 
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  background: isDragging
-    ? 'lightgreen'
-    : 'grey',
-
-  // styles we need to apply on draggables
-  ...draggableStyle
-});
-
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver
-    ? 'lightblue'
-    : 'lightgrey',
-  padding: grid,
-  width: 250,
+    ? 'rgba(173, 216, 230, 0.9)'
+    : 'rgba(211, 211, 211, 0.6)',
+  padding: 8,
+  width: 150,
+  display: 'flex',
+  overflow: 'visible'
 });
 
 export class RobotFightBoard extends React.Component {
@@ -145,7 +132,7 @@ export class RobotFightBoard extends React.Component {
 
             <h3>Cards in Hand</h3>
             <DragDropContext onDragEnd={this.onDragEnd}>
-              <Droppable droppableId="droppable">
+              <Droppable droppableId="droppable" direction="horizontal">
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                     {inHand.map((card, index) => (
@@ -155,13 +142,7 @@ export class RobotFightBoard extends React.Component {
                         draggableId={JSON.stringify(card)}
                         index={index}>
                         {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                            {card.type + card.priority}
-                          </div>
+                          <Card provided={provided} card={card} />
                         )}
                       </Draggable>
                     ))}
@@ -170,7 +151,7 @@ export class RobotFightBoard extends React.Component {
                 )}
               </Droppable>
               <h3>Cards to Play</h3>
-              <Droppable droppableId="droppable2">
+              <Droppable droppableId="droppable2" direction="horizontal">
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                     {this
@@ -183,13 +164,7 @@ export class RobotFightBoard extends React.Component {
                           draggableId={JSON.stringify(card)}
                           index={index}>
                           {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
-                              {card.type + card.priority}
-                            </div>
+                            <Card provided={provided} card={card} />
                           )}
                         </Draggable>
                       ))}

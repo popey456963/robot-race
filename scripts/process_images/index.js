@@ -27,6 +27,8 @@ async function main() {
     for (let type of tileTypes) {
         const tiles = jetpack.list(path.join('input', type, 'size3blocky'))
 
+        console.log(type)
+
         for (let tile of tiles) {
             if (/_(NE|NW|SE|SW)\.png/.test(tile)) {
                 const location = path.join('input', type, 'size3blocky', tile)

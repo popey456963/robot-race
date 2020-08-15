@@ -11,7 +11,7 @@ export function getConveyorImage(tile, isFast) {
     const countInputDirections = Object.values(inputDirections).filter(a => a).length
 
     let dir = 'SE'
-    let conveyor = 'straight'
+    let conveyor = 'straight_conveyor'
     let inverse = false
 
     if (countInputDirections === 1) {
@@ -25,7 +25,7 @@ export function getConveyorImage(tile, isFast) {
 
         if (Math.abs(difference) % 2) {
             // this is a corner...
-            conveyor = 'turn'
+            conveyor = 'turn_conveyor'
 
             if ([1, -3].includes(inputAngle - exitAngle)) {
                 if (exitDirection === NORTH) dir = 'NE'
@@ -47,11 +47,42 @@ export function getConveyorImage(tile, isFast) {
             if (exitDirection === SOUTH && inputDirections[NORTH]) dir = 'NW'
             if (exitDirection === WEST && inputDirections[EAST]) dir = 'NE'
         }
+    } else if (countInputDirections === 2) {
+        // this is a t piece
+        conveyor = 'turn_conveyor_t_base'
+        if ((inputDirections[NORTH] && inputDirections[SOUTH]) ||
+            (inputDirections[WEST] && inputDirections[EAST])) {
+
+            // Output is base of T
+            conveyor = 'turn_conveyor_t_base'
+            if (exitDirection === NORTH) dir = "NE"
+            if (exitDirection === EAST) dir = "SE"
+            if (exitDirection === SOUTH) dir = "SW"
+            if (exitDirection === WEST) dir = "NW"
+        }
+        else {
+            conveyor = 'turn_conveyor_t_side'
+            // Output is arm of T
+            if ((exitDirection === NORTH && inputDirections[EAST]) ||
+                (exitDirection === EAST && inputDirections[SOUTH]) ||
+                (exitDirection === SOUTH && inputDirections[WEST]) ||
+                (exitDirection === WEST && inputDirections[NORTH])) {
+
+                console.log("exit dir: ", exitDirection, ", input: ", inputDirections)
+                inverse = true
+            }
+
+            if ((exitDirection === NORTH && !inverse) || (exitDirection === WEST && inverse)) dir = "SW"
+            if ((exitDirection === EAST && !inverse) || (exitDirection === SOUTH && inverse)) dir = "NW"
+            if ((exitDirection === SOUTH && !inverse) || (exitDirection === EAST && inverse)) dir = "NE"
+            if ((exitDirection === WEST && !inverse) || (exitDirection === NORTH && inverse)) dir = "SE"
+        }
     }
 
     return {
-        image: `/tiles/${conveyor}_conveyor${isFast ? '_2' : ''}${inverse ? '_anticlockwise' : ''}/${conveyor}_conveyor${isFast ? '_2' : ''}`,
-        dir
+        image: `/tiles/${conveyor}${isFast ? '_2' : ''}/${conveyor}${isFast ? '_2' : ''}`,
+        dir,
+        inverse
     }
 }
 
@@ -59,8 +90,10 @@ export default class Conveyor extends React.Component {
     render() {
         const { tile } = this.props
 
-        const { image, dir } = getConveyorImage(tile, false)
+        const { image, dir, inverse } = getConveyorImage(tile, false)
 
-        return <Tile image={image} dir={dir} />
+        return <Tile image={image} dir={dir} styles={{
+            transform: inverse ? 'rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em) scaleX(-1)' : undefined,
+        }} />
     }
 }

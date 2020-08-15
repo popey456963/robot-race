@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from './Row';
 import './Tile.css';
+import './Tooltips.css';
 import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from './utils'
 

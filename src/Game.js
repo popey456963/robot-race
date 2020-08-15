@@ -3,7 +3,8 @@ import {
   NORTH, EAST, SOUTH, WEST,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
-  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL
+  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
+  CLOCKWISE, ANTICLOCKWISE
 } from './Constants'
 
 import Deck from './Deck'
@@ -19,6 +20,7 @@ function drawAllCards(G, ctx) {
     for (let i = 0; i < 9; i++) {
       G.players[player].hand.push(deck.drawCard())
     }
+    G.players[player].hand = G.players[player].hand.sort((a, b) => a.priority - b.priority)
   }
 }
 
@@ -269,8 +271,12 @@ export const RobotFight = {
     state.map[9][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 5 } }
     state.map[10][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 6 } }
 
-    state.map[5][4] = { type: GRILL, walls: NO_DIRECTIONS }
-    state.map[6][4] = { type: HOLE, walls: NO_DIRECTIONS }
+    state.map[5][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 0 } }
+    state.map[6][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 1 } }
+    state.map[7][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 2 } }
+    state.map[8][4] = { type: HOLE, walls: NO_DIRECTIONS }
+    state.map[9][4] = { type: GEAR, walls: NO_DIRECTIONS, meta: { rotationDirection: CLOCKWISE } }
+    state.map[10][4] = { type: GEAR, walls: NO_DIRECTIONS, meta: { rotationDirection: ANTICLOCKWISE } }
 
     state.map[1][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
     state.map[2][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
@@ -301,6 +307,25 @@ export const RobotFight = {
     state.map[2][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NORTH_DIRECTION } }
     state.map[3][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: EAST_DIRECTION } }
     state.map[4][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: SOUTH_DIRECTION } }
+
+    const direcs = [NORTH, EAST, SOUTH, WEST]
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 3; j++) {
+        state.map[5 + i][5 + j] = {
+          type: CONVEYOR, walls: NO_DIRECTIONS, meta: {
+            exitDirection: direcs[i],
+            inputDirections: {
+              [direcs[((i + 1) % 4)]]: j !== 0,
+              [direcs[((i + 2) % 4)]]: j !== 1,
+              [direcs[((i + 3) % 4)]]: j !== 2
+            }
+          }
+        }
+      }
+    }
+
+
+
 
     state.meta = {
       flagCount: 6

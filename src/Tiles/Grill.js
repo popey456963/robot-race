@@ -6,6 +6,11 @@ export default class Grill extends React.Component {
     render() {
         const { tile } = this.props
 
-        return <Tile image={'/tiles/grill/grill'} dir={'NE'} />
+        let image = 'grill'
+
+        if (tile.meta.level === 1) image = 'grill_spanner'
+        if (tile.meta.level === 2) image = 'grill_spanner_hammer'
+
+        return <Tile image={`/tiles/${image}/${image}`} dir={'SE'} />
     }
 }

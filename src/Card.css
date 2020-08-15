@@ -1,0 +1,318 @@
+:root {
+  --size-multiplier: 0.35;
+}
+
+.card {
+    font-family: Candara;
+    font-weight: 100;
+    letter-spacing: -1px;
+    width: calc(350px * var(--size-multiplier));
+    height: calc(490px * var(--size-multiplier));
+    background: #CCC5B3;
+    margin: calc(100px * var(--size-multiplier)) auto;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    color: white;
+    -moz-animation: fadeInCard 0.6s forwards;
+    -webkit-animation: fadeInCard 0.6s forwards;
+    animation: fadeInCard 0.6s forwards;
+  }
+  .card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: calc(-50px * var(--size-multiplier));
+    background: #0C0B13;
+    border-left: solid calc(250px * var(--size-multiplier)) #664C4F;
+    -moz-animation: fadeInDark 0.8s forwards;
+    -webkit-animation: fadeInDark 0.8s forwards;
+    animation: fadeInDark 0.8s forwards;
+  }
+  .card:after {
+    content: "";
+    position: absolute;
+    top: calc(-50px * var(--size-multiplier));
+    bottom: calc(-50px * var(--size-multiplier));
+    left: calc(50px * var(--size-multiplier));
+    right: calc(50px * var(--size-multiplier));
+    background: rgba(225, 98, 63, 0.7);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -moz-animation: fadeInRed 0.7s 0.5s forwards;
+    -webkit-animation: fadeInRed 0.7s 0.5s forwards;
+    animation: fadeInRed 0.7s 0.5s forwards;
+  }
+  .card .content {
+    z-index: 10;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    -moz-animation: fadeInText 1.2s 0.1s forwards;
+    -webkit-animation: fadeInText 1.2s 0.1s forwards;
+    animation: fadeInText 1.2s 0.1s forwards;
+  }
+  .card .content h1 {
+    font-size: calc(60px * var(--size-multiplier));
+    line-height: calc(40px * var(--size-multiplier));
+    margin: 0;
+  }
+  .card .content h2 {
+    margin: 0;
+    font-size: calc(36px * var(--size-multiplier));
+    line-height: calc(36px * var(--size-multiplier));
+  }
+  .card .content h2 sup {
+    font-size: calc(14px * var(--size-multiplier));
+  }
+  .card .mark {
+    position: absolute;
+    font-size: calc(60px * var(--size-multiplier));
+    font-weight: bold;
+    top: calc(16px * var(--size-multiplier));
+    left: calc(24px * var(--size-multiplier));
+    opacity: 0;
+    -moz-animation: fadeInMark 0.8s 0.5s forwards;
+    -webkit-animation: fadeInMark 0.8s 0.5s forwards;
+    animation: fadeInMark 0.8s 0.5s forwards;
+  }
+  .card .mark:after {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    font-size: calc(30px * var(--size-multiplier));
+    color: #E1623F;
+    margin-left: calc(-5px * var(--size-multiplier));
+    margin-top: calc(4px * var(--size-multiplier));
+  }
+  .card .mark.upside-down {
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    top: auto;
+    left: auto;
+    bottom: calc(16px * var(--size-multiplier));
+    right: calc(24px * var(--size-multiplier));
+    color: #E1623F;
+  }
+  .card .mark.upside-down:after {
+    color: #CCC5B3;
+  }
+
+  .card .mark .symbol {
+    color: '#E1624F';
+    font-size: calc('45px' * var(--size-multiplier));
+  }
+
+  .card .mark.upside-down .symbol {
+    color: '#CCC5B3';
+  }
+  
+  .dark {
+    color: #0C0B13;
+  }
+  
+  @-moz-keyframes fadeInCard {
+    from {
+      top: calc(40px * var(--size-multiplier));
+      -moz-transform: scale(1.2) rotate(10deg);
+      transform: scale(1.2) rotate(10deg);
+    }
+    to {
+      top: 0px;
+      -moz-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  @-webkit-keyframes fadeInCard {
+    from {
+      top: calc(40px * var(--size-multiplier));
+      -webkit-transform: scale(1.2) rotate(10deg);
+      transform: scale(1.2) rotate(10deg);
+    }
+    to {
+      top: 0px;
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  @keyframes fadeInCard {
+    from {
+      top: calc(40px * var(--size-multiplier));
+      -moz-transform: scale(1.2) rotate(10deg);
+      -ms-transform: scale(1.2) rotate(10deg);
+      -webkit-transform: scale(1.2) rotate(10deg);
+      transform: scale(1.2) rotate(10deg);
+    }
+    to {
+      top: 0px;
+      -moz-transform: scale(1) rotate(0deg);
+      -ms-transform: scale(1) rotate(0deg);
+      -webkit-transform: scale(1) rotate(0deg);
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  @-moz-keyframes fadeInDark {
+    from {
+      opacity: 0;
+      -moz-transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.1;
+    }
+    to {
+      opacity: 1;
+      -moz-transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+    }
+  }
+  @-webkit-keyframes fadeInDark {
+    from {
+      opacity: 0;
+      -webkit-transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.1;
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+    }
+  }
+  @keyframes fadeInDark {
+    from {
+      opacity: 0;
+      -moz-transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      -ms-transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      -webkit-transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(120px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.1;
+    }
+    to {
+      opacity: 1;
+      -moz-transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+      -ms-transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+      -webkit-transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+      transform: rotate(72deg) translate(calc(75px * var(--size-multiplier)), calc(20px * var(--size-multiplier)));
+    }
+  }
+  @-moz-keyframes fadeInRed {
+    from {
+      opacity: 0;
+      -moz-transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 1;
+      -moz-transform: rotate(58deg) translate(0px, 0px);
+      transform: rotate(58deg) translate(0px, 0px);
+    }
+  }
+  @-webkit-keyframes fadeInRed {
+    from {
+      opacity: 0;
+      -webkit-transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: rotate(58deg) translate(0px, 0px);
+      transform: rotate(58deg) translate(0px, 0px);
+    }
+  }
+  @keyframes fadeInRed {
+    from {
+      opacity: 0;
+      -moz-transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      -ms-transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      -webkit-transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+      transform: rotate(70deg) translate(calc(7px * var(--size-multiplier)), calc(800px * var(--size-multiplier)));
+    }
+    30% {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 1;
+      -moz-transform: rotate(58deg) translate(0px, 0px);
+      -ms-transform: rotate(58deg) translate(0px, 0px);
+      -webkit-transform: rotate(58deg) translate(0px, 0px);
+      transform: rotate(58deg) translate(0px, 0px);
+    }
+  }
+  @-moz-keyframes fadeInText {
+    from {
+      opacity: 0;
+    }
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadeInText {
+    from {
+      opacity: 0;
+    }
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+  @keyframes fadeInText {
+    from {
+      opacity: 0;
+    }
+    to {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes fadeInMark {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadeInMark {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeInMark {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
