@@ -14,12 +14,12 @@ const getListStyle = isDraggingOver => ({
 
 export default class CardHand extends React.Component {
     render() {
-        const { cards, id, isActive } = this.props
+        const { cards, id, isActive, style } = this.props
 
         return (
             <Droppable droppableId={id} direction="horizontal">
                 {(provided, snapshot) => (
-                    <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                    <div ref={provided.innerRef} style={{ ...getListStyle(snapshot.isDraggingOver), style }}>
                         {cards.map((card, index) => (
                             <Draggable
                                 isDragDisabled={!isActive}
@@ -27,7 +27,9 @@ export default class CardHand extends React.Component {
                                 draggableId={JSON.stringify(card)}
                                 index={index}>
                                 {(provided, snapshot) => (
-                                    <Card provided={provided} card={card} />
+                                    <div>
+                                        <Card provided={provided} card={card} />
+                                    </div>
                                 )}
                             </Draggable>
                         ))}

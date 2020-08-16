@@ -6,7 +6,7 @@ UI:
     == TURNS ==
     - We should predict movement based on cards you're playing and display it
     - You should be able to click on a card to add it to the 'Cards to play' DND
-    - Fix the bugginess of cards in hand versus play.
+    (DONE) Fix the bugginess of cards in hand versus play.
 
     == BUTTONS ==
     - The rotation buttons should be arrows

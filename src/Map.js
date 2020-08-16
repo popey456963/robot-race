@@ -116,8 +116,6 @@ export default class Map extends React.Component {
                 return [user, newRobot]
             }))
 
-        console.log(GameZoomManager)
-
         return (
             <div
                 onMouseDown={this.onMouseDown}
@@ -128,6 +126,10 @@ export default class Map extends React.Component {
                 onTouchEnd={this.onMouseUp}
                 onWheel={GameZoomManager.onWheel}
                 className="selectDisable"
+                style={{
+                    position: 'relative',
+                    zIndex: 10
+                }}
             >
                 <table style={{ left: `${this.state.width / 2 + this.state.offset.x}px`, top: `${this.state.height / 4 + this.state.offset.y}px` }} className='iso' onDrag={this.handleDrag}><tbody>{rotatedMap.map((row, rowId) =>
                     (<Row
