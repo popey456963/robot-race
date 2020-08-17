@@ -4,6 +4,7 @@ import './Board.css'
 import './Card.css'
 import Map from './Map'
 import CardHand from './CardHand'
+import Button from './Button'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateTileAngle } from '../utils'
@@ -72,11 +73,32 @@ export class RobotFightBoard extends React.Component {
       newSelected.splice(destination.index, 0, JSON.parse(result.draggableId))
     }
 
+    if (newSelected.length > 5) {
+      // pop the existing last element.
+      if (destination.index === 5) {
+        newSelected.splice(4, 1)
+      } else {
+        // pop the last entry
+        newSelected.splice(5, 1)
+      }
+    }
+
     this.setState({ selected: newSelected })
   }
 
   onCardClick = (e, card) => {
-    this.setState({ selected: this.state.selected.concat([card]) })
+    const newSelected = this.state.selected.concat([card])
+
+    if (newSelected.length > 5) {
+      // pop the existing last element.
+      newSelected.splice(4, 1)
+    }
+
+    this.setState({ selected: newSelected })
+  }
+
+  onToPlayClick = (e, card) => {
+    this.setState({ selected: this.state.selected.filter(select => !(card.priority === select.priority && card.type === select.type)) })
   }
 
   rotateBoard(clockwise) {
@@ -140,15 +162,17 @@ export class RobotFightBoard extends React.Component {
                     cards={this.state.selected}
                     id='to_play'
                     isActive={playerID in activePlayers}
+                    onClick={this.onToPlayClick}
                   />
                 </div>
 
                 <div style={{
-                  float: 'left'
+                  float: 'left',
+                  paddingLeft: '10px'
                 }}>
-                  <button style={{ display: 'block' }} disabled={!(playerID in activePlayers)} onClick={() => this.onClick(this.props)}>Submit Orders</button>
-                  <button style={{ display: 'block' }} onClick={() => this.rotateBoard(false)}>Rotate Anticlockwise</button>
-                  <button style={{ display: 'block' }} onClick={() => this.rotateBoard(true)}>Rotate Clockwise</button>
+                  <Button style={{ display: 'block' }} disabled={!(playerID in activePlayers)} onClick={() => this.onClick(this.props)} text='Submit Orders' />
+                  <Button style={{ display: 'block' }} onClick={() => this.rotateBoard(false)} text='Rotate Anticlockwise' />
+                  <Button style={{ display: 'block' }} onClick={() => this.rotateBoard(true)} text='Rotate Clockwise' />
                 </div>
               </div>
             </DragDropContext>
@@ -157,7 +181,7 @@ export class RobotFightBoard extends React.Component {
           <Map map={this.props.G.map} robots={this.props.G.robots} playerRobot={playerRobot} />
 
         </ROTATION_CONTEXT.Provider>
-      </div>
+      </div >
     )
   }
 }

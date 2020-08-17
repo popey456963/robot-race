@@ -1,6 +1,6 @@
 import { PlayerView, TurnOrder, Stage } from 'boardgame.io/core'
 import {
-  NORTH, EAST, SOUTH, WEST,
+  NORTH, EAST, SOUTH, WEST, DIRECTIONS,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
   PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
@@ -9,6 +9,12 @@ import {
 
 import Deck from './Deck'
 import { findRobots, arrayToObject } from './utils'
+
+import { createMap, setMapTile, countAllMapTiles } from './Map'
+import {
+  createFlagTile, createGrillTile, createHoleTile, createGearTile,
+  createDirectionObject, createConveyorTile, createFastConveyorTile
+} from './Tiles'
 
 import log from './Logger'
 
@@ -249,17 +255,6 @@ function enactCleanup(state) {
   }
 }
 
-function countTiles(map) {
-  let counts = {}
-  for (let row of map) {
-    for (let item of row) {
-      counts[item.type] = (counts[item.type] || 0) + 1
-    }
-  }
-
-  return counts
-}
-
 function getPlayerCardCounts(G) {
   return arrayToObject(Object.entries(G.players)
     .map(([id, player]) => [id, player.hand.length]))
@@ -270,93 +265,72 @@ export const RobotFight = {
 
   setup: (ctx, setupData) => {
     log.info({ users: ctx.playOrder }, 'Setting up a new robot fight.')
-    const NO_DIRECTIONS = {
-      // [NORTH]: false,
-      // [EAST]: false,
-      // [SOUTH]: false,
-      // [WEST]: false
-    }
 
-    const NORTH_DIRECTION = {
-      [NORTH]: true
-    }
+    const map = createMap(12, 12)
 
-    const EAST_DIRECTION = {
-      [EAST]: true
-    }
+    setMapTile(map, { y: 5, x: 3 }, createFlagTile({}, { flagNumber: 1 }))
+    setMapTile(map, { y: 6, x: 3 }, createFlagTile({}, { flagNumber: 2 }))
+    setMapTile(map, { y: 7, x: 3 }, createFlagTile({}, { flagNumber: 3 }))
+    setMapTile(map, { y: 8, x: 3 }, createFlagTile({}, { flagNumber: 4 }))
+    setMapTile(map, { y: 9, x: 3 }, createFlagTile({}, { flagNumber: 5 }))
+    setMapTile(map, { y: 10, x: 3 }, createFlagTile({}, { flagNumber: 6 }))
 
-    const SOUTH_DIRECTION = {
-      [SOUTH]: true
-    }
+    setMapTile(map, { y: 6, x: 4 }, createGrillTile({}, { level: 1 }))
+    setMapTile(map, { y: 7, x: 4 }, createGrillTile({}, { level: 2 }))
+    setMapTile(map, { y: 8, x: 4 }, createHoleTile())
+    setMapTile(map, { y: 9, x: 4 }, createGearTile({}, { rotationDirection: CLOCKWISE }))
+    setMapTile(map, { y: 10, x: 4 }, createGearTile({}, { rotationDirection: ANTICLOCKWISE }))
 
-    const WEST_DIRECTION = {
-      [WEST]: true
-    }
+    setMapTile(map, { y: 1, x: 3 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([SOUTH]) }))
+    setMapTile(map, { y: 2, x: 3 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 3, x: 3 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([NORTH]) }))
+    setMapTile(map, { y: 4, x: 3 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([EAST]) }))
+
+    setMapTile(map, { y: 1, x: 4 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([EAST]) }))
+    setMapTile(map, { y: 2, x: 4 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([SOUTH]) }))
+    setMapTile(map, { y: 3, x: 4 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 4, x: 4 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([NORTH]) }))
+
+    setMapTile(map, { y: 1, x: 5 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 2, x: 5 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([NORTH]) }))
+    setMapTile(map, { y: 3, x: 5 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([EAST]) }))
+    setMapTile(map, { y: 4, x: 5 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([SOUTH]) }))
+
+    setMapTile(map, { y: 1, x: 6 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([SOUTH]) }))
+    setMapTile(map, { y: 2, x: 6 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 3, x: 6 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([NORTH]) }))
+    setMapTile(map, { y: 4, x: 6 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([EAST]) }))
+
+    setMapTile(map, { y: 1, x: 7 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([EAST]) }))
+    setMapTile(map, { y: 2, x: 7 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([SOUTH]) }))
+    setMapTile(map, { y: 3, x: 7 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 4, x: 7 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([NORTH]) }))
+
+    setMapTile(map, { y: 1, x: 8 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([WEST]) }))
+    setMapTile(map, { y: 2, x: 8 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([NORTH]) }))
+    setMapTile(map, { y: 3, x: 8 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([EAST]) }))
+    setMapTile(map, { y: 4, x: 8 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([SOUTH]) }))
 
     const state = {
       players: {},
-      map: new Array(12).fill(null).map(
-        () => new Array(12).fill(null).map(() => ({ type: PLAIN, walls: NO_DIRECTIONS }))
-      ),
-      robots: {}
+      robots: {},
+      map
     }
 
-    state.map[5][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 1 } }
-    state.map[6][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 2 } }
-    state.map[7][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 3 } }
-    state.map[8][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 4 } }
-    state.map[9][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 5 } }
-    state.map[10][3] = { type: FLAG, walls: NO_DIRECTIONS, meta: { flagNumber: 6 } }
-
-    state.map[6][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 1 } }
-    state.map[7][4] = { type: GRILL, walls: NO_DIRECTIONS, meta: { level: 2 } }
-    state.map[8][4] = { type: HOLE, walls: NO_DIRECTIONS }
-    state.map[9][4] = { type: GEAR, walls: NO_DIRECTIONS, meta: { rotationDirection: CLOCKWISE } }
-    state.map[10][4] = { type: GEAR, walls: NO_DIRECTIONS, meta: { rotationDirection: ANTICLOCKWISE } }
-
-    state.map[1][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
-    state.map[2][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
-    state.map[3][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
-    state.map[4][3] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: EAST_DIRECTION } }
-
-    state.map[1][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: EAST_DIRECTION } }
-    state.map[2][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: SOUTH_DIRECTION } }
-    state.map[3][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: WEST_DIRECTION } }
-    state.map[4][4] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: NORTH_DIRECTION } }
-
-    state.map[1][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: WEST_DIRECTION } }
-    state.map[2][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NORTH_DIRECTION } }
-    state.map[3][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: EAST_DIRECTION } }
-    state.map[4][5] = { type: CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: SOUTH_DIRECTION } }
-
-    state.map[1][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: SOUTH_DIRECTION } }
-    state.map[2][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: WEST_DIRECTION } }
-    state.map[3][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: NORTH_DIRECTION } }
-    state.map[4][6] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: EAST_DIRECTION } }
-
-    state.map[1][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: EAST_DIRECTION } }
-    state.map[2][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: SOUTH_DIRECTION } }
-    state.map[3][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: WEST_DIRECTION } }
-    state.map[4][7] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: NORTH_DIRECTION } }
-
-    state.map[1][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: NORTH, inputDirections: WEST_DIRECTION } }
-    state.map[2][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: EAST, inputDirections: NORTH_DIRECTION } }
-    state.map[3][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: SOUTH, inputDirections: EAST_DIRECTION } }
-    state.map[4][8] = { type: FAST_CONVEYOR, walls: NO_DIRECTIONS, meta: { exitDirection: WEST, inputDirections: SOUTH_DIRECTION } }
-
-    const direcs = [NORTH, EAST, SOUTH, WEST]
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 3; j++) {
-        state.map[5 + i][5 + j] = {
-          type: (i % 2 === 0 ? CONVEYOR : FAST_CONVEYOR), walls: NO_DIRECTIONS, meta: {
-            exitDirection: direcs[i],
-            inputDirections: {
-              [direcs[((i + 1) % 4)]]: j !== 0,
-              [direcs[((i + 2) % 4)]]: j !== 1,
-              [direcs[((i + 3) % 4)]]: j !== 2
-            }
-          }
-        }
+        const inputDirections = []
+        if (j !== 0) inputDirections.push(DIRECTIONS[(i + 1) % 4])
+        if (j !== 1) inputDirections.push(DIRECTIONS[(i + 2) % 4])
+        if (j !== 2) inputDirections.push(DIRECTIONS[(i + 3) % 4])
+
+        const conveyorType = i % 2 ? createFastConveyorTile : createConveyorTile
+        const conveyorTile = conveyorType({}, {
+          exitDirection: DIRECTIONS[i],
+          inputDirections: createDirectionObject(inputDirections)
+        })
+
+        setMapTile(map, { y: 5 + i, x: 5 + j }, conveyorTile)
       }
     }
 
@@ -364,7 +338,7 @@ export const RobotFight = {
       flagCount: 6
     }
 
-    const tileCount = countTiles(state.map)
+    const tileCount = countAllMapTiles(state.map)
     log.info({ tileCount }, `Created a ${state.map.length} x ${state.map[0].length} map with ${state.meta.flagCount} flags.`)
 
     let i = 0

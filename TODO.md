@@ -7,10 +7,6 @@ UI:
     - We should predict movement based on cards you're playing and display it
     - Cards should be displayed so that you can see more than one at a time
 
-    == BUTTONS ==
-    - The rotation buttons should be arrows
-    - The submit orders button should be styled
-
     == WALLS ==
     - Walls should show up on the map
 

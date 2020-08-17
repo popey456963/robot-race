@@ -46,6 +46,7 @@ export const NORTH = 'NORTH'
 export const EAST = 'EAST'
 export const SOUTH = 'SOUTH'
 export const WEST = 'WEST'
+export const DIRECTIONS = ['NORTH', 'EAST', 'SOUTH', 'WEST']
 
 export const PLAIN = 'PLAIN'
 export const FLAG = 'FLAG'

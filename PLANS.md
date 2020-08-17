@@ -6,7 +6,8 @@
             type: (PLAIN|CONVEYOR|ETC),
             walls: [true, false, false, false], // nesw
             lasers: [true, false, false, false], // nesw
-            pusher: [true, false, false, false], // nesw
+            pushers: [true, false, false, false], // nesw
+            position: { x, y }
             meta: {
                 // optional for some tile
 
@@ -25,7 +26,7 @@
 
                 // GRILLS
                 level: 0 / 1 / 2 (0 -> empty, 1 -> spanner, 2 -> spanner + hammer)
-            }
+            },
             
         },
         {},
