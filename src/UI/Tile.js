@@ -1,17 +1,19 @@
 import React from 'react'
 import './Tile.css'
-import { NORTH, EAST, SOUTH, WEST } from './Constants'
-import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN, GEAR } from './Constants'
+import { NORTH, EAST, SOUTH, WEST } from '../Constants'
+import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN, GEAR } from '../Constants'
 // import * as deepEqual from 'deep-equal'
 
-import Conveyor from './Tiles/Conveyor'
-import FastConveyor from './Tiles/FastConveyor'
-import Robot from './Tiles/Robot'
-import Flag from './Tiles/Flag'
-import Plain from './Tiles/Plain'
-import Grill from './Tiles/Grill'
-import Hole from './Tiles/Hole'
-import Gear from './Tiles/Gear'
+import Conveyor from '../Tiles/Conveyor'
+import FastConveyor from '../Tiles/FastConveyor'
+import Robot from '../Tiles/Robot'
+import Flag from '../Tiles/Flag'
+import Plain from '../Tiles/Plain'
+import Grill from '../Tiles/Grill'
+import Hole from '../Tiles/Hole'
+import Gear from '../Tiles/Gear'
+
+const GameZoomManager = require('./GameZoomManager')
 
 function stringify(tile) {
   let tooltip = []
@@ -66,6 +68,7 @@ export default class Tile extends React.Component {
       case GRILL: TileType = Grill; break
       case HOLE: TileType = Hole; break
       case GEAR: TileType = Gear; break
+      default: throw new Error('unexpected tile type')
     }
 
     let tileImage = <TileType tile={tile} playerRobot={playerRobot} pos={pos} />
@@ -76,7 +79,7 @@ export default class Tile extends React.Component {
       <td
         className={`col-${pos.x - 5} iso_td`}
         style={{
-          transform: (this.state.hover ? 'translate3d(-0.95em, -0.95em, 0em)' : '') + ` translateX(${(pos.x - 0) * 4}em)`
+          transform: (this.state.hover ? 'translate3d(-0.95em, -0.95em, 0em)' : '') + ` translateX(${(pos.x - 0) * 4 * GameZoomManager.percentSize()}em)`
         }}
       >
         {robot ? (<Robot robot={robot} />) : null}

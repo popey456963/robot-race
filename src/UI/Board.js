@@ -6,7 +6,7 @@ import Map from './Map'
 import CardHand from './CardHand'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { rotateTileAngle } from './utils'
+import { rotateTileAngle } from '../utils'
 
 export class RobotFightBoard extends React.Component {
   constructor(props) {
@@ -43,7 +43,6 @@ export class RobotFightBoard extends React.Component {
   }
 
   onDragEnd = result => {
-    console.log('onDragEnd', result)
     const { source, destination } = result;
 
     // dropped outside of list, do nothing
@@ -74,6 +73,10 @@ export class RobotFightBoard extends React.Component {
     }
 
     this.setState({ selected: newSelected })
+  }
+
+  onCardClick = (e, card) => {
+    this.setState({ selected: this.state.selected.concat([card]) })
   }
 
   rotateBoard(clockwise) {
@@ -111,16 +114,45 @@ export class RobotFightBoard extends React.Component {
             {this.props.ctx.gameover ? <h1 style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>{`Player ${this.props.ctx.gameover.winner.user} has won the game!`}</h1> : null}
 
             <DragDropContext onDragEnd={this.onDragEnd}>
-              <h3>Cards in Hand</h3>
-              <CardHand cards={inHand} id='in_hand' isActive={playerID in activePlayers} style={{ bottom: '0px', left: '0px' }} />
+              <CardHand
+                cards={inHand}
+                id='in_hand'
+                isActive={playerID in activePlayers}
+                onClick={this.onCardClick}
+                style={{
+                  position: 'fixed',
+                  top: '0px',
+                  left: '50%',
+                  transform: 'translateX(-50%)'
+                }}
+              />
 
-              <h3>Cards to Play</h3>
-              <CardHand cards={this.state.selected} id='to_play' isActive={playerID in activePlayers} />
+              <div style={{
+                position: 'fixed',
+                bottom: '0px',
+                left: '50%',
+                transform: 'translateX(-50%)'
+              }}>
+                <div style={{
+                  float: 'left'
+                }}>
+                  <CardHand
+                    cards={this.state.selected}
+                    id='to_play'
+                    isActive={playerID in activePlayers}
+                  />
+                </div>
+
+                <div style={{
+                  float: 'left'
+                }}>
+                  <button style={{ display: 'block' }} disabled={!(playerID in activePlayers)} onClick={() => this.onClick(this.props)}>Submit Orders</button>
+                  <button style={{ display: 'block' }} onClick={() => this.rotateBoard(false)}>Rotate Anticlockwise</button>
+                  <button style={{ display: 'block' }} onClick={() => this.rotateBoard(true)}>Rotate Clockwise</button>
+                </div>
+              </div>
             </DragDropContext>
 
-            <button disabled={!(playerID in activePlayers)} onClick={() => this.onClick(this.props)}>Submit Orders</button>
-            <button onClick={() => this.rotateBoard(false)}>Rotate Anticlockwise</button>
-            <button onClick={() => this.rotateBoard(true)}>Rotate Clockwise</button>
           </span>
           <Map map={this.props.G.map} robots={this.props.G.robots} playerRobot={playerRobot} />
 

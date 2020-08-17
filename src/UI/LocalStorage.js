@@ -4,7 +4,7 @@ module.exports = (function () {
     var result;
     try {
         (storage = window.localStorage).setItem(uid, uid);
-        result = storage.getItem(uid) == uid;
+        result = storage.getItem(uid) === uid;
         storage.removeItem(uid);
         return result && storage;
     } catch (exception) { }

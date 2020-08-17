@@ -1,7 +1,8 @@
 import React from 'react'
-import '../Tile.css'
-import { ROTATION_CONTEXT } from '../ReactConstants'
+import { ROTATION_CONTEXT } from '../UI/ReactConstants'
 import { rotateTileAngle, rotateTileAngleAmount } from '../utils'
+
+const GameZoomManager = require('../UI/GameZoomManager')
 
 export default class Tile extends React.Component {
     static contextType = ROTATION_CONTEXT
@@ -14,6 +15,8 @@ export default class Tile extends React.Component {
         const tileDirection = rotateTileAngle(dir, rotationAmount)
 
         return <div style={{
+            height: `calc(11.5em * ${GameZoomManager.percentSize()})`,
+            width: `calc(11.5em * ${GameZoomManager.percentSize()})`,
             backgroundSize: `100%`,
             backgroundImage: `url(${image}_${tileDirection}.png)`,
             ...styles

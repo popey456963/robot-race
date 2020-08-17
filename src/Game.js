@@ -70,6 +70,7 @@ function rotate_90_clockwise(cur_direction, times) {
       case EAST: cur_direction = SOUTH; break
       case SOUTH: cur_direction = WEST; break
       case WEST: cur_direction = NORTH; break
+      default: throw new Error('unexpected direction')
     }
   }
   return cur_direction
@@ -91,8 +92,10 @@ function enactMove(move, G) {
   switch (move.move.type) {
     case MOVE_THREE:
       moveRobot(G, r, r.direction)
+    // falls through
     case MOVE_TWO:
       moveRobot(G, r, r.direction)
+    // falls through
     case MOVE_ONE:
       moveRobot(G, r, r.direction)
       break
@@ -117,6 +120,7 @@ function enactMove(move, G) {
       log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the BACK from ${oldDirection} to ${newDirection}`)
       r.direction = newDirection
       break
+    default: throw new Error('unexpected card')
   }
 }
 
@@ -344,7 +348,7 @@ export const RobotFight = {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 3; j++) {
         state.map[5 + i][5 + j] = {
-          type: (i % 2 == 0 ? CONVEYOR : FAST_CONVEYOR), walls: NO_DIRECTIONS, meta: {
+          type: (i % 2 === 0 ? CONVEYOR : FAST_CONVEYOR), walls: NO_DIRECTIONS, meta: {
             exitDirection: direcs[i],
             inputDirections: {
               [direcs[((i + 1) % 4)]]: j !== 0,

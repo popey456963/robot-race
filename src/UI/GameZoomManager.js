@@ -3,13 +3,9 @@ var isMobile = require('./MobileDetect');
 
 // GameZoomManager is a singleton.
 
-var ZOOM_LARGE = -1;
-var ZOOM_DEFAULT = 0;
-var ZOOM_SMALL = 1;
-var ZOOM_TINY = 2;
-var ZOOM_TINY2 = 3;
-
-var ZOOM_THRESHOLD = 50.0;
+var ZOOM_THRESHOLD = 3.0;
+var LARGE_THRESHOLD = 2.5;
+var SMALL_THRESHOLD = 0.5;
 
 var zoom;
 resetZoomToDefault();
@@ -29,14 +25,14 @@ function onWheel(e) {
 }
 
 function zoomIn() {
-    if (zoom > ZOOM_LARGE) {
-        setZoom(zoom - 1);
+    if (zoom < LARGE_THRESHOLD) {
+        setZoom(zoom + 0.1);
     }
 }
 
 function zoomOut() {
-    if (zoom < ZOOM_TINY) {
-        setZoom(zoom + 1);
+    if (zoom > SMALL_THRESHOLD) {
+        setZoom(zoom - 0.1);
     }
 }
 
@@ -46,24 +42,8 @@ function setZoom(z) {
     if (onZoomChanged) onZoomChanged(z);
 }
 
-function zoomClass() {
-    switch (zoom) {
-        case ZOOM_LARGE: return 'large';
-        case ZOOM_SMALL: return 'small';
-        case ZOOM_TINY: return 'tiny';
-        case ZOOM_TINY2: return 'tiny2';
-        default: return 'small';
-    }
-}
-
-function cellSize() {
-    switch (zoom) {
-        case ZOOM_TINY2: return 28;
-        case ZOOM_TINY: return 32;
-        case ZOOM_SMALL: return 40;
-        case ZOOM_LARGE: return 60;
-        default: return 50;
-    }
+function percentSize() {
+    return zoom
 }
 
 function setOnZoomChanged(callback) {
@@ -76,16 +56,12 @@ function setSaveZoom(save) {
 
 function resetZoomToDefault() {
     zoom = !isNaN(localStorage.lastZoom) ? parseInt(localStorage.lastZoom) :
-        isMobile ? ZOOM_TINY : ZOOM_DEFAULT;
+        isMobile ? 1 : 1;
 }
 
 module.exports = {
-    ZOOM_LARGE: ZOOM_LARGE,
-    ZOOM_DEFAULT: ZOOM_DEFAULT,
-    ZOOM_SMALL: ZOOM_SMALL,
-    ZOOM_TINY: ZOOM_TINY,
-    ZOOM_TINY2: ZOOM_TINY2,
     zoom: zoom,
+    percentSize: percentSize,
     setZoom: setZoom,
     setOnZoomChanged: setOnZoomChanged,
     setSaveZoom: setSaveZoom,
@@ -93,6 +69,4 @@ module.exports = {
     zoomIn: zoomIn,
     zoomOut: zoomOut,
     onWheel: onWheel,
-    zoomClass: zoomClass,
-    cellSize: cellSize,
 };

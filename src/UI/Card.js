@@ -1,9 +1,8 @@
 import React from 'react'
-// import './Card.css'
 import {
     MOVE_ONE, MOVE_TWO, MOVE_THREE, BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
     MOVE_ONE_CARD_TEXTS, MOVE_TWO_CARD_TEXTS, MOVE_THREE_CARD_TEXTS, BACK_UP_CARD_TEXTS, ROTATE_RIGHT_CARD_TEXTS, ROTATE_LEFT_CARD_TEXTS, U_TURN_CARD_TEXTS,
-} from './Constants'
+} from '../Constants'
 
 const symbolMapping = {
     [MOVE_ONE]: MOVE_ONE_CARD_TEXTS,

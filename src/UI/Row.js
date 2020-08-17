@@ -1,19 +1,21 @@
 import React from 'react'
 import Tile from './Tile'
-import { findRobots } from './utils'
+import { findRobots } from '../utils'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import './Tile.css'
+
+const GameZoomManager = require('./GameZoomManager')
 
 export default class Row extends React.Component {
   static contextType = ROTATION_CONTEXT
   render() {
-    const { row, rowId, robots, playerRobot } = this.props
+    const { row, rowId, robots, playerRobot, zoom } = this.props
 
     return (
       <tr
         key={rowId}
         className={`row-${rowId - 5} row`}
-        style={{ transform: `translateY(${(rowId - 0) * 4}em)` }}
+        style={{ transform: `translateY(${(rowId - 0) * 4 * GameZoomManager.percentSize()}em)` }}
       >{
           row.map((tile, columnId) => {
             const pos = { y: rowId, x: columnId }
@@ -24,6 +26,7 @@ export default class Row extends React.Component {
               pos={pos}
               robot={findRobots(pos, robots)}
               playerRobot={playerRobot}
+              zoom={zoom}
             />
           })}
       </tr>

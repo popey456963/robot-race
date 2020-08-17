@@ -1,6 +1,5 @@
 import React from 'react'
 import Tile from './Tile'
-import '../Tile.css'
 
 export default class Flag extends React.Component {
     render() {

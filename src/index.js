@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './UI/index.css';
 import * as serviceWorker from './serviceWorker';
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
 import { RobotFight } from "./Game";
-import { RobotFightBoard } from "./Board";
+import { RobotFightBoard } from "./UI/Board";
 import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
 import { Lobby } from 'boardgame.io/react';

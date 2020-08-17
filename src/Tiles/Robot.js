@@ -1,9 +1,9 @@
 import React from 'react'
-import '../Tile.css'
 import { NORTH, EAST, WEST, SOUTH } from '../Constants'
-import { ROTATION_CONTEXT } from '../ReactConstants'
+import { ROTATION_CONTEXT } from '../UI/ReactConstants'
 import { rotateTileAngleAmount } from '../utils'
 
+const GameZoomManager = require('../UI/GameZoomManager')
 
 export default class Robot extends React.Component {
     static contextType = ROTATION_CONTEXT
@@ -27,7 +27,7 @@ export default class Robot extends React.Component {
                 style={{
                     zIndex: 10,
                     position: 'fixed',
-                    width: '35px',
+                    width: `${35 * Math.pow(GameZoomManager.percentSize(), 2)}px`,
                     transform: `rotate(${rotate}deg)`,
                 }}
             />

@@ -3,7 +3,7 @@ import Row from './Row';
 import './Tile.css';
 import './Tooltips.css';
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from './utils'
+import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from '../utils'
 
 const GameScrollManager = require('./GameScrollManager')
 const GameZoomManager = require('./GameZoomManager')
@@ -89,10 +89,6 @@ export default class Map extends React.Component {
         })
     }
 
-    handleDrag(e) {
-        console.log(e)
-    }
-
     render() {
         let { map, robots, playerRobot } = this.props
 
@@ -139,6 +135,7 @@ export default class Map extends React.Component {
                         rowId={rowId}
                         robots={rotationalRobots}
                         playerRobot={playerRobot}
+                        zoom={this.state.zoom}
                     />)
                 )}</tbody>
                 </table>

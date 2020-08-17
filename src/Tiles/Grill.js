@@ -1,6 +1,5 @@
 import React from 'react'
 import Tile from './Tile'
-import '../Tile.css'
 
 export default class Grill extends React.Component {
     render() {

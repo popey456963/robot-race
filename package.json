@@ -18,7 +18,7 @@
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.2",
+    "react-scripts": "^3.4.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6"
   },
@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "node -r esm src/server.js"
+    "serve": "node -r esm src/server.js",
+    "watch": "nodemon -r esm src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

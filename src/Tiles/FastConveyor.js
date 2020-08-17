@@ -1,6 +1,5 @@
 import React from 'react'
 import Tile from './Tile'
-import '../Tile.css'
 import { getConveyorImage } from './Conveyor'
 
 export default class FastConveyor extends React.Component {

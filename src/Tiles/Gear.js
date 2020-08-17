@@ -1,6 +1,5 @@
 import React from 'react'
 import Tile from './Tile'
-import '../Tile.css'
 import { ANTICLOCKWISE } from '../Constants'
 
 export default class Gear extends React.Component {

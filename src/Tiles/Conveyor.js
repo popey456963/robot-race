@@ -1,8 +1,7 @@
 import React from 'react'
 import Tile from './Tile'
-import '../Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
-import { angleRotationAmount, rotateTileAngle } from '../utils'
+import { angleRotationAmount } from '../utils'
 
 export function getConveyorImage(tile, isFast) {
     const exitDirection = tile.meta.exitDirection
