@@ -6,7 +6,7 @@
 
 This version added styled buttons, fixed card moving mechanics and styled them to be at the top and bottom of the screen.
 
-![screenshot_v1](public/screenshots/gamev1.png)
+![screenshot_v1](public/screenshots/gamev3.png)
 
 #### Historical Versions
 
