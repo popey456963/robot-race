@@ -23,4 +23,4 @@ Cards were also styled, albeit they were badly bugged.
 
 V1 had only a few tiles, specifically 'hole', 'straight conveyors' and 'checkpoints'.  The limited tiling meant we styled the ground as 'holes' which you couldn't actually fall through.
 
-![screenshot_v1](public/screenshots/gamev2.png)
+![screenshot_v1](public/screenshots/gamev1.png)
