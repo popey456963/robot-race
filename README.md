@@ -2,13 +2,13 @@
 
 > The up and coming sequel to 'space fight'!  Continuing a long history of badly named games.
 
-##### Current Version
+#### Current Version
 
 This version added styled buttons, fixed card moving mechanics and styled them to be at the top and bottom of the screen.
 
 ![screenshot_v1](public/screenshots/gamev1.png)
 
-##### Historical Versions
+#### Historical Versions
 
 V2 implemented 'plain' tiles, allowing the floor to not be so hazardous anymore.  As well as that, we added a host of new tiles including:
 
