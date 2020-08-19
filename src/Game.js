@@ -3,18 +3,31 @@ import {
   NORTH, EAST, SOUTH, WEST, DIRECTIONS,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
-  PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
-  CLOCKWISE, ANTICLOCKWISE
+  FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
+  CLOCKWISE, ANTICLOCKWISE,
+  MAX_DAMAGE, OUT_OF_BOUNDS
 } from './Constants'
 
 import Deck from './Deck'
 import { findRobots, arrayToObject } from './utils'
 
-import { createMap, setMapTile, countAllMapTiles } from './Map'
+import {
+  createMap, setMapTile, countAllMapTiles, getMapTilesByType,
+  getMapTile
+} from './Map'
+import { initialiseState, getPlayerRobot, damageRobot } from './State'
+import {
+  calculateMoveDestination, rotateDirectionClockwise, isRightAngle
+} from './Position'
 import {
   createFlagTile, createGrillTile, createHoleTile, createGearTile,
-  createDirectionObject, createConveyorTile, createFastConveyorTile
+  createDirectionObject, createConveyorTile, createFastConveyorTile,
+  isTile
 } from './Tiles'
+import {
+  createNewRobot
+} from './Robot'
+
 
 import log from './Logger'
 
@@ -30,24 +43,6 @@ function drawAllCards(G, ctx) {
   }
 }
 
-function calculateMoveDest(position, direction) {
-  const newPosition = { x: position.x, y: position.y }
-  if (direction === NORTH) {
-    // Check for walls here
-    newPosition.y -= 1
-  }
-  if (direction === SOUTH) {
-    newPosition.y += 1
-  }
-  if (direction === EAST) {
-    newPosition.x += 1
-  }
-  if (direction === WEST) {
-    newPosition.x -= 1
-  }
-  return newPosition
-}
-
 function moveRobot(G, robot, direction) {
   if (G.map[robot.position.y][robot.position.x].walls[direction]) {
     log.info('Not moving robot because they ran into a wall.')
@@ -55,7 +50,7 @@ function moveRobot(G, robot, direction) {
   }
 
   const old_position = { x: robot.position.x, y: robot.position.y }
-  const new_position = calculateMoveDest(robot.position, direction)
+  const new_position = calculateMoveDestination(robot.position, direction)
   const other_robot = findRobots(new_position, G.robots)
   if ((other_robot !== undefined && moveRobot(G, other_robot, direction)) ||
     other_robot === undefined) {
@@ -69,25 +64,10 @@ function moveRobot(G, robot, direction) {
   return true
 }
 
-function rotate_90_clockwise(cur_direction, times) {
-  for (let i = 0; i < times; i++) {
-    switch (cur_direction) {
-      case NORTH: cur_direction = EAST; break
-      case EAST: cur_direction = SOUTH; break
-      case SOUTH: cur_direction = WEST; break
-      case WEST: cur_direction = NORTH; break
-      default: throw new Error('unexpected direction')
-    }
-  }
-  return cur_direction
-}
-
-function checkCurrentSquare(G, position, player) {
-  // check for holes / edge of map
-  if (G.map[position.y] === undefined ||
-    G.map[position.y][position.x] === undefined ||
-    G.map[position.y][position.x].type === HOLE) {
-    G.players[player].damage = 10
+function checkCurrentSquare(state, position, player) {
+  const tile = getMapTile(state.map, position)
+  if (isTile(tile, [HOLE, OUT_OF_BOUNDS])) {
+    damageRobot(state, getPlayerRobot(state, player), 10)
     log.info({ player, position }, `${player} fell into a hole and died!`)
   }
 }
@@ -106,58 +86,28 @@ function enactMove(move, G) {
       moveRobot(G, r, r.direction)
       break
     case BACK_UP:
-      moveRobot(G, r, oppositeDirection(r.direction))
+      moveRobot(G, r, rotateDirectionClockwise(r.direction, 2))
       break
     case ROTATE_RIGHT:
       oldDirection = r.direction
-      newDirection = rotate_90_clockwise(r.direction, 1)
+      newDirection = rotateDirectionClockwise(r.direction, 1)
       log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the RIGHT from ${oldDirection} to ${newDirection}`)
       r.direction = newDirection
       break
     case ROTATE_LEFT:
       oldDirection = r.direction
-      newDirection = rotate_90_clockwise(r.direction, 3)
+      newDirection = rotateDirectionClockwise(r.direction, 3)
       log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the LEFT from ${oldDirection} to ${newDirection}`)
       r.direction = newDirection
       break
     case U_TURN:
       oldDirection = r.direction
-      newDirection = rotate_90_clockwise(r.direction, 2)
+      newDirection = rotateDirectionClockwise(r.direction, 2)
       log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the BACK from ${oldDirection} to ${newDirection}`)
       r.direction = newDirection
       break
     default: throw new Error('unexpected card')
   }
-}
-
-function findInMap(map, type) {
-  const tiles = []
-
-  for (const [rowId, row] of Object.entries(map)) {
-    for (const [columnId, item] of Object.entries(row)) {
-      if (item.type === type) {
-        tiles.push({ x: Number(columnId), y: Number(rowId), item })
-      }
-    }
-  }
-
-  return tiles
-}
-
-function oppositeDirection(dir) {
-  if (dir === NORTH) return SOUTH
-  if (dir === EAST) return WEST
-  if (dir === SOUTH) return NORTH
-  if (dir === WEST) return EAST
-}
-
-function atRightAngles(dir, out) {
-  if (dir === NORTH && (out === WEST || out === EAST)) return true
-  if (dir === SOUTH && (out === WEST || out === EAST)) return true
-  if (dir === WEST && (out === NORTH || out === SOUTH)) return true
-  if (dir === EAST && (out === NORTH || out === SOUTH)) return true
-
-  return false
 }
 
 function shouldTurnClockwise(dir, out) {
@@ -178,16 +128,16 @@ function moveByConveyor(state, robot) {
   const newTile = state.map[robot.position.y][robot.position.x]
 
   if (newTile.type === CONVEYOR || newTile.type === FAST_CONVEYOR) {
-    const inDirection = oppositeDirection(conveyor.meta.exitDirection)
+    const inDirection = rotateDirectionClockwise(conveyor.meta.exitDirection, 2)
     log.debug({ inDirection }, `The new tile is also a conveyor belt.`)
     if (newTile.meta.inputDirections[inDirection]) {
       log.debug(`We've also entered the new conveyor belt from a correct direction.`)
       // we're entered a correct way...
-      if (atRightAngles(inDirection, newTile.meta.exitDirection)) {
+      if (isRightAngle(inDirection, newTile.meta.exitDirection)) {
         const rotations = shouldTurnClockwise(inDirection, newTile.meat.exitDirection) ? 1 : 3
 
         log.debug({ rotations }, `Since the conveyor is curved, we're rotating the player`)
-        robot.direction = rotate_90_clockwise(robot.direction, rotations)
+        robot.direction = rotateDirectionClockwise(robot.direction, rotations)
       }
     }
   }
@@ -211,15 +161,15 @@ function enactEnvironment(state, register) {
   for (const robot of Object.values(state.robots)) {
     let tile = state.map[robot.position.y][robot.position.x]
     if (tile.type === GEAR) {
-      // rotate them around
+	  // rotate them around
       let rotationAmount = tile.meta.rotationDirection === CLOCKWISE ? 1 : 3
 
       log.debug({ user: robot.user, rotationAmount }, `Player ${robot.user} is on a gear and is being rotated.`)
-      robot.direction = rotate_90_clockwise(robot.direction, rotationAmount)
+      robot.direction = rotateDirectionClockwise(robot.direction, rotationAmount)
     }
   }
 
-  const flags = findInMap(state.map, FLAG)
+  const flags = getMapTilesByType(state.map, FLAG)
 
   for (const flag of flags) {
     const robot = findRobots(flag, state.robots)
@@ -311,12 +261,6 @@ export const RobotFight = {
     setMapTile(map, { y: 3, x: 8 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([EAST]) }))
     setMapTile(map, { y: 4, x: 8 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([SOUTH]) }))
 
-    const state = {
-      players: {},
-      robots: {},
-      map
-    }
-
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 3; j++) {
         const inputDirections = []
@@ -334,39 +278,15 @@ export const RobotFight = {
       }
     }
 
-    state.meta = {
-      flagCount: 6
-    }
+    const tileCount = countAllMapTiles(map)
+    log.info({ tileCount }, `Created a ${map.length} x ${map[0].length} map.`)
 
-    const tileCount = countAllMapTiles(state.map)
-    log.info({ tileCount }, `Created a ${state.map.length} x ${state.map[0].length} map with ${state.meta.flagCount} flags.`)
+    const robots = Object.entries(ctx.playOrder).map(([index, player]) =>
+      [index, createNewRobot(player, { x: 2, y: Number(index) + 8 }, EAST)]
+    )
 
-    let i = 0
-    let robotLocations = []
-    for (const player of ctx.playOrder) {
-      i += 1
-
-      state.players[player] = {
-        hand: []
-      }
-
-      state.robots[player] = {
-        position: { x: 2, y: i + 8 },
-        direction: EAST,
-        poweredDown: false,
-        damage: 0,
-        upgrades: [],
-        flags: [],
-        checkpoint: { x: 0, y: i },
-        lives: 3,
-        user: player
-      }
-
-      robotLocations.push([player, state.robots[player].position])
-    }
-
-    robotLocations = arrayToObject(robotLocations)
-    log.info({ robotLocations }, `Spawning ${ctx.playOrder.length} robots.`)
+    const players = Object.values(ctx.playOrder)
+    const state = initialiseState(map, robots, players)
 
     return state
   },
@@ -381,6 +301,20 @@ export const RobotFight = {
         }
 
         drawAllCards(G, ctx)
+        
+        // Respawn robots
+        for (let robot in G.robots) {
+          if (robot.damage === MAX_DAMAGE) {
+            if (robot.lives > 1) {
+              robot.lives -= 1
+              robot.damage = 0
+              robot.position = robot.checkpoint
+            }
+            else {
+              robot.position = {x: -1, y: -1}
+            }
+          }
+        }
 
         log.info({ handSizes: getPlayerCardCounts(G) }, 'Dealt out cards to players.')
 

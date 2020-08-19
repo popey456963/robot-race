@@ -21,6 +21,18 @@ async function cropPicture(path, outPath, { left, right }) {
     })
 }
 
+function isColumnEmpty(column, data, width, height) {
+    for (let y = 0; y < height; y++) {
+        const idx = (width * y + column) << 2
+        const a = data[idx + 3]
+
+        if (a === 255) {
+            return false
+        }
+    }
+    return true
+}
+
 async function main() {
     const tileTypes = jetpack.list('./input')
 
@@ -40,26 +52,16 @@ async function main() {
                 let left = 0
                 let right = png.width
 
-                column: for (let x = 0; x < png.width; x++) {
-                    for (let y = 0; y < png.height; y++) {
-                        const idx = (png.width * y + x) << 2
+                column: for (let x = 0; x < png.width / 2; x++) {
 
-                        const a = png.data[idx + 3]
-
-                        if (a === 255) {
-                            continue column
-                        }
-                    }
-
-                    if (left === x) {
+                    if (isColumnEmpty(x, png.data, png.width, png.height) && left === x) {
                         left = x + 1
                     }
-                    else if (right === png.width) {
-                        right = x
-                    }
                     console.log('delete column', x)
+                    if (isColumnEmpty(png.width - x - 1, png.data, png.width, png.height) && right === png.width - x) {
+                        right = png.width - x - 1
+                    }
                 }
-
                 cropPicture(location, outPath, { left, right })
                 console.log("crops", left, right)
             }

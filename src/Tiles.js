@@ -1,6 +1,9 @@
 // a list of tile helpers
 
-import { PLAIN, FLAG, GRILL, HOLE, GEAR, CONVEYOR, FAST_CONVEYOR } from './Constants'
+import {
+    PLAIN, FLAG, GRILL, HOLE, GEAR, CONVEYOR,
+    FAST_CONVEYOR, OUT_OF_BOUNDS
+} from './Constants'
 
 export const createDirectionObject = (directions = []) =>
     directions.reduce((acc, val) => ({ ...acc, [val]: true }), {})
@@ -50,3 +53,10 @@ export const createFastConveyorTile = (generic, { exitDirection, inputDirections
     ...genericTileObject(generic),
     meta: { exitDirection, inputDirections }
 })
+
+export const createOutOfBoundsTile = (position) => ({
+    type: OUT_OF_BOUNDS,
+    position   
+})
+
+export const isTile = (tile, types) => types.includes(tile.type)

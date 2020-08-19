@@ -8,7 +8,9 @@ const getListStyle = isDraggingOver => ({
         : 'rgba(211, 211, 211, 0.6)',
     padding: 8,
     display: 'flex',
-    overflow: 'auto'
+    overflow: 'auto',
+    minHeight: '211.5px',
+    minWidth: '154.5px'
 });
 
 export default class CardHand extends React.Component {

@@ -4,24 +4,34 @@ function CreateCardType (type, n) {
   return new Array(n).fill(null).map(() => ({ type, priority: 0 }))
 }
 
+function interleave(a, b) {
+  return a.reduce((acc, cur, index) => acc.concat(cur, b[index]), [])
+}
+
 export default class Deck {
-  constructor (ctx) {
+  constructor (ctx, lockedCardPriorities = []) {
+
+    // uturn : 10-60
+    // rotate_left, rotate_right: 70 - 420
+    // backup: 430 - 480
+    // move1: 490 - 660
+    // move2: 670 - 780
+    // move3: 790-840
     this.cards = [
+      ...CreateCardType(U_TURN, 6),
+      ...interleave(CreateCardType(ROTATE_RIGHT, 18), CreateCardType(ROTATE_LEFT, 18)),
+
+      ...CreateCardType(BACK_UP, 6),
       ...CreateCardType(MOVE_ONE, 18),
       ...CreateCardType(MOVE_TWO, 12),
       ...CreateCardType(MOVE_THREE, 6),
-      ...CreateCardType(BACK_UP, 6),
-
-      ...CreateCardType(ROTATE_RIGHT, 18),
-      ...CreateCardType(ROTATE_LEFT, 18),
-      ...CreateCardType(U_TURN, 6)
     ]
 
-    this.cards = ctx.random.Shuffle(this.cards)
     for (let i = 0; i < this.cards.length; i++) {
       this.cards[i].priority = (i + 1) * 10
     }
     this.cards = ctx.random.Shuffle(this.cards)
+    this.cards.filter(card => !(card.priority in lockedCardPriorities))
   }
 
   drawCard () {

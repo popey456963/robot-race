@@ -1,6 +1,6 @@
 // a list of map updates
 
-import { createPlainTile } from './Tiles'
+import { createPlainTile, createOutOfBoundsTile } from './Tiles'
 
 export function createMap(x, y) {
     return new Array(y).fill(null).map(
@@ -12,7 +12,15 @@ export function createMap(x, y) {
 }
 
 export function getMapTile(map, coords) {
-
+    if (map[coords.y]) {
+        if (map[coords.y][coords.x]) {
+            return map[coords.y][coords.x]
+        } else {
+            return createOutOfBoundsTile(coords)
+        }
+    } else {
+         return createOutOfBoundsTile(coords)
+    }
 }
 
 export function setMapTile(map, coords, tile) {
@@ -23,7 +31,15 @@ export function setMapTile(map, coords, tile) {
 }
 
 export function getMapTilesByType(map, type) {
+    const tiles = []
 
+    for (const row of map) {
+      for (const tile of row) {
+        if (tile.type === type) tiles.push(tile)
+      }
+    }
+  
+    return tiles
 }
 
 export function countAllMapTiles(map) {

@@ -19,7 +19,7 @@ export const MOVE_TWO_CARD_TEXTS = {
 export const MOVE_THREE_CARD_TEXTS = {
     symbol: '⬆⬆⬆',
     firstLine: 'FORWARDS',
-    secondLine: 'TWO SPACES'
+    secondLine: 'THREE SPACES'
 }
 export const BACK_UP_CARD_TEXTS = {
     symbol: '⬇',
@@ -55,9 +55,12 @@ export const FAST_CONVEYOR = 'FAST_CONVEYOR'
 export const CONVEYOR = 'CONVEYOR'
 export const GRILL = 'GRILL'
 export const GEAR = 'GEAR'
+export const OUT_OF_BOUNDS = 'OUT_OF_BOUNDS'
 
 export const CLOCKWISE = 'CLOCKWISE'
 export const ANTICLOCKWISE = 'ANTICLOCKWISE'
+
+export const MAX_DAMAGE = 10
 
 // export const TILE_SCALE = 16
 // export const TILE_OFFSET = 6.4
