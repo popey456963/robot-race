@@ -90,7 +90,7 @@ export default class Map extends React.Component {
     }
 
     render() {
-        let { map, robots, playerRobot } = this.props
+        let { map, robots, playerRobot, onTileClick, customHoverTile } = this.props
 
         function rotateMatrix(a) {
             a = Object.keys(a[0]).map(c => a.map(r => r[c]))
@@ -136,6 +136,8 @@ export default class Map extends React.Component {
                         robots={rotationalRobots}
                         playerRobot={playerRobot}
                         zoom={this.state.zoom}
+                        onTileClick={onTileClick}
+                        customHoverTile={customHoverTile}
                     />)
                 )}</tbody>
                 </table>

@@ -1,11 +1,10 @@
 // a list of state updates
 
-import { countAllMapTiles, canMoveInDirection } from './Map'
+import { countAllMapTiles } from './Map'
 import { FLAG, MAX_DAMAGE } from './Constants'
 import { arrayToObject } from './utils'
 import { rawDamageRobot, isRobotDead, setRobotPosition } from './Robot'
-import { calculateMoveDestination, isSamePosition, rotateDirectionClockwise } from './Position'
-import { createRobotMove, createRobotRotation } from './Moves'
+import { isSamePosition } from './Position'
 
 export function initialiseState(map, robots, players, meta = {}) {
     robots = arrayToObject(robots)
@@ -22,56 +21,6 @@ export function initialiseState(map, robots, players, meta = {}) {
     }
 
     return state
-}
-
-export function calculateRobotMove(state, robot, direction, squares) {
-    let moves = []
-
-    for (let i = 0; i < squares; i++) {
-        moves = moves.concat(...calculateRobotMoveOneTile(state, robot, direction))
-    }
-
-    return moves
-}
-
-export function calculateRobotMoveOneTile(state, robot, direction) {
-    let moves = []
-
-    if (canMoveInDirection(state.map, robot.position, direction)) {
-        // we can move in that direction.
-        const newPosition = calculateMoveDestination(robot.position, direction)
-        const otherRobot = findRobotAt(state, newPosition)
-        const robotMove = createRobotMove(robot, robot.position, newPosition)
-
-        if (otherRobot) {
-            const otherMoves = calculateRobotMoveOneTile(state, otherRobot, direction)
-
-            // if we found other robots but no other moves, we cannot complete this action.
-            if (otherMoves.length) moves = moves.concat(...otherMoves, robotMove)
-        } else {
-            moves.push(robotMove)
-        }
-    }
-
-    return moves
-}
-
-export function calculateRobotRotate(state, robot, times) {
-    const newAngle = rotateDirectionClockwise(robot.direction, times)
-
-    return [createRobotRotation(robot, robot.direction, newAngle)]
-}
-
-export function calculateConveyorMove(state, robot) {
-
-}
-
-export function calculateGearRotation(state, robot) {
-
-}
-
-export function enactMoves(state, moves) {
-
 }
 
 export function setPlayerRegisters(state, user, registers) {

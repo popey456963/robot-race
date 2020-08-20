@@ -9,7 +9,7 @@ const GameZoomManager = require('./GameZoomManager')
 export default class Row extends React.Component {
   static contextType = ROTATION_CONTEXT
   render() {
-    const { row, rowId, robots, playerRobot, zoom } = this.props
+    const { row, rowId, robots, playerRobot, zoom, onTileClick, customHoverTile } = this.props
 
     return (
       <tr
@@ -27,6 +27,8 @@ export default class Row extends React.Component {
               robot={findRobots(pos, robots)}
               playerRobot={playerRobot}
               zoom={zoom}
+              onTileClick={onTileClick}
+              customHoverTile={customHoverTile}
             />
           })}
       </tr>

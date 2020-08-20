@@ -52,21 +52,38 @@ async function main() {
                 let left = 0
                 let right = png.width
 
-                column: for (let x = 0; x < png.width / 2; x++) {
+                // column: for (let x = 0; x < png.width / 2; x++) {
 
-                    if (isColumnEmpty(x, png.data, png.width, png.height) && left === x) {
-                        left = x + 1
-                    }
-                    console.log('delete column', x)
-                    if (isColumnEmpty(png.width - x - 1, png.data, png.width, png.height) && right === png.width - x) {
-                        right = png.width - x - 1
-                    }
+                //     if (isColumnEmpty(x, png.data, png.width, png.height) && left === x) {
+                //         left = x + 1
+                //     }
+                //     //console.log('delete column', x)
+                //     if (isColumnEmpty(png.width - x - 1, png.data, png.width, png.height) && right === png.width - x) {
+                //         right = png.width - x - 1
+                //     }
+                // }
+                // cropPicture(location, outPath, { left, right })
+                // console.log("crops1", left, right, tile)
+
+                if (/_SW\.png/.test(tile)) {
+                    left = 9
+                    right = 599
                 }
-                cropPicture(location, outPath, { left, right })
-                console.log("crops", left, right)
+                else if (/_SE\.png/.test(tile)) {
+                    left = 3
+                    right = 593
+                }
+                else if (/_NW\.png/.test(tile)) {
+                    left = 15
+                    right = 605
+                }
+                else if (/_NE\.png/.test(tile)) {
+                    left = 9
+                    right = 599
+                }
+                console.log("crops2", left, right, tile)
             }
         }
-
     }
 }
 

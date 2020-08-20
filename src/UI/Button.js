@@ -6,16 +6,16 @@ export default class Button extends React.Component {
         const { text, onClick, disabled, style } = this.props
 
         return (
-            <div className="buton-cover button-3d" style={{ paddingBottom: '10px' }}>
+            <span className="buton-cover button-3d" style={{ paddingBottom: '10px' }}>
                 <button
                     className={`btn ${disabled ? 'btn--gray' : 'btn--primary'}`}
                     style={style}
                     disabled={disabled}
                     onClick={onClick}
                 >
-                    <div className="btn__txt--inactive">{text}</div>
+                    <span className="btn__txt--inactive">{text}</span>
                 </button>
-            </div>
+            </span>
         )
     }
 }

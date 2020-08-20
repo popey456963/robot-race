@@ -6,6 +6,7 @@ import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
 import { RobotFight } from "./Game";
 import { RobotFightBoard } from "./UI/Board";
+import { RobotFightMapEditor } from "./UI/MapEditor"
 import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
 import { Lobby } from 'boardgame.io/react';

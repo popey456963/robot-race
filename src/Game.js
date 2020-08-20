@@ -1,37 +1,27 @@
 import { PlayerView, TurnOrder, Stage } from 'boardgame.io/core'
 import {
-  NORTH, EAST, SOUTH, WEST, DIRECTIONS,
+  NORTH, EAST, SOUTH, WEST,
   MOVE_ONE, MOVE_TWO, MOVE_THREE,
   BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
   FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
-  CLOCKWISE, ANTICLOCKWISE,
+  CLOCKWISE,
   MAX_DAMAGE, OUT_OF_BOUNDS
 } from './Constants'
 
 import Deck from './Deck'
 import { findRobots, arrayToObject } from './utils'
 
-import {
-  createMap, setMapTile, countAllMapTiles, getMapTilesByType,
-  getMapTile
-} from './Map'
-import {
-  initialiseState, getPlayerRobot, damageRobot, calculateRobotMove, calculateRobotRotate
-} from './State'
-import {
-  calculateMoveDestination, rotateDirectionClockwise, isRightAngle
-} from './Position'
-import {
-  createFlagTile, createGrillTile, createHoleTile, createGearTile,
-  createDirectionObject, createConveyorTile, createFastConveyorTile,
-  isTile
-} from './Tiles'
-import {
-  createNewRobot
-} from './Robot'
-
+import { getMapTilesByType, getMapTile } from './Map'
+import { initialiseState, getPlayerRobot, damageRobot } from './State'
+import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
+import { isTile } from './Tiles'
+import { createNewRobot } from './Robot'
 
 import log from './Logger'
+
+import createTestMap from './CustomMaps/TestMap'
+import createIslandHop from './CustomMaps/IslandHop'
+import createRiskyExchange from './CustomMaps/RiskyExchange'
 
 function drawAllCards(G, ctx) {
   const deck = new Deck(ctx)
@@ -219,73 +209,10 @@ export const RobotFight = {
   setup: (ctx, setupData) => {
     log.info({ users: ctx.playOrder }, 'Setting up a new robot fight.')
 
-    const map = createMap(12, 12)
-
-    setMapTile(map, { y: 5, x: 3 }, createFlagTile({}, { flagNumber: 1 }))
-    setMapTile(map, { y: 6, x: 3 }, createFlagTile({}, { flagNumber: 2 }))
-    setMapTile(map, { y: 7, x: 3 }, createFlagTile({}, { flagNumber: 3 }))
-    setMapTile(map, { y: 8, x: 3 }, createFlagTile({}, { flagNumber: 4 }))
-    setMapTile(map, { y: 9, x: 3 }, createFlagTile({}, { flagNumber: 5 }))
-    setMapTile(map, { y: 10, x: 3 }, createFlagTile({}, { flagNumber: 6 }))
-
-    setMapTile(map, { y: 6, x: 4 }, createGrillTile({}, { level: 1 }))
-    setMapTile(map, { y: 7, x: 4 }, createGrillTile({}, { level: 2 }))
-    setMapTile(map, { y: 8, x: 4 }, createHoleTile())
-    setMapTile(map, { y: 9, x: 4 }, createGearTile({}, { rotationDirection: CLOCKWISE }))
-    setMapTile(map, { y: 10, x: 4 }, createGearTile({}, { rotationDirection: ANTICLOCKWISE }))
-
-    setMapTile(map, { y: 1, x: 3 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([SOUTH]) }))
-    setMapTile(map, { y: 2, x: 3 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 3, x: 3 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([NORTH]) }))
-    setMapTile(map, { y: 4, x: 3 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([EAST]) }))
-
-    setMapTile(map, { y: 1, x: 4 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([EAST]) }))
-    setMapTile(map, { y: 2, x: 4 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([SOUTH]) }))
-    setMapTile(map, { y: 3, x: 4 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 4, x: 4 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([NORTH]) }))
-
-    setMapTile(map, { y: 1, x: 5 }, createConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 2, x: 5 }, createConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([NORTH]) }))
-    setMapTile(map, { y: 3, x: 5 }, createConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([EAST]) }))
-    setMapTile(map, { y: 4, x: 5 }, createConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([SOUTH]) }))
-
-    setMapTile(map, { y: 1, x: 6 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([SOUTH]) }))
-    setMapTile(map, { y: 2, x: 6 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 3, x: 6 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([NORTH]) }))
-    setMapTile(map, { y: 4, x: 6 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([EAST]) }))
-
-    setMapTile(map, { y: 1, x: 7 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([EAST]) }))
-    setMapTile(map, { y: 2, x: 7 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([SOUTH]) }))
-    setMapTile(map, { y: 3, x: 7 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 4, x: 7 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([NORTH]) }))
-
-    setMapTile(map, { y: 1, x: 8 }, createFastConveyorTile({}, { exitDirection: NORTH, inputDirections: createDirectionObject([WEST]) }))
-    setMapTile(map, { y: 2, x: 8 }, createFastConveyorTile({}, { exitDirection: EAST, inputDirections: createDirectionObject([NORTH]) }))
-    setMapTile(map, { y: 3, x: 8 }, createFastConveyorTile({}, { exitDirection: SOUTH, inputDirections: createDirectionObject([EAST]) }))
-    setMapTile(map, { y: 4, x: 8 }, createFastConveyorTile({}, { exitDirection: WEST, inputDirections: createDirectionObject([SOUTH]) }))
-
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 3; j++) {
-        const inputDirections = []
-        if (j !== 0) inputDirections.push(DIRECTIONS[(i + 1) % 4])
-        if (j !== 1) inputDirections.push(DIRECTIONS[(i + 2) % 4])
-        if (j !== 2) inputDirections.push(DIRECTIONS[(i + 3) % 4])
-
-        const conveyorType = i % 2 ? createFastConveyorTile : createConveyorTile
-        const conveyorTile = conveyorType({}, {
-          exitDirection: DIRECTIONS[i],
-          inputDirections: createDirectionObject(inputDirections)
-        })
-
-        setMapTile(map, { y: 5 + i, x: 5 + j }, conveyorTile)
-      }
-    }
-
-    const tileCount = countAllMapTiles(map)
-    log.info({ tileCount }, `Created a ${map.length} x ${map[0].length} map.`)
+    const map = createIslandHop()
 
     const robots = Object.entries(ctx.playOrder).map(([index, player]) =>
-      [index, createNewRobot(player, { x: 2, y: Number(index) + 8 }, EAST)]
+      [index, createNewRobot(player, { x: 5 + Number(index), y: 14 }, EAST)]
     )
 
     const players = Object.values(ctx.playOrder)

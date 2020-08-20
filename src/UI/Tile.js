@@ -2,7 +2,6 @@ import React from 'react'
 import './Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
 import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN, GEAR } from '../Constants'
-// import * as deepEqual from 'deep-equal'
 
 import Conveyor from '../Tiles/Conveyor'
 import FastConveyor from '../Tiles/FastConveyor'
@@ -48,15 +47,12 @@ export default class Tile extends React.Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.hover !== nextState.hover) return true
-  //   if (!deepEqual(this.props.robot, nextProps.robot)) return true
-
-  //   return false
-  // }
-
   render() {
-    const { tile, pos, robot, playerRobot } = this.props
+    let { tile, pos, robot, playerRobot, onTileClick, customHoverTile } = this.props
+
+    if (this.state.hover && customHoverTile) {
+      tile = customHoverTile(tile)
+    }
 
     let TileType
 
@@ -86,6 +82,7 @@ export default class Tile extends React.Component {
         <div className='tile'
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}
+          onClick={() => onTileClick ? onTileClick(tile) : undefined}
           data-tooltip={tooltip}
         >
           {tileImage}
