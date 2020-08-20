@@ -18,7 +18,7 @@ export default class Tile extends React.Component {
             height: `calc(11.5em * ${GameZoomManager.percentSize()})`,
             width: `calc(11.5em * ${GameZoomManager.percentSize()})`,
             backgroundSize: `100%`,
-            backgroundImage: `url(/tiles/robot2/robot2_NE.png), url(${image}_${tileDirection}.png)`,
+            backgroundImage: `url(${image}_${tileDirection}.png)`,
             ...styles,
         }} />
     }

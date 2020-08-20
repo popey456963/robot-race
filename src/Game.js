@@ -15,7 +15,9 @@ import {
   createMap, setMapTile, countAllMapTiles, getMapTilesByType,
   getMapTile
 } from './Map'
-import { initialiseState, getPlayerRobot, damageRobot } from './State'
+import {
+  initialiseState, getPlayerRobot, damageRobot, calculateRobotMove, calculateRobotRotate
+} from './State'
 import {
   calculateMoveDestination, rotateDirectionClockwise, isRightAngle
 } from './Position'
@@ -75,6 +77,7 @@ function checkCurrentSquare(state, position, player) {
 function enactMove(move, G) {
   const r = G.robots[move.player]
   let oldDirection, newDirection
+
   switch (move.move.type) {
     case MOVE_THREE:
       moveRobot(G, r, r.direction)

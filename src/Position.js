@@ -32,6 +32,10 @@ export function rotateDirectionClockwise(direction, times = 1) {
 export function isRightAngle(a, b) {
     const aDirectionIndex = getDirectionIndex(a)
     const bDirectionIndex = getDirectionIndex(b)
-    
+
     return Math.abs(aDirectionIndex - bDirectionIndex) % 2 === 1
+}
+
+export function isSamePosition(a, b) {
+    return a.x === b.x && a.y === b.y
 }

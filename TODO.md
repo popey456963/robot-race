@@ -9,6 +9,7 @@ UI:
 
     == WALLS ==
     - Walls should show up on the map
+    - calculateMoveDestination should take into account walls
 
 Gameplay:
     == Server ==
@@ -36,7 +37,6 @@ Both:
 
     == Power Down ==
     - Design & implement power down
-
 
 For much later
     == Lobby ==

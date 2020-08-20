@@ -62,6 +62,9 @@ export const ANTICLOCKWISE = 'ANTICLOCKWISE'
 
 export const MAX_DAMAGE = 10
 
+export const ROBOT_MOVE = 'ROBOT_MOVE'
+export const ROBOT_TURN = 'ROBOT_TURN'
+
 // export const TILE_SCALE = 16
 // export const TILE_OFFSET = 6.4
 // export const TILE_SIZE = 186

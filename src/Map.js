@@ -53,3 +53,11 @@ export function countAllMapTiles(map) {
 
     return counts
 }
+
+export function canMoveInDirection(map, position, direction) {
+    const tile = getMapTile(map, position)
+
+    if (tile.walls[direction]) return false
+
+    return true
+}
