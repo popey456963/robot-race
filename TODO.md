@@ -5,7 +5,6 @@ UI:
 
     == TURNS ==
     - We should predict movement based on cards you're playing and display it
-    - Cards should be displayed so that you can see more than one at a time
 
     == WALLS ==
     - Walls should show up on the map

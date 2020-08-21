@@ -64,6 +64,8 @@ export const MAX_DAMAGE = 10
 
 export const ROBOT_MOVE = 'ROBOT_MOVE'
 export const ROBOT_TURN = 'ROBOT_TURN'
+export const ROBOT_CHECKPOINT = 'ROBOT_CHECKPOINT'
+export const ROBOT_HEALTH = 'ROBOT_HEALTH'
 
 // export const TILE_SCALE = 16
 // export const TILE_OFFSET = 6.4
