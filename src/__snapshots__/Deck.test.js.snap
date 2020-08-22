@@ -1,0 +1,1066 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create card type 1`] = `
+Array [
+  Object {
+    "priority": 0,
+    "type": "MOVE_ONE",
+  },
+]
+`;
+
+exports[`create card type 2`] = `
+Array [
+  Object {
+    "priority": 0,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 0,
+    "type": "U_TURN",
+  },
+]
+`;
+
+exports[`create card type 3`] = `Array []`;
+
+exports[`deck 1`] = `
+Array [
+  Object {
+    "priority": 10,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 20,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 30,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 40,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 50,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 60,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 70,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 80,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 90,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 100,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 110,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 120,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 130,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 140,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 150,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 160,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 170,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 180,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 190,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 200,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 210,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 220,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 230,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 240,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 250,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 260,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 270,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 280,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 290,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 300,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 310,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 320,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 330,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 340,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 350,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 360,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 370,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 380,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 390,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 400,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 410,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 420,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 430,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 440,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 450,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 460,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 470,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 480,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 490,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 500,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 510,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 520,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 530,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 540,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 550,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 560,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 570,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 580,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 590,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 600,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 610,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 620,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 630,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 640,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 650,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 660,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 670,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 680,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 690,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 700,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 710,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 720,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 730,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 740,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 750,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 760,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 770,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 780,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 790,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 800,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 810,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 820,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 830,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 840,
+    "type": "MOVE_THREE",
+  },
+]
+`;
+
+exports[`deck 2`] = `
+Array [
+  Object {
+    "priority": 10,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 20,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 30,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 40,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 50,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 60,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 70,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 80,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 90,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 100,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 110,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 120,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 130,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 140,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 150,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 160,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 170,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 180,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 190,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 200,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 210,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 220,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 230,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 240,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 250,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 260,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 270,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 280,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 290,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 300,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 310,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 320,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 330,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 340,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 350,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 360,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 370,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 380,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 390,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 400,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 410,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 420,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 430,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 440,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 450,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 460,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 470,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 480,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 490,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 500,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 510,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 520,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 530,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 540,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 550,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 560,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 570,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 580,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 590,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 600,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 610,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 620,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 630,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 640,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 650,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 660,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 670,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 680,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 690,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 700,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 710,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 720,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 730,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 740,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 750,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 760,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 770,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 780,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 790,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 800,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 810,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 820,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 830,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 840,
+    "type": "MOVE_THREE",
+  },
+]
+`;
+
+exports[`deck 3`] = `
+Object {
+  "priority": 840,
+  "type": "MOVE_THREE",
+}
+`;
+
+exports[`deck 4`] = `
+Object {
+  "priority": 830,
+  "type": "MOVE_THREE",
+}
+`;
+
+exports[`deck 5`] = `
+Object {
+  "priority": 820,
+  "type": "MOVE_THREE",
+}
+`;
+
+exports[`deck 6`] = `
+Array [
+  Object {
+    "priority": 10,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 20,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 30,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 40,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 50,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 60,
+    "type": "U_TURN",
+  },
+  Object {
+    "priority": 70,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 80,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 90,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 100,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 110,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 120,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 130,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 140,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 150,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 160,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 170,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 180,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 190,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 200,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 210,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 220,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 230,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 240,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 250,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 260,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 270,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 280,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 290,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 300,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 310,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 320,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 330,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 340,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 350,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 360,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 370,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 380,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 390,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 400,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 410,
+    "type": "ROTATE_RIGHT",
+  },
+  Object {
+    "priority": 420,
+    "type": "ROTATE_LEFT",
+  },
+  Object {
+    "priority": 430,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 440,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 450,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 460,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 470,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 480,
+    "type": "BACK_UP",
+  },
+  Object {
+    "priority": 490,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 500,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 510,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 520,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 530,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 540,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 550,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 560,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 570,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 580,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 590,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 600,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 610,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 620,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 630,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 640,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 650,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 660,
+    "type": "MOVE_ONE",
+  },
+  Object {
+    "priority": 670,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 680,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 690,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 700,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 710,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 720,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 730,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 740,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 750,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 760,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 770,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 780,
+    "type": "MOVE_TWO",
+  },
+  Object {
+    "priority": 790,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 800,
+    "type": "MOVE_THREE",
+  },
+  Object {
+    "priority": 810,
+    "type": "MOVE_THREE",
+  },
+]
+`;
+
+exports[`interleave 1`] = `
+Array [
+  "a",
+  "c",
+  "b",
+  "d",
+]
+`;

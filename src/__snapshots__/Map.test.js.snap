@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can create a map 1`] = `
+Array [
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+]
+`;
+
+exports[`can create a map 2`] = `
+Array [
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 2,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 2,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+]
+`;
+
+exports[`can create a map 3`] = `
+Array [
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 2,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 2,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+  ],
+]
+`;
+
+exports[`count tiles in map 1`] = `
+Object {
+  "GEAR": 2,
+  "HOLE": 1,
+  "PLAIN": 1,
+}
+`;
+
+exports[`get / set map tile 1`] = `
+Array [
+  Array [
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 0,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "PLAIN",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "meta": Object {
+        "rotationDirection": undefined,
+      },
+      "position": Object {
+        "x": 1,
+        "y": 0,
+      },
+      "pushers": Object {},
+      "type": "GEAR",
+      "walls": Object {},
+    },
+  ],
+  Array [
+    Object {
+      "lasers": Object {},
+      "meta": Object {
+        "rotationDirection": undefined,
+      },
+      "position": Object {
+        "x": 0,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "GEAR",
+      "walls": Object {},
+    },
+    Object {
+      "lasers": Object {},
+      "position": Object {
+        "x": 1,
+        "y": 1,
+      },
+      "pushers": Object {},
+      "type": "HOLE",
+      "walls": Object {},
+    },
+  ],
+]
+`;
+
+exports[`get map tiles by type 1`] = `
+Array [
+  Object {
+    "lasers": Object {},
+    "meta": Object {
+      "rotationDirection": undefined,
+    },
+    "position": Object {
+      "x": 1,
+      "y": 0,
+    },
+    "pushers": Object {},
+    "type": "GEAR",
+    "walls": Object {},
+  },
+  Object {
+    "lasers": Object {},
+    "meta": Object {
+      "rotationDirection": undefined,
+    },
+    "position": Object {
+      "x": 0,
+      "y": 1,
+    },
+    "pushers": Object {},
+    "type": "GEAR",
+    "walls": Object {},
+  },
+]
+`;
+
+exports[`get map tiles by type 2`] = `
+Array [
+  Object {
+    "lasers": Object {},
+    "position": Object {
+      "x": 1,
+      "y": 1,
+    },
+    "pushers": Object {},
+    "type": "HOLE",
+    "walls": Object {},
+  },
+]
+`;
+
+exports[`get map tiles by type 3`] = `
+Array [
+  Object {
+    "lasers": Object {},
+    "position": Object {
+      "x": 0,
+      "y": 0,
+    },
+    "pushers": Object {},
+    "type": "PLAIN",
+    "walls": Object {},
+  },
+]
+`;

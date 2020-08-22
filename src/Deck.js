@@ -1,10 +1,11 @@
 import { MOVE_ONE, MOVE_TWO, MOVE_THREE, BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN } from './Constants'
 
-function CreateCardType (type, n) {
+export function createCardType(type, n) {
   return new Array(n).fill(null).map(() => ({ type, priority: 0 }))
 }
 
-function interleave(a, b) {
+export function interleave(a, b) {
+  // expects same number in both arrays
   return a.reduce((acc, cur, index) => acc.concat(cur, b[index]), [])
 }
 
@@ -18,13 +19,13 @@ export default class Deck {
     // move2: 670 - 780
     // move3: 790-840
     this.cards = [
-      ...CreateCardType(U_TURN, 6),
-      ...interleave(CreateCardType(ROTATE_RIGHT, 18), CreateCardType(ROTATE_LEFT, 18)),
+      ...createCardType(U_TURN, 6),
+      ...interleave(createCardType(ROTATE_RIGHT, 18), createCardType(ROTATE_LEFT, 18)),
 
-      ...CreateCardType(BACK_UP, 6),
-      ...CreateCardType(MOVE_ONE, 18),
-      ...CreateCardType(MOVE_TWO, 12),
-      ...CreateCardType(MOVE_THREE, 6),
+      ...createCardType(BACK_UP, 6),
+      ...createCardType(MOVE_ONE, 18),
+      ...createCardType(MOVE_TWO, 12),
+      ...createCardType(MOVE_THREE, 6),
     ]
 
     for (let i = 0; i < this.cards.length; i++) {
@@ -34,7 +35,7 @@ export default class Deck {
     this.cards.filter(card => !(card.priority in lockedCardPriorities))
   }
 
-  drawCard () {
+  drawCard() {
     if (this.cards.length === 0) {
       throw new Error('Cannot draw a card from the deck.')
     }

@@ -25,9 +25,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --runInBand",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --watchAll",
+    "coverage": "react-scripts test --coverage --watchAll --runInBand",
     "serve": "node -r esm src/server.js",
     "watch": "nodemon -r esm src/server.js"
   },
