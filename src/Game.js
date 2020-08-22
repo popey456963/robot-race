@@ -9,10 +9,10 @@ import {
 } from './Constants'
 
 import Deck from './Deck'
-import { findRobots, arrayToObject } from './utils'
+import { arrayToObject } from './utils'
 
 import { getMapTilesByType, getMapTile } from './Map'
-import { initialiseState, getPlayerRobot, damageRobot } from './State'
+import { initialiseState, getPlayerRobot, damageRobot, findRobotAt } from './State'
 import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
 import { isTile } from './Tiles'
 import { createNewRobot } from './Robot'
@@ -22,6 +22,7 @@ import log from './Logger'
 import createTestMap from './CustomMaps/TestMap'
 import createIslandHop from './CustomMaps/IslandHop'
 import createRiskyExchange from './CustomMaps/RiskyExchange'
+import createSingleTile from './CustomMaps/SingleTile'
 
 function drawAllCards(G, ctx) {
   const deck = new Deck(ctx)
@@ -43,7 +44,7 @@ function moveRobot(G, robot, direction) {
 
   const old_position = { x: robot.position.x, y: robot.position.y }
   const new_position = calculateMoveDestination(robot.position, direction)
-  const other_robot = findRobots(new_position, G.robots)
+  const other_robot = findRobotAt(G, new_position)
   if ((other_robot !== undefined && moveRobot(G, other_robot, direction)) ||
     other_robot === undefined) {
     log.info(`We didn't bump into anything, so moving us along!`)
@@ -165,7 +166,7 @@ function enactEnvironment(state, register) {
   const flags = getMapTilesByType(state.map, FLAG)
 
   for (const flag of flags) {
-    const robot = findRobots(flag, state.robots)
+    const robot = findRobotAt(state, flag.position)
 
     if (robot) {
       state.robots[robot.user].checkpoint = flag
@@ -209,7 +210,7 @@ export const RobotFight = {
   setup: (ctx, setupData) => {
     log.info({ users: ctx.playOrder }, 'Setting up a new robot fight.')
 
-    const map = createIslandHop()
+    const map = createRiskyExchange()
 
     const robots = Object.entries(ctx.playOrder).map(([index, player]) =>
       [index, createNewRobot(player, { x: 5 + Number(index), y: 14 }, EAST)]

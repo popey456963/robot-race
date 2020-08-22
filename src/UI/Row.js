@@ -1,15 +1,15 @@
 import React from 'react'
 import Tile from './Tile'
-import { findRobots } from '../utils'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import './Tile.css'
+import { findRobotAt } from '../State'
 
 const GameZoomManager = require('./GameZoomManager')
 
 export default class Row extends React.Component {
   static contextType = ROTATION_CONTEXT
   render() {
-    const { row, rowId, robots, playerRobot, zoom, onTileClick, customHoverTile } = this.props
+    const { row, rowId, state, playerRobot, zoom, onTileClick, customHoverTile } = this.props
 
     return (
       <tr
@@ -24,7 +24,7 @@ export default class Row extends React.Component {
               key={columnId + ',' + rowId}
               tile={tile}
               pos={pos}
-              robot={findRobots(pos, robots)}
+              robot={findRobotAt(state, pos)}
               playerRobot={playerRobot}
               zoom={zoom}
               onTileClick={onTileClick}

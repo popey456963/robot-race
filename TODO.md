@@ -1,27 +1,20 @@
 UI:
     == ROBOT ==
-    - Robot characters need new icons
     - Change robot character by player
-
-    == TURNS ==
-    - We should predict movement based on cards you're playing and display it
 
     == WALLS ==
     - Walls should show up on the map
     - calculateMoveDestination should take into account walls
 
+    == TILES ==
+    Make it so that the script doesn't make pictures smaller than a tile in size.
+
 Gameplay:
     == Server ==
     - We should allow more than two people to play together at once
 
-    == Team Courses ==
-    - Add functionality to allow team courses
-
     == Repairs ==
     - Grill (level 2) should give people an option card
-
-    == Design Maps ==
-    - Design an initial map with a good selection of features
 
     == Robots ==
     - Should take damage
@@ -47,3 +40,9 @@ For much later
 
     == Option Cards ==
     - Design & implement option cards
+
+    == TURNS ==
+    - We should predict movement based on cards you're playing and display it
+
+    == Team Courses ==
+    - Add functionality to allow team courses

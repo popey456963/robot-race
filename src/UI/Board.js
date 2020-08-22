@@ -7,7 +7,7 @@ import CardHand from './CardHand'
 import Button from './Button'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { rotateTileAngle } from '../utils'
+import { rotateAngleClockwise } from '../Position'
 
 export class RobotFightBoard extends React.Component {
   constructor(props) {
@@ -102,7 +102,7 @@ export class RobotFightBoard extends React.Component {
   }
 
   rotateBoard(clockwise) {
-    const rotation = rotateTileAngle(this.state.rotation, clockwise ? 1 : 3)
+    const rotation = rotateAngleClockwise(this.state.rotation, clockwise ? 1 : 3)
 
     this.setState({
       rotation
@@ -178,7 +178,7 @@ export class RobotFightBoard extends React.Component {
             </DragDropContext>
 
           </span>
-          <Map map={this.props.G.map} robots={this.props.G.robots} playerRobot={playerRobot} />
+          <Map state={this.props.G} map={this.props.G.map} robots={this.props.G.robots} playerRobot={playerRobot} />
 
         </ROTATION_CONTEXT.Provider>
       </div >

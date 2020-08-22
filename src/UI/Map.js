@@ -3,7 +3,8 @@ import Row from './Row';
 import './Tile.css';
 import './Tooltips.css';
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { rotateTileAngleAmount, translateCoords, convertTouchIfMobile, arrayToObject } from '../utils'
+import { convertTouchIfMobile } from '../utils'
+import { getAngleIndex } from '../Position';
 
 const GameScrollManager = require('./GameScrollManager')
 const GameZoomManager = require('./GameZoomManager')
@@ -90,7 +91,7 @@ export default class Map extends React.Component {
     }
 
     render() {
-        let { map, robots, playerRobot, onTileClick, customHoverTile } = this.props
+        let { state, map, robots, playerRobot, onTileClick, customHoverTile } = this.props
 
         function rotateMatrix(a) {
             a = Object.keys(a[0]).map(c => a.map(r => r[c]))
@@ -99,18 +100,9 @@ export default class Map extends React.Component {
         }
 
         let rotatedMap = map
-        for (let i = 0; i < rotateTileAngleAmount(this.context); i++) {
+        for (let i = 0; i < getAngleIndex(this.context); i++) {
             rotatedMap = rotateMatrix(rotatedMap)
         }
-
-        const rotationalRobots = arrayToObject(Object.entries(robots)
-            .map(([user, robot]) => {
-                const newRobot = {
-                    ...robot,
-                    position: translateCoords(robot.position, this.context, { y: map.length, x: map[0].length })
-                }
-                return [user, newRobot]
-            }))
 
         return (
             <div
@@ -133,7 +125,7 @@ export default class Map extends React.Component {
                         row={row}
                         sizeY={rotatedMap.length}
                         rowId={rowId}
-                        robots={rotationalRobots}
+                        state={state}
                         playerRobot={playerRobot}
                         zoom={this.state.zoom}
                         onTileClick={onTileClick}

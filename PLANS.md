@@ -48,7 +48,7 @@
     flags: [],
     checkpoint: { x, y },
     lives: 0 - 3,
-
+    user: ""
 }
 
 

@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`conveyor tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": undefined,
+    "inputDirections": undefined,
+  },
+  "pushers": Object {},
+  "type": "CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`conveyor tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": "NORTH",
+    "inputDirections": Array [
+      "NORTH",
+      "SOUTH",
+    ],
+  },
+  "pushers": Object {},
+  "type": "CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`conveyor tile object 3`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": "SOUTH",
+    "inputDirections": Array [],
+  },
+  "pushers": Object {},
+  "type": "CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`create direction object 1`] = `Object {}`;
+
+exports[`create direction object 2`] = `Object {}`;
+
+exports[`create direction object 3`] = `
+Object {
+  "NORTH": true,
+}
+`;
+
+exports[`create direction object 4`] = `
+Object {
+  "EAST": true,
+  "NORTH": true,
+}
+`;
+
+exports[`create direction object 5`] = `
+Object {
+  "NORTH": true,
+  "SOUTH": true,
+  "WEST": true,
+}
+`;
+
+exports[`create direction object 6`] = `
+Object {
+  "EAST": true,
+  "NORTH": true,
+  "SOUTH": true,
+  "WEST": true,
+}
+`;
+
+exports[`create direction object 7`] = `
+Object {
+  "EAST": true,
+  "NORTH": true,
+  "SOUTH": true,
+  "WEST": true,
+}
+`;
+
+exports[`fast conveyor tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": undefined,
+    "inputDirections": undefined,
+  },
+  "pushers": Object {},
+  "type": "FAST_CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`fast conveyor tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": "NORTH",
+    "inputDirections": Array [
+      "NORTH",
+      "SOUTH",
+    ],
+  },
+  "pushers": Object {},
+  "type": "FAST_CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`fast conveyor tile object 3`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "exitDirection": "SOUTH",
+    "inputDirections": Array [],
+  },
+  "pushers": Object {},
+  "type": "FAST_CONVEYOR",
+  "walls": Object {},
+}
+`;
+
+exports[`flag tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "flagNumber": 1,
+  },
+  "pushers": Object {},
+  "type": "FLAG",
+  "walls": Object {},
+}
+`;
+
+exports[`flag tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "flagNumber": 3,
+  },
+  "pushers": Object {},
+  "type": "FLAG",
+  "walls": Object {},
+}
+`;
+
+exports[`flag tile object 3`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "flagNumber": 6,
+  },
+  "pushers": Object {},
+  "type": "FLAG",
+  "walls": Object {},
+}
+`;
+
+exports[`gear tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "rotationDirection": undefined,
+  },
+  "pushers": Object {},
+  "type": "GEAR",
+  "walls": Object {},
+}
+`;
+
+exports[`gear tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "rotationDirection": "CLOCKWISE",
+  },
+  "pushers": Object {},
+  "type": "GEAR",
+  "walls": Object {},
+}
+`;
+
+exports[`gear tile object 3`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "rotationDirection": "ANTICLOCKWISE",
+  },
+  "pushers": Object {},
+  "type": "GEAR",
+  "walls": Object {},
+}
+`;
+
+exports[`generic tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "pushers": Object {},
+  "walls": Object {},
+}
+`;
+
+exports[`generic tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "pushers": Object {},
+  "walls": Object {},
+}
+`;
+
+exports[`generic tile object 3`] = `
+Object {
+  "lasers": Object {
+    "NORTH": true,
+  },
+  "pushers": Object {
+    "NORTH": true,
+  },
+  "walls": Object {
+    "NORTH": true,
+  },
+}
+`;
+
+exports[`generic tile object 4`] = `
+Object {
+  "lasers": Object {
+    "EAST": true,
+    "NORTH": true,
+  },
+  "pushers": Object {
+    "EAST": true,
+    "NORTH": true,
+  },
+  "walls": Object {
+    "EAST": true,
+    "NORTH": true,
+  },
+}
+`;
+
+exports[`generic tile object 5`] = `
+Object {
+  "lasers": Object {
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "pushers": Object {
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "walls": Object {
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+}
+`;
+
+exports[`generic tile object 6`] = `
+Object {
+  "lasers": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "pushers": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "walls": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+}
+`;
+
+exports[`generic tile object 7`] = `
+Object {
+  "lasers": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "pushers": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+  "walls": Object {
+    "EAST": true,
+    "NORTH": true,
+    "SOUTH": true,
+    "WEST": true,
+  },
+}
+`;
+
+exports[`grill tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "level": 1,
+  },
+  "pushers": Object {},
+  "type": "GRILL",
+  "walls": Object {},
+}
+`;
+
+exports[`grill tile object 2`] = `
+Object {
+  "lasers": Object {},
+  "meta": Object {
+    "level": 2,
+  },
+  "pushers": Object {},
+  "type": "GRILL",
+  "walls": Object {},
+}
+`;
+
+exports[`hole tile object 1`] = `
+Object {
+  "lasers": Object {},
+  "pushers": Object {},
+  "type": "HOLE",
+  "walls": Object {},
+}
+`;
+
+exports[`out of bounds tile 1`] = `
+Object {
+  "position": Object {
+    "x": -1,
+    "y": -1,
+  },
+  "type": "OUT_OF_BOUNDS",
+}
+`;

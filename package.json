@@ -27,6 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "coverage": "react-scripts test --coverage --watchAll",
     "serve": "node -r esm src/server.js",
     "watch": "nodemon -r esm src/server.js"
   },

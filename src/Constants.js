@@ -46,7 +46,13 @@ export const NORTH = 'NORTH'
 export const EAST = 'EAST'
 export const SOUTH = 'SOUTH'
 export const WEST = 'WEST'
-export const DIRECTIONS = ['NORTH', 'EAST', 'SOUTH', 'WEST']
+export const DIRECTIONS = [NORTH, EAST, SOUTH, WEST]
+
+export const NE = 'NE'
+export const SE = 'SE'
+export const SW = 'SW'
+export const NW = 'NW'
+export const ANGLES = [NE, SE, SW, NW]
 
 export const PLAIN = 'PLAIN'
 export const FLAG = 'FLAG'

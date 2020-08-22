@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can robot be moved 1`] = `
+Object {
+  "x": 1,
+  "y": 1,
+}
+`;
+
+exports[`can robot be moved 2`] = `undefined`;
+
+exports[`create new robot 1`] = `
+Object {
+  "checkpoint": Object {
+    "x": 1,
+    "y": 1,
+  },
+  "damage": 0,
+  "direction": "NORTH",
+  "flags": Array [],
+  "lives": 3,
+  "position": Object {
+    "x": 1,
+    "y": 1,
+  },
+  "poweredDown": false,
+  "upgrades": Array [],
+  "user": "example",
+}
+`;

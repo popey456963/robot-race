@@ -1,7 +1,7 @@
 import React from 'react'
 import Tile from './Tile'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
-import { angleRotationAmount } from '../utils'
+import { getDirectionIndex } from '../Position'
 
 export function getConveyorImage(tile, isFast) {
     const exitDirection = tile.meta.exitDirection
@@ -17,8 +17,8 @@ export function getConveyorImage(tile, isFast) {
         // we only have one input
         let inputDirection = Object.keys(inputDirections).filter(direction => inputDirections[direction])[0]
 
-        const inputAngle = angleRotationAmount(inputDirection)
-        const exitAngle = angleRotationAmount(exitDirection)
+        const inputAngle = getDirectionIndex(inputDirection)
+        const exitAngle = getDirectionIndex(exitDirection)
 
         const difference = inputAngle - exitAngle
 
@@ -86,11 +86,11 @@ export function getConveyorImage(tile, isFast) {
 
 export default class Conveyor extends React.Component {
     render() {
-        const { tile } = this.props
+        const { tile, robot } = this.props
 
         const { image, dir, inverse } = getConveyorImage(tile, false)
 
-        return <Tile image={image} inverse={inverse} dir={dir} styles={{
+        return <Tile robot={robot} image={image} inverse={inverse} dir={dir} styles={{
             transform: inverse ? 'rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em) scaleX(-1)' : undefined,
         }} />
     }

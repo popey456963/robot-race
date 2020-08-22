@@ -6,12 +6,11 @@ import './Board.css'
 import './Card.css'
 import './MapEditor.css'
 import Map from './Map'
-import CardHand from './CardHand'
 import Button from './Button'
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { rotateTileAngle } from '../utils'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
 import { PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR, CLOCKWISE, ANTICLOCKWISE } from '../Constants'
+import { rotateAngleClockwise } from '../Position';
 
 export class RobotFightMapEditor extends React.Component {
   constructor(props) {
@@ -88,7 +87,7 @@ export class RobotFightMapEditor extends React.Component {
   }
 
   rotateBoard(clockwise) {
-    const rotation = rotateTileAngle(this.state.rotation, clockwise ? 1 : 3)
+    const rotation = rotateAngleClockwise(this.state.rotation, clockwise ? 1 : 3)
 
     this.setState({
       rotation
@@ -174,12 +173,6 @@ export class RobotFightMapEditor extends React.Component {
     if (!cards) {
       return <p>No cards</p>
     }
-
-    const inHand = cards.filter(card =>
-      !this.state.selected.some(selected =>
-        selected.type === card.type && selected.priority === card.priority
-      )
-    )
 
     console.log(this.state)
 

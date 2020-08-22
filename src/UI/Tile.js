@@ -5,7 +5,6 @@ import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN, GEAR } from '../Cons
 
 import Conveyor from '../Tiles/Conveyor'
 import FastConveyor from '../Tiles/FastConveyor'
-import Robot from '../Tiles/Robot'
 import Flag from '../Tiles/Flag'
 import Plain from '../Tiles/Plain'
 import Grill from '../Tiles/Grill'
@@ -67,7 +66,7 @@ export default class Tile extends React.Component {
       default: throw new Error('unexpected tile type')
     }
 
-    let tileImage = <TileType tile={tile} playerRobot={playerRobot} pos={pos} />
+    let tileImage = <TileType tile={tile} playerRobot={playerRobot} pos={pos} robot={robot}/>
 
     let tooltip = stringify(tile).join(' | ')
 
@@ -78,7 +77,6 @@ export default class Tile extends React.Component {
           transform: (this.state.hover ? 'translate3d(-0.95em, -0.95em, 0em)' : '') + ` translateX(${(pos.x - 0) * 4 * GameZoomManager.percentSize()}em)`
         }}
       >
-        {robot ? (<Robot robot={robot} />) : null}
         <div className='tile'
           onMouseEnter={() => this.setState({ hover: true })}
           onMouseLeave={() => this.setState({ hover: false })}

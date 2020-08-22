@@ -3,7 +3,7 @@ import Tile from './Tile'
 
 export default class Flag extends React.Component {
     render() {
-        const { tile, playerRobot, pos } = this.props
+        const { tile, playerRobot, pos, robot } = this.props
         const flagNumber = tile.meta.flagNumber
 
         const visited = playerRobot.flags.includes(tile.meta.flagNumber)
@@ -11,6 +11,6 @@ export default class Flag extends React.Component {
 
         const name = `flag_${visited ? 'taken_' : ''}${checkpoint ? 'cp_' : ''}${flagNumber}`
 
-        return <Tile image={`/tiles/${name}/${name}`} dir={'NE'} />
+        return <Tile image={`/tiles/${name}/${name}`} dir={'NE'} robot={robot} />
     }
 }
