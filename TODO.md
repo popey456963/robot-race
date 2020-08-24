@@ -1,13 +1,6 @@
 UI:
-    == ROBOT ==
-    - Change robot character by player
-
-    == WALLS ==
-    - Walls should show up on the map
-    - calculateMoveDestination should take into account walls
-
-    == TILES ==
-    Make it so that the script doesn't make pictures smaller than a tile in size.
+    == Lasers ==
+    - Should display on the map
 
 Gameplay:
     == Server ==
@@ -20,12 +13,15 @@ Gameplay:
     - Should take damage
     - Should have lives
 
-Both:
-    == Pusher ==
-    - Design & implement pusher
+    == Pushers ==
+    - Should push robots
 
+Both:
     == Lasers ==
     - Design & implement lasers
+
+    == Spawn Location ==
+    - So that the map editor can define spawn locations
 
     == Power Down ==
     - Design & implement power down
