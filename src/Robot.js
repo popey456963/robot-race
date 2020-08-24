@@ -2,10 +2,11 @@
 
 import { MAX_DAMAGE } from './Constants'
 
-export function createNewRobot(user, position, direction) {
+export function createNewRobot(user, position, direction, colour) {
     return {
         position,
         direction,
+        colour,
         poweredDown: false,
         damage: 0,
         upgrades: [],

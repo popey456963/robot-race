@@ -12,6 +12,6 @@ export default class Grill extends React.Component {
         const checkpoint = playerRobot.checkpoint.x === pos.x && playerRobot.checkpoint.y === pos.y
         if (checkpoint) image += '_cp'
 
-        return <Tile robot={robot} image={`/tiles/${image}/${image}`} dir={'SE'} />
+        return <Tile tile={tile} robot={robot} image={`/tiles/${image}/${image}`} dir={'SE'} />
     }
 }

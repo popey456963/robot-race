@@ -11,6 +11,6 @@ export default class Flag extends React.Component {
 
         const name = `flag_${visited ? 'taken_' : ''}${checkpoint ? 'cp_' : ''}${flagNumber}`
 
-        return <Tile image={`/tiles/${name}/${name}`} dir={'NE'} robot={robot} />
+        return <Tile tile={tile} image={`/tiles/${name}/${name}`} dir={'NE'} robot={robot} />
     }
 }

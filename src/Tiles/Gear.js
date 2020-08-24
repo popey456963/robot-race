@@ -9,6 +9,6 @@ export default class Gear extends React.Component {
         let icon = 'gear_1'
         if (tile.meta.rotationDirection === ANTICLOCKWISE) icon = 'gear_2'
 
-        return <Tile robot={robot} image={`/tiles/${icon}/${icon}`} dir={'NE'} />
+        return <Tile tile={tile} robot={robot} image={`/tiles/${icon}/${icon}`} dir={'NE'} />
     }
 }

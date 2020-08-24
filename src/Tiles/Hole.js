@@ -3,8 +3,8 @@ import Tile from './Tile'
 
 export default class Hole extends React.Component {
     render() {
-        const { robot } = this.props
+        const { robot, tile } = this.props
 
-        return <Tile image={'/tiles/hole/hole'} dir={'NE'} robot={robot} />
+        return <Tile tile={tile} image={'/tiles/hole/hole'} dir={'NE'} robot={robot} />
     }
 }

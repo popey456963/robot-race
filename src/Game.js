@@ -1,28 +1,25 @@
 import { PlayerView, TurnOrder, Stage } from 'boardgame.io/core'
 import {
   NORTH, EAST, SOUTH, WEST,
-  MOVE_ONE, MOVE_TWO, MOVE_THREE,
-  BACK_UP, ROTATE_RIGHT, ROTATE_LEFT, U_TURN,
-  FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
+  FLAG, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
   CLOCKWISE,
-  MAX_DAMAGE, OUT_OF_BOUNDS
+  MAX_DAMAGE, ROBOT_COLOURS
 } from './Constants'
 
 import Deck from './Deck'
 import { arrayToObject } from './utils'
 
-import { getMapTilesByType, getMapTile } from './Map'
-import { initialiseState, getPlayerRobot, damageRobot, findRobotAt } from './State'
-import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
-import { isTile } from './Tiles'
+import { getMapTilesByType } from './Map'
+import { initialiseState, findRobotAt } from './State'
+import { rotateDirectionClockwise } from './Position'
 import { createNewRobot } from './Robot'
 
 import log from './Logger'
 
 import createTestMap from './CustomMaps/TestMap'
 import createIslandHop from './CustomMaps/IslandHop'
-import createRiskyExchange from './CustomMaps/RiskyExchange'
 import createSingleTile from './CustomMaps/SingleTile'
+import { enactMoves, createMove, calculateConveyorMove } from './Moves'
 
 function drawAllCards(G, ctx) {
   const deck = new Deck(ctx)
@@ -36,119 +33,25 @@ function drawAllCards(G, ctx) {
   }
 }
 
-function moveRobot(G, robot, direction) {
-  if (G.map[robot.position.y][robot.position.x].walls[direction]) {
-    log.info('Not moving robot because they ran into a wall.')
-    return false
-  }
-
-  const old_position = { x: robot.position.x, y: robot.position.y }
-  const new_position = calculateMoveDestination(robot.position, direction)
-  const other_robot = findRobotAt(G, new_position)
-  if ((other_robot !== undefined && moveRobot(G, other_robot, direction)) ||
-    other_robot === undefined) {
-    log.info(`We didn't bump into anything, so moving us along!`)
-    robot.position = new_position
-  }
-
-  log.info({ old_position, new_position, player: robot.user }, `Moved robot.`)
-  checkCurrentSquare(G, robot.position, robot.user)
-
-  return true
-}
-
-function checkCurrentSquare(state, position, player) {
-  const tile = getMapTile(state.map, position)
-  if (isTile(tile, [HOLE, OUT_OF_BOUNDS])) {
-    damageRobot(state, getPlayerRobot(state, player), 10)
-    log.info({ player, position }, `${player} fell into a hole and died!`)
-  }
-}
-
-function enactMove(move, G) {
-  const r = G.robots[move.player]
-  let oldDirection, newDirection
-
-  switch (move.move.type) {
-    case MOVE_THREE:
-      moveRobot(G, r, r.direction)
-    // falls through
-    case MOVE_TWO:
-      moveRobot(G, r, r.direction)
-    // falls through
-    case MOVE_ONE:
-      moveRobot(G, r, r.direction)
-      break
-    case BACK_UP:
-      moveRobot(G, r, rotateDirectionClockwise(r.direction, 2))
-      break
-    case ROTATE_RIGHT:
-      oldDirection = r.direction
-      newDirection = rotateDirectionClockwise(r.direction, 1)
-      log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the RIGHT from ${oldDirection} to ${newDirection}`)
-      r.direction = newDirection
-      break
-    case ROTATE_LEFT:
-      oldDirection = r.direction
-      newDirection = rotateDirectionClockwise(r.direction, 3)
-      log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the LEFT from ${oldDirection} to ${newDirection}`)
-      r.direction = newDirection
-      break
-    case U_TURN:
-      oldDirection = r.direction
-      newDirection = rotateDirectionClockwise(r.direction, 2)
-      log.info({ oldDirection, newDirection }, `Rotating player ${move.player} to the BACK from ${oldDirection} to ${newDirection}`)
-      r.direction = newDirection
-      break
-    default: throw new Error('unexpected card')
-  }
-}
-
-function shouldTurnClockwise(dir, out) {
+export function shouldTurnClockwise(dir, out) {
   if ((dir === SOUTH && out === WEST) || (dir === WEST && out === NORTH) || (dir === NORTH && out === EAST) || (dir === EAST && out === SOUTH)) return false
   if ((dir === SOUTH && out === WEST) || (dir === WEST && out === NORTH) || (dir === NORTH && out === EAST) || (dir === EAST && out === SOUTH)) return true
 
   throw new Error('not right angle')
 }
 
-function moveByConveyor(state, robot) {
-  log.info(`Player ${robot.user} is on a conveyor, so being moved.`)
-  const conveyor = state.map[robot.position.y][robot.position.x]
-
-  // we know robot is on a conveyor, so let's move it in destination direction:
-  moveRobot(state, robot, conveyor.meta.exitDirection)
-
-  // now we should determine if we rotate...
-  const newTile = state.map[robot.position.y][robot.position.x]
-
-  if (newTile.type === CONVEYOR || newTile.type === FAST_CONVEYOR) {
-    const inDirection = rotateDirectionClockwise(conveyor.meta.exitDirection, 2)
-    log.debug({ inDirection }, `The new tile is also a conveyor belt.`)
-    if (newTile.meta.inputDirections[inDirection]) {
-      log.debug(`We've also entered the new conveyor belt from a correct direction.`)
-      // we're entered a correct way...
-      if (isRightAngle(inDirection, newTile.meta.exitDirection)) {
-        const rotations = shouldTurnClockwise(inDirection, newTile.meat.exitDirection) ? 1 : 3
-
-        log.debug({ rotations }, `Since the conveyor is curved, we're rotating the player`)
-        robot.direction = rotateDirectionClockwise(robot.direction, rotations)
-      }
-    }
-  }
-}
-
 function enactEnvironment(state, register) {
   for (const robot of Object.values(state.robots)) {
     if (state.map[robot.position.y][robot.position.x].type === FAST_CONVEYOR) {
       // move them by conveyor
-      moveByConveyor(state, robot)
+      calculateConveyorMove(state, robot)
     }
   }
 
   for (const robot of Object.values(state.robots)) {
     if ([FAST_CONVEYOR, CONVEYOR].includes(state.map[robot.position.y][robot.position.x].type)) {
       // move them by conveyor
-      moveByConveyor(state, robot)
+      calculateConveyorMove(state, robot)
     }
   }
 
@@ -210,10 +113,10 @@ export const RobotFight = {
   setup: (ctx, setupData) => {
     log.info({ users: ctx.playOrder }, 'Setting up a new robot fight.')
 
-    const map = createRiskyExchange()
+    const map = createIslandHop()
 
     const robots = Object.entries(ctx.playOrder).map(([index, player]) =>
-      [index, createNewRobot(player, { x: 5 + Number(index), y: 14 }, EAST)]
+      [index, createNewRobot(player, { x: 5 + Number(index), y: 14 }, NORTH, ROBOT_COLOURS[Number(index)])]
     )
 
     const players = Object.values(ctx.playOrder)
@@ -283,12 +186,10 @@ export const RobotFight = {
 
           register.sort((a, b) => b.move.priority - a.move.priority)
 
-          log.debug({ register }, `Simulating register ${i}.`)
+          const moveRegister = register.map(move => createMove(move.move.type, move.player, move.priority))
 
-          for (const move of register) {
-            log.debug({ move }, `Simulating move by ${move.player}.`)
-            enactMove(move, G)
-          }
+          log.debug({ moveRegister }, `Simulating register ${i}.`)
+          enactMoves(G, moveRegister)
 
           log.debug(`Enacting environmental map changes.`)
           enactEnvironment(G, i)

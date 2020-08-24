@@ -36,12 +36,14 @@ td.iso_td .tile div {
 
   transition: all 1s cubic-bezier(0.22, 0.6, 0.39, 1.42);
 }
+
 .tile.hide {
   transform: translate3d(12em, 12em, 0em) !important;
   opacity: 0;
 
   transition: all 1s cubic-bezier(0.7, -0.4, 0.88, 0.51);
 }
+
 .tile .background {
   transform: rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em);
 
@@ -50,18 +52,6 @@ td.iso_td .tile div {
 
   background-size: calc(100% * var(--tile-scale)) 100%;
   background-position: 0px 0px;
-}
-
-.background.robot::before {
-  content: '';
-  position: absolute;
-  top: 0em;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: url("/tiles/robot2/robot2_custom.png");
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 @keyframes showTile {

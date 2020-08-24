@@ -8,7 +8,7 @@ import './MapEditor.css'
 import Map from './Map'
 import Button from './Button'
 import { ROTATION_CONTEXT } from './ReactConstants'
-import { NORTH, EAST, SOUTH, WEST } from '../Constants'
+import { NORTH, EAST, SOUTH, WEST, NE } from '../Constants'
 import { PLAIN, FLAG, HOLE, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR, CLOCKWISE, ANTICLOCKWISE } from '../Constants'
 import { rotateAngleClockwise } from '../Position';
 
@@ -18,8 +18,9 @@ export class RobotFightMapEditor extends React.Component {
 
     this.state = {
       selected: [this.props.G.players[this.props.playerID].hand[0]],
-      rotation: 'SE',
+      rotation: NE,
       map: this.props.G.map,
+      robots: this.props.G.robots,
 
       inspect: true,
 
@@ -38,10 +39,10 @@ export class RobotFightMapEditor extends React.Component {
       },
 
       pushers: {
-        [NORTH]: false,
-        [EAST]: false,
-        [SOUTH]: false,
-        [WEST]: false
+        [NORTH]: [false, false, false, false, false],
+        [EAST]: [false, false, false, false, false],
+        [SOUTH]: [false, false, false, false, false],
+        [WEST]: [false, false, false, false, false]
       },
 
       grills: {
@@ -94,9 +95,9 @@ export class RobotFightMapEditor extends React.Component {
     })
   }
   
-  changeBlockType(block, onClick) {
+  changeBlockType(block, onClick, keepMeta) {
     this.setState({ inspect: false })
-    this.setState({ paintBlock: block, onTileClick: onClick })
+    this.setState({ paintBlock: block, onTileClick: onClick, keepMeta })
   }
 
   onTileClick(tile) {
@@ -106,8 +107,7 @@ export class RobotFightMapEditor extends React.Component {
 
     let rest = {}
     if (this.state.onTileClick) rest = this.state.onTileClick(tile)
-
-    this.state.map[tile.position.y][tile.position.x].meta = undefined
+    if (!this.state.keepMeta) this.state.map[tile.position.y][tile.position.x].meta = undefined
     this.state.map[tile.position.y][tile.position.x] = {
       ...this.state.map[tile.position.y][tile.position.x],
       ...this.state.paintBlock,
@@ -138,6 +138,17 @@ export class RobotFightMapEditor extends React.Component {
     this.setState({ inspect: true })
   }
 
+  onPusherChange(dir, index, val) {
+    this.setState({
+      pushers: {
+        ...this.state.pushers,
+        [dir]: this.state.pushers[dir].map(
+          (v, i) => i === index ? val : v
+        )
+      }
+    })
+  }
+
   render() {
     console.log(this.props)
 
@@ -160,7 +171,13 @@ export class RobotFightMapEditor extends React.Component {
       } },
       { name: 'Fast Conveyor', block: { type: FAST_CONVEYOR }, onClick: () => {
         return { meta: { ...this.state.conveyors }}
-      } }
+      }}, { name: 'Walls', keepMeta: true, block: {}, onClick: () => {
+        return { walls: { ...this.state.walls } }
+      } }, {
+        name: 'Pushers', keepMeta: true, block: {}, onClick: () => {
+          return { pushers: { ...this.state.pushers } }
+        }
+      }
     ]
 
     const { playerID, ctx } = this.props
@@ -193,7 +210,7 @@ export class RobotFightMapEditor extends React.Component {
                   <Button
                     key={tile.name}
                     style={{ display: 'inline-block' }}
-                    onClick={() => this.changeBlockType(tile.block, tile.onClick)}
+                    onClick={() => this.changeBlockType(tile.block, tile.onClick, tile.keepMeta)}
                     text={tile.name}
                   />
                 )}
@@ -215,6 +232,7 @@ export class RobotFightMapEditor extends React.Component {
             playerRobot={playerRobot}
             onTileClick={this.onTileClick.bind(this)}
             customHoverTile={this.customHoverTile.bind(this)}
+            state={this.state}
           />
 
         </ROTATION_CONTEXT.Provider>
@@ -269,26 +287,114 @@ export class RobotFightMapEditor extends React.Component {
               />
             </dg.Folder>
             <dg.Folder label='Pushers'>
-              <dg.Checkbox
-                label='North Pusher'
-                checked={this.state.pushers[NORTH]}
-                onChange={(val) => this.setState({ pushers: { ...this.state.pushers, [NORTH]: val } })}
-              />
-              <dg.Checkbox
-                label='East Pusher'
-                checked={this.state.pushers[EAST]}
-                onChange={(val) => this.setState({ pushers: { ...this.state.pushers, [EAST]: val } })}
-              />
-              <dg.Checkbox
-                label='South Pusher'
-                checked={this.state.pushers[SOUTH]}
-                onChange={(val) => this.setState({ pushers: { ...this.state.pushers, [SOUTH]: val } })}
-              />
-              <dg.Checkbox
-                label='West Pusher'
-                checked={this.state.pushers[WEST]}
-                onChange={(val) => this.setState({ pushers: { ...this.state.pushers, [WEST]: val } })}
-              />
+              <dg.Folder label='North Pusher'>
+                <dg.Checkbox
+                  label='Register 1'
+                  checked={this.state.pushers[NORTH][0]}
+                  onChange={(val) => this.onPusherChange(NORTH, 0, val)}
+                />
+                <dg.Checkbox
+                  label='Register 2'
+                  checked={this.state.pushers[NORTH][1]}
+                  onChange={(val) => this.onPusherChange(NORTH, 1, val)}
+                />
+                <dg.Checkbox
+                  label='Register 3'
+                  checked={this.state.pushers[NORTH][2]}
+                  onChange={(val) => this.onPusherChange(NORTH, 2, val)}
+                />
+                <dg.Checkbox
+                  label='Register 4'
+                  checked={this.state.pushers[NORTH][3]}
+                  onChange={(val) => this.onPusherChange(NORTH, 3, val)}
+                />
+                <dg.Checkbox
+                  label='Register 5'
+                  checked={this.state.pushers[NORTH][4]}
+                  onChange={(val) => this.onPusherChange(NORTH, 4, val)}
+                />
+              </dg.Folder>
+              <dg.Folder label='East Pusher'>
+                <dg.Checkbox
+                  label='Register 1'
+                  checked={this.state.pushers[EAST][0]}
+                  onChange={(val) => this.onPusherChange(EAST, 0, val)}
+                />
+                <dg.Checkbox
+                  label='Register 2'
+                  checked={this.state.pushers[EAST][1]}
+                  onChange={(val) => this.onPusherChange(EAST, 1, val)}
+                />
+                <dg.Checkbox
+                  label='Register 3'
+                  checked={this.state.pushers[EAST][2]}
+                  onChange={(val) => this.onPusherChange(EAST, 2, val)}
+                />
+                <dg.Checkbox
+                  label='Register 4'
+                  checked={this.state.pushers[EAST][3]}
+                  onChange={(val) => this.onPusherChange(EAST, 3, val)}
+                />
+                <dg.Checkbox
+                  label='Register 5'
+                  checked={this.state.pushers[EAST][4]}
+                  onChange={(val) => this.onPusherChange(EAST, 4, val)}
+                />
+              </dg.Folder>
+              <dg.Folder label='South Pusher'>
+                <dg.Checkbox
+                  label='Register 1'
+                  checked={this.state.pushers[SOUTH][0]}
+                  onChange={(val) => this.onPusherChange(SOUTH, 0, val)}
+                />
+                <dg.Checkbox
+                  label='Register 2'
+                  checked={this.state.pushers[SOUTH][1]}
+                  onChange={(val) => this.onPusherChange(SOUTH, 1, val)}
+                />
+                <dg.Checkbox
+                  label='Register 3'
+                  checked={this.state.pushers[SOUTH][2]}
+                  onChange={(val) => this.onPusherChange(SOUTH, 2, val)}
+                />
+                <dg.Checkbox
+                  label='Register 4'
+                  checked={this.state.pushers[SOUTH][3]}
+                  onChange={(val) => this.onPusherChange(SOUTH, 3, val)}
+                />
+                <dg.Checkbox
+                  label='Register 5'
+                  checked={this.state.pushers[SOUTH][4]}
+                  onChange={(val) => this.onPusherChange(SOUTH, 4, val)}
+                />
+              </dg.Folder>
+              <dg.Folder label='West Pusher'>
+                <dg.Checkbox
+                  label='Register 1'
+                  checked={this.state.pushers[WEST][0]}
+                  onChange={(val) => this.onPusherChange(WEST, 0, val)}
+                />
+                <dg.Checkbox
+                  label='Register 2'
+                  checked={this.state.pushers[WEST][1]}
+                  onChange={(val) => this.onPusherChange(WEST, 1, val)}
+                />
+                <dg.Checkbox
+                  label='Register 3'
+                  checked={this.state.pushers[WEST][2]}
+                  onChange={(val) => this.onPusherChange(WEST, 2, val)}
+                />
+                <dg.Checkbox
+                  label='Register 4'
+                  checked={this.state.pushers[WEST][3]}
+                  onChange={(val) => this.onPusherChange(WEST, 3, val)}
+                />
+                <dg.Checkbox
+                  label='Register 5'
+                  checked={this.state.pushers[WEST][4]}
+                  onChange={(val) => this.onPusherChange(WEST, 4, val)}
+                />
+              </dg.Folder>
             </dg.Folder>
             <dg.Folder label='Grills' expanded={true}>
               <dg.Number

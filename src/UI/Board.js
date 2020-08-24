@@ -8,6 +8,7 @@ import Button from './Button'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateAngleClockwise } from '../Position'
+import { NE } from '../Constants'
 
 export class RobotFightBoard extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export class RobotFightBoard extends React.Component {
 
     this.state = {
       selected: [this.props.G.players[this.props.playerID].hand[0]],
-      rotation: 'SE'
+      rotation: NE
     }
   }
 

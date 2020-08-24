@@ -91,7 +91,7 @@ export default class Map extends React.Component {
     }
 
     render() {
-        let { state, map, robots, playerRobot, onTileClick, customHoverTile } = this.props
+        let { state, map, playerRobot, onTileClick, customHoverTile } = this.props
 
         function rotateMatrix(a) {
             a = Object.keys(a[0]).map(c => a.map(r => r[c]))

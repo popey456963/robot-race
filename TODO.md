@@ -26,6 +26,9 @@ Both:
     == Power Down ==
     - Design & implement power down
 
+    == Timer ==
+    After programming, any player can start a 30 second 'timer' to force players to quickly make moves.
+
 For much later
     == Lobby ==
     - We need a lobby system to let people play together

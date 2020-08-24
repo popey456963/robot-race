@@ -2,11 +2,12 @@
 
 import {
     ROBOT_MOVE, ROBOT_TURN, MOVE_ONE, MOVE_TWO, MOVE_THREE,
-    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL
+    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL, ROBOT_HEALTH
 } from './Constants'
 import { canMoveInDirection, getMapTile } from './Map'
 import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
-import { findRobotAt, getPlayerRobot } from './State'
+import { findRobotAt, getPlayerRobot, damageRobot } from './State'
+import { shouldTurnClockwise } from './Game'
 
 export const createRobotMove = (robot, from, to) => ({
     type: ROBOT_MOVE,
@@ -22,15 +23,16 @@ export const createRobotRotation = (robot, from, to) => ({
     to
 })
 
-export const createRobotCheckpoint = (robot, at, isNewFlag) => ({
+export const createRobotCheckpoint = (robot, at, isNewFlag = false, flag = -1) => ({
     type: ROBOT_CHECKPOINT,
     robot: { ...robot },
     at: { ...at },
-    isNewFlag
+    isNewFlag,
+    flag
 })
 
 export const createRobotHealth = (robot, healthGain) => ({
-    type: ROBOT_CHECKPOINT,
+    type: ROBOT_HEALTH,
     robot: { ...robot },
     healthGain
 })
@@ -48,7 +50,12 @@ export function calculateRobotMove(state, robot, direction, squares) {
     let moves = []
 
     for (let i = 0; i < squares; i++) {
-        moves = moves.concat(...calculateRobotMoveOneTile(state, robot, direction))
+        const changes = calculateRobotMoveOneTile(state, robot, direction)
+        moves = moves.concat(...changes)
+
+        for (let change of changes) {
+            enactRobotMoveEvent(state, change)
+        }
     }
 
     return moves
@@ -78,8 +85,11 @@ export function calculateRobotMoveOneTile(state, robot, direction) {
 
 export function calculateRobotRotate(state, robot, times) {
     const newAngle = rotateDirectionClockwise(robot.direction, times)
+    const rotationEvent = createRobotRotation(robot, robot.direction, newAngle)
 
-    return [createRobotRotation(robot, robot.direction, newAngle)]
+    enactRobotTurnEvent(state, rotationEvent)
+
+    return [rotationEvent]
 }
 
 export function calculateConveyorMove(state, robot) {
@@ -90,14 +100,15 @@ export function calculateConveyorMove(state, robot) {
         return []
     }
 
-    let moves = calculateRobotMove(state, robot, ceonvyor.meta.exitDirection)
+    let moves = calculateRobotMove(state, robot, conveyor.meta.exitDirection)
 
     if (!moves.length) {
         // this robot was stuck on something
         return []
     }
 
-    const newPosition = getMovesByRobot(moves, robot)[0]
+    const robotMoves = getMovesByRobot(moves, robot)
+    const newPosition = robotMoves[robotMoves.length - 1]
     const newTile = getMapTile(state.map, newPosition)
 
     if (![CONVEYOR, FAST_CONVEYOR].includes(newTile.type)) {
@@ -110,7 +121,10 @@ export function calculateConveyorMove(state, robot) {
         if (isRightAngle(inDirection, newTile.meta.exitDirection)) {
             const rotations = shouldTurnClockwise(inDirection, newTile.meta.exitDirection) ? 1 : 3
             const newDirection = rotateDirectionClockwise(robot.direction, rotations)
-            moves.push(createRobotRotation(robot, robot.direction, newDirection))
+            const rotationEvent = createRobotRotation(robot, robot.direction, newDirection)
+            moves.push(rotationEvent)
+
+            enactRobotTurnEvent(state, rotationEvent)
         }
     }
 }
@@ -125,8 +139,11 @@ export function calculateGearRotation(state, robot) {
 
     let rotations = gear.meta.rotationDirection === CLOCKWISE ? 1 : 3
     const newDirection = rotateDirectionClockwise(robot.direction, rotations)
+    const rotationEvent = createRobotRotation(robot, robot.direction, newDirection)
 
-    return [createRobotRotation(robot, robot.direction, newDirection)]
+    enactRobotTurnEvent(state, rotationEvent)
+
+    return [rotationEvent]
 }
 
 export function calculateFlagActivation(state, robot) {
@@ -138,8 +155,11 @@ export function calculateFlagActivation(state, robot) {
     }
 
     let isNewFlag = !robot.flags.includes(flag.meta.flagNumber)
+    const checkpointEvent = createRobotCheckpoint(robot, flag.position, isNewFlag, flag.meta.flagNumber)
 
-    return [createRobotCheckpoint(robot, flag.position, isNewFlag)]
+    enactRobotCheckpointEvent(state, checkpointEvent)
+
+    return [checkpointEvent]
 }
 
 export function calculateGrillCheckpoint(state, robot) {
@@ -149,8 +169,11 @@ export function calculateGrillCheckpoint(state, robot) {
         // this tile is not a grill
         return []
     }
+    const checkpointEvent = createRobotCheckpoint(robot, grill.position, false)
 
-    return [createRobotCheckpoint(robot, grill.position, false)]
+    enactRobotCheckpointEvent(state, checkpointEvent)
+
+    return [checkpointEvent]
 }
 
 export function calculateGrillHealing(state, robot) {
@@ -161,7 +184,10 @@ export function calculateGrillHealing(state, robot) {
         return []
     }
 
-    return [createRobotHealth(robot, 1)]
+    const robotHealthEvent = createRobotHealth(robot, 1)
+    enactRobotHealthEvent(state, robotHealthEvent)
+
+    return [robotHealthEvent]
 }
 
 export function enactMove(state, move) {
@@ -182,9 +208,34 @@ export function enactMove(state, move) {
             return calculateRobotRotate(state, robot, 3)
         case U_TURN:
             return calculateRobotRotate(state, robot, 2)
+        default:
+            throw new Error('unknown card move' + JSON.stringify(move))
     }
+}
 
-    throw new Error('unknown card move' + JSON.stringify(move))
+export function enactRobotMoveEvent(state, move) {
+    const robot = getPlayerRobot(state, move.robot.user)
+
+    robot.position = move.to
+}
+
+export function enactRobotTurnEvent(state, move) {
+    const robot = getPlayerRobot(state, move.robot.user)
+
+    robot.direction = move.to
+}
+
+export function enactRobotCheckpointEvent(state, move) {
+    const robot = getPlayerRobot(state, move.robot.user)
+    
+    robot.checkpoint = move.at
+    if (move.isNewFlag) robot.flags.push(move.flag)
+}
+
+export function enactRobotHealthEvent(state, move) {
+    const robot = getPlayerRobot(state, move.robot.user)
+
+    damageRobot(state, robot, -(move.healthGain))
 }
 
 export function enactMoves(state, moves) {
@@ -195,5 +246,5 @@ export function enactMoves(state, moves) {
         results = results.concat(enactMove(state, move))
     }
 
-    console.log(results)
+    // results can be used to see what happened.
 }

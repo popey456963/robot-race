@@ -73,6 +73,8 @@ export const ROBOT_TURN = 'ROBOT_TURN'
 export const ROBOT_CHECKPOINT = 'ROBOT_CHECKPOINT'
 export const ROBOT_HEALTH = 'ROBOT_HEALTH'
 
+export const ROBOT_COLOURS = ['blue', 'green', 'orange', 'yellow', 'red']
+
 // export const TILE_SCALE = 16
 // export const TILE_OFFSET = 6.4
 // export const TILE_SIZE = 186

@@ -13,7 +13,7 @@ import { Lobby } from 'boardgame.io/react';
 
 const RobotFightClient = Client({
   game: RobotFight,
-  board: RobotFightBoard,
+  board: RobotFightMapEditor,
   debug: true,
   multiplayer: SocketIO({ server: "localhost:8000" }),
   enhancer: compose(
@@ -44,25 +44,6 @@ class App extends React.Component {
         }]}
       />
     )
-
-    // if (this.state.playerID === null) {
-    //   return (
-    //     <div>
-    //       <p>Play as</p>
-    //       <button onClick={() => this.setState({ playerID: "0" })}>
-    //         Player 0
-    //       </button>
-    //       <button onClick={() => this.setState({ playerID: "1" })}>
-    //         Player 1
-    //       </button>
-    //     </div>
-    //   );
-    // }
-    // return (
-    //   <div>
-    //     <RobotFightClient playerID={this.state.playerID} />
-    //   </div>
-    // );
   }
 }
 

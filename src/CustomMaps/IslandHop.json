@@ -1,2401 +1,2579 @@
 [
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 0,
-          "x": 11
-        }
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 0
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 0
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 1
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 3,
-          "y": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 5,
-          "y": 1
-        }
-      },
-      {
-        "type": "FLAG",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "flagNumber": 1
-        },
-        "position": {
-          "x": 6,
-          "y": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 7,
-          "y": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 8,
-          "y": 1
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 9
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 1,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 1
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 0
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
       },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 1
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 3,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 4,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 5,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 6,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 7,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "x": 8,
-          "y": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 10
-        }
-      },
-      {
-        "type": "GRILL",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 2,
-          "x": 11
-        },
-        "meta": {
-          "level": 1
-        }
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 2
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 1
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "rotationDirection": "ANTICLOCKWISE"
-        },
-        "position": {
-          "x": 3,
-          "y": 3
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 4,
-          "y": 3
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 5,
-          "y": 3
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 6,
-          "y": 3
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 7,
-          "y": 3
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "rotationDirection": "ANTICLOCKWISE"
-        },
-        "position": {
-          "x": 8,
-          "y": 3
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 3,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 3
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 4,
-          "x": 0
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
       },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 1,
-          "y": 4
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 4,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        },
-        "position": {
-          "x": 3,
-          "y": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 5,
-          "y": 4
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 6,
-          "y": 4
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 7,
-          "y": 4
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 8,
-          "y": 4
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 4,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 4,
-          "x": 10
-        }
-      },
-      {
-        "type": "FLAG",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 4,
-          "x": 11
-        },
-        "meta": {
-          "flagNumber": 3
-        }
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 4
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 1
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 3
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 4
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "y": 5,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 6
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 7
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 8
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 5,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 5
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 0
-        }
-      },
-      {
-        "type": "FLAG",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 1
-        },
-        "meta": {
-          "flagNumber": 2
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 3
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 6
-        }
-      },
-      {
-        "type": "GRILL",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "level": 2
-        },
-        "position": {
-          "y": 6,
-          "x": 5
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "y": 6,
-          "x": 6
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "y": 6,
-          "x": 7
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 8
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": true,
-            "WEST": true
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 6,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 6
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 0
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
       },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 1
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 3
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 7
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 7
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 8
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 10,
-          "y": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 7,
-          "x": 11
-        }
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 7
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 0
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
       },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 1
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 2
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "NORTH"
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 3
-        },
-        "meta": {
-          "rotationDirection": "ANTICLOCKWISE"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 8
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "y": 8,
-          "x": 5
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "y": 8,
-          "x": 6
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": true
-          },
-          "exitDirection": "EAST"
-        },
-        "position": {
-          "y": 8,
-          "x": 7
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 8
-        },
-        "meta": {
-          "rotationDirection": "ANTICLOCKWISE"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 9
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": true,
-            "EAST": false,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "SOUTH"
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 8,
-          "x": 11
-        }
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 8
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 0
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
       },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 1
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 2
-        },
-        "meta": {
-          "rotationDirection": "CLOCKWISE"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 3
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        },
-        "position": {
-          "x": 4,
-          "y": 9
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 5
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 6
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 7
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "CONVEYOR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 8
-        },
-        "meta": {
-          "inputDirections": {
-            "NORTH": false,
-            "EAST": true,
-            "SOUTH": false,
-            "WEST": false
-          },
-          "exitDirection": "WEST"
-        }
-      },
-      {
-        "type": "GEAR",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 9
-        },
-        "meta": {
-          "rotationDirection": "CLOCKWISE"
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 9,
-          "x": 11
-        }
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 9
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 0
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 1
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "x": 4,
-          "y": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 8
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 9
-        }
-      },
-      {
-        "type": "HOLE",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 10,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 10
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 11,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 0,
+        "x": 11
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 12,
-          "x": 11
-        }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 0
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 13,
-          "x": 11
-        }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 1
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 14,
-          "x": 11
-        }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 2
       }
-    ],
-    [
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 0
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 1
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 2
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 3
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 4
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 5
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 6
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 7
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 8
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 9
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 10
-        }
-      },
-      {
-        "type": "PLAIN",
-        "walls": {},
-        "lasers": {},
-        "pushers": {},
-        "position": {
-          "y": 15,
-          "x": 11
-        }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 3,
+        "y": 1
       }
-    ]
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 5,
+        "y": 1
+      }
+    },
+    {
+      "type": "FLAG",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "flagNumber": 1
+      },
+      "position": {
+        "x": 6,
+        "y": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 7,
+        "y": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 8,
+        "y": 1
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 9
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 1,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 0
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 1
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 3,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 4,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 5,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 6,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 7,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "x": 8,
+        "y": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 10
+      }
+    },
+    {
+      "type": "GRILL",
+      "walls": {
+        "NORTH": false,
+        "EAST": true,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 2,
+        "x": 11
+      },
+      "meta": {
+        "level": 1
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 1
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "rotationDirection": "ANTICLOCKWISE"
+      },
+      "position": {
+        "x": 3,
+        "y": 3
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 4,
+        "y": 3
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 5,
+        "y": 3
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 6,
+        "y": 3
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 7,
+        "y": 3
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "rotationDirection": "ANTICLOCKWISE"
+      },
+      "position": {
+        "x": 8,
+        "y": 3
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 3,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 4,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 1,
+        "y": 4
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 4,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      },
+      "position": {
+        "x": 3,
+        "y": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 5,
+        "y": 4
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 6,
+        "y": 4
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 7,
+        "y": 4
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 8,
+        "y": 4
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 4,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 4,
+        "x": 10
+      }
+    },
+    {
+      "type": "FLAG",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 4,
+        "x": 11
+      },
+      "meta": {
+        "flagNumber": 3
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 1
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {
+        "NORTH": false,
+        "EAST": true,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 3
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 4
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "y": 5,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 6
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 7
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 8
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 5,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 0
+      }
+    },
+    {
+      "type": "FLAG",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 1
+      },
+      "meta": {
+        "flagNumber": 2
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 3
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 6
+      }
+    },
+    {
+      "type": "GRILL",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "level": 2
+      },
+      "position": {
+        "y": 6,
+        "x": 5
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "y": 6,
+        "x": 6
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "y": 6,
+        "x": 7
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 8
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": true,
+          "WEST": true
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 6,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 1
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 3
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 7
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 7
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 8
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 10,
+        "y": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": true,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 7,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 1
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 2
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "NORTH"
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 3
+      },
+      "meta": {
+        "rotationDirection": "ANTICLOCKWISE"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 8
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "y": 8,
+        "x": 5
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "y": 8,
+        "x": 6
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": true
+        },
+        "exitDirection": "EAST"
+      },
+      "position": {
+        "y": 8,
+        "x": 7
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 8
+      },
+      "meta": {
+        "rotationDirection": "ANTICLOCKWISE"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 9
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": true,
+          "EAST": false,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "SOUTH"
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 8,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 0
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 1
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 2
+      },
+      "meta": {
+        "rotationDirection": "CLOCKWISE"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 3
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      },
+      "position": {
+        "x": 4,
+        "y": 9
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 5
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 6
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 7
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "CONVEYOR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 8
+      },
+      "meta": {
+        "inputDirections": {
+          "NORTH": false,
+          "EAST": true,
+          "SOUTH": false,
+          "WEST": false
+        },
+        "exitDirection": "WEST"
+      }
+    },
+    {
+      "type": "GEAR",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 9
+      },
+      "meta": {
+        "rotationDirection": "CLOCKWISE"
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": true,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 9,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 0
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 1
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "x": 4,
+        "y": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 8
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 9
+      }
+    },
+    {
+      "type": "HOLE",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 10,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "GRILL",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 0
+      },
+      "meta": {
+        "level": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 8
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 9
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 11,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 8
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": true,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 9
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 12,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 8
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 9
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 13,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 8
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 9
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": false,
+        "WEST": true
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 14,
+        "x": 11
+      }
+    }
+  ],
+  [
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 0
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 1
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 2
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 3
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 4
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 5
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 6
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 7
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 8
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {
+        "NORTH": false,
+        "EAST": false,
+        "SOUTH": true,
+        "WEST": false
+      },
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 9
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 10
+      }
+    },
+    {
+      "type": "PLAIN",
+      "walls": {},
+      "lasers": {},
+      "pushers": {},
+      "position": {
+        "y": 15,
+        "x": 11
+      }
+    }
   ]
+]
