@@ -81,6 +81,8 @@ async function main() {
                     left = 9
                     right = 599
                 }
+
+                cropPicture(location, outPath, { left, right })
                 console.log("crops2", left, right, tile)
             }
         }

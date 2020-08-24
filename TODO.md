@@ -35,9 +35,6 @@ For much later
     - We need a lobby system to let people play together
     - We should let people select their own name
 
-    == Map Designer ==
-    - Let people design their own maps!
-
     == Option Cards ==
     - Design & implement option cards
 
