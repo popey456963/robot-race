@@ -22,7 +22,7 @@ export default class CardHand extends React.Component {
                 {(provided, snapshot) => (
                     <div
                         ref={provided.innerRef}
-                        style={{ ...style, ...getListStyle(snapshot.isDraggingOver) }}
+                        style={{ ...style, ...getListStyle(snapshot.isDraggingOver), overflow: 'visible' }}
                     >
                         {
                             cards.map((card, index) => (

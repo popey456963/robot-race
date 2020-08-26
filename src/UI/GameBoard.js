@@ -29,26 +29,51 @@ export class GameBoard extends React.Component {
         }
     }
 
-    onMoveCardDragEnd() {
+    onMoveCardDragEnd = result => {
+        const { source, destination } = result;
 
+        // dropped outside of list, do nothing
+        if (!destination) {
+            return;
+        }
+    
+        const isSourceHand = source.droppableId === 'in_hand'
+        const isDestHand = destination.droppableId === 'in_hand'
+    
+        if (isSourceHand && isDestHand) {
+            return
+        }
+        
+        if (isSourceHand && !isDestHand) {
+            return this.props.addCardToRegister(JSON.parse(result.draggableId), destination.index)
+        }
+    
+        if (!isSourceHand && isDestHand) {
+            return this.props.removeCardFromRegister(source.index)
+        }
+    
+        if (!isSourceHand && !isDestHand) {
+            this.props.removeCardFromRegister(source.index)
+            return this.props.addCardToRegister(JSON.parse(result.draggableId), destination.index)
+        }
     }
 
-    onHandCardClick() {
-
+    onHandCardClick = (e, card) => {
+        this.props.addCardToRegister(card, this.props.cardsInRegisters.length)
     }
 
-    onRegisterCardClick() {
-
+    onRegisterCardClick = (e, card) => {
+        this.props.removeCardFromRegister(card.index)
     }
 
-    submitOrders() {
-
+    submitOrders = () => {
+        this.props.submitOrders()
     }
 
     render() {
         const { currentPlayer, isPlayerActive, playerRobot, cardsInHand, cardsInRegisters } = this.props
         const { map, robots } = this.props
-        const { rotateBoard, addCardToRegister } = this.props
+        const { rotateBoard } = this.props
 
         return (
             <span className="ui">
@@ -69,7 +94,7 @@ export class GameBoard extends React.Component {
                         </div>
 
                         <div className="floatLeft">
-                            <SubmitOrders disabled={isPlayerActive} onClick={this.submitOrders} />
+                            <SubmitOrders disabled={!isPlayerActive} onClick={this.submitOrders} />
                             <RotateViewClockwise onClick={() => rotateBoard(CLOCKWISE)} />
                             <RotateViewAnticlockwise onClick={() => rotateBoard(ANTICLOCKWISE)} />
                         </div>

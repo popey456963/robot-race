@@ -21,7 +21,8 @@ export class DisplayState extends React.Component {
         super(props)
 
         this.state = {
-            rotation: NE
+            rotation: NE,
+            registers: []
         }
     }
 
@@ -43,7 +44,37 @@ export class DisplayState extends React.Component {
     }
 
     addCardToRegister(card, position) {
-        
+        console.log('addCardToRegister', card, position)
+        let registers = [...this.state.registers]
+        registers.splice(position, 0, card)
+        registers = registers.map((register, index) => ({ ...register, index }))
+    
+        if (registers.length > 5) {
+            if (position === 5) {
+                // pop the penultimate entry
+                registers.splice(4, 1)
+            } else {
+                // pop the last entry
+                registers.splice(5, 1)
+            }
+        }
+
+        this.setState({ registers })
+    }
+
+    removeCardFromRegister(position) {
+        let registers = [...this.state.registers]
+        registers.splice(position, 1)
+        registers = registers.map((register, index) => ({ ...register, index }))
+        this.setState({ registers })
+    }
+
+    submitOrders() {
+        if (this.props.isActive) {
+            this.props.moves.submitOrders(this.state.registers, this.props.playerID)
+        } else {
+            alert('not your turn to submit orders')
+        }
     }
 
     render() {
@@ -77,9 +108,14 @@ export class DisplayState extends React.Component {
         }
 
         displayMap = getDisplayMap(displayMap, displayRobots, playerID)
-        
+
         const isPlayerActive = playerID in activePlayers
         const cardsInHand = G.players[playerID].hand
+            .filter(card =>
+                !this.state.registers.some(register =>
+                    register.type === card.type && register.priority === card.priority
+                )
+            )
 
         return (
             <ROTATION_CONTEXT.Provider value={this.state.rotation}>
@@ -88,13 +124,15 @@ export class DisplayState extends React.Component {
                     isPlayerActive={isPlayerActive}
                     playerRobot={displayRobots[playerID]}
                     cardsInHand={cardsInHand}
-                    cardsInRegisters={[]}
+                    cardsInRegisters={this.state.registers}
 
                     map={displayMap}
                     robots={displayRobots}
 
                     rotateBoard={this.rotateBoard.bind(this)}
                     addCardToRegister={this.addCardToRegister.bind(this)}
+                    removeCardFromRegister={this.removeCardFromRegister.bind(this)}
+                    submitOrders={this.submitOrders.bind(this)}
                 />
             </ROTATION_CONTEXT.Provider>
         )
