@@ -5,15 +5,16 @@ import * as serviceWorker from './serviceWorker';
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
 import { RobotFight } from "./Game";
-import { RobotFightBoard } from "./UI/Board";
-import { RobotFightMapEditor } from "./UI/MapEditor"
+// import { RobotFightBoard } from "./UI/Board";
+// import { RobotFightMapEditor } from "./UI/MapEditor"
+import { DisplayState } from "./UI/DisplayState"
 import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
 import { Lobby } from 'boardgame.io/react';
 
 const RobotFightClient = Client({
   game: RobotFight,
-  board: RobotFightMapEditor,
+  board: DisplayState,
   debug: true,
   multiplayer: SocketIO({ server: "localhost:8000" }),
   enhancer: compose(
@@ -40,7 +41,7 @@ class App extends React.Component {
         lobbyServer={`http://${window.location.hostname}:8000`}
         gameComponents={[{
           game: RobotFight,
-          board: RobotFightBoard
+          board: DisplayState
         }]}
       />
     )

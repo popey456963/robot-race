@@ -6,7 +6,7 @@ import {
 } from './Constants'
 import { canMoveInDirection, getMapTile } from './Map'
 import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
-import { findRobotAt, getPlayerRobot, damageRobot } from './State'
+import { findRobotAtPositionFromState, getPlayerRobot, damageRobot } from './State'
 import { shouldTurnClockwise } from './Game'
 
 export const createRobotMove = (robot, from, to) => ({
@@ -67,7 +67,7 @@ export function calculateRobotMoveOneTile(state, robot, direction) {
     if (canMoveInDirection(state.map, robot.position, direction)) {
         // we can move in that direction.
         const newPosition = calculateMoveDestination(robot.position, direction)
-        const otherRobot = findRobotAt(state, newPosition)
+        const otherRobot = findRobotAtPositionFromState(state, newPosition)
         const robotMove = createRobotMove(robot, robot.position, newPosition)
 
         if (otherRobot) {

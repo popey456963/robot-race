@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import * as dg from 'dis-gui';
-import './Board.css'
 import './Card.css'
 import './MapEditor.css'
 import Map from './Map'

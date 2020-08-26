@@ -10,7 +10,7 @@ import Deck from './Deck'
 import { arrayToObject } from './utils'
 
 import { getMapTilesByType } from './Map'
-import { initialiseState, findRobotAt } from './State'
+import { initialiseState, findRobotAtPositionFromState } from './State'
 import { rotateDirectionClockwise } from './Position'
 import { createNewRobot } from './Robot'
 
@@ -69,7 +69,7 @@ function enactEnvironment(state, register) {
   const flags = getMapTilesByType(state.map, FLAG)
 
   for (const flag of flags) {
-    const robot = findRobotAt(state, flag.position)
+    const robot = findRobotAtPositionFromState(state, flag.position)
 
     if (robot) {
       state.robots[robot.user].checkpoint = flag

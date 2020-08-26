@@ -1,6 +1,10 @@
 // a list of map updates
 
 import { createPlainTile, createOutOfBoundsTile } from './Tiles'
+import { findRobotAtPositionFromState } from './State'
+import { rawListRobots, rawFindRobotAtPosition } from './Robot'
+import { isSamePosition } from './Position'
+import { FLAG } from './Constants'
 
 export function createMap(x, y) {
     return new Array(y).fill(null).map(
@@ -60,4 +64,27 @@ export function canMoveInDirection(map, position, direction) {
     if (tile.walls[direction]) return false
 
     return true
+}
+
+export function isSquareCheckpoint(tile, robot) {
+    return isSamePosition(robot.checkpoint, tile.position)
+}
+
+export function isSquareTaken(tile, robot) {
+    if (tile.type !== FLAG) return false
+
+    return robot.flags.includes(tile.meta.flagNumber)
+}
+
+export function getDisplayMap(map, robots, currentPlayer) {
+    let displayMap = map.map(row =>
+        row.map(tile => ({
+            tile,
+            robot: rawFindRobotAtPosition(robots, tile.position),
+            checkpoint: isSquareCheckpoint(tile, robots[currentPlayer]),
+            taken: isSquareTaken(tile, robots[currentPlayer])
+        }))
+    )
+
+    return displayMap
 }

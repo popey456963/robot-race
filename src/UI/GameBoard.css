@@ -1,0 +1,21 @@
+.ui {
+    position: fixed;
+    z-index: 25;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.bottom {
+    bottom: 0px;
+}
+
+.center {
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+.floatLeft {
+    float: 'left';
+}

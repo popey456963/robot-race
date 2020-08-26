@@ -2,7 +2,7 @@ import React from 'react'
 import Tile from './Tile'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import './Tile.css'
-import { findRobotAt } from '../State'
+import { findRobotAtPositionFromState } from '../State'
 
 const GameZoomManager = require('./GameZoomManager')
 
@@ -21,10 +21,10 @@ export default class Row extends React.Component {
             const pos = { y: rowId, x: columnId }
 
             return <Tile
-              key={columnId + ',' + rowId}
+              id={columnId + ',' + rowId}
               tile={tile}
               pos={pos}
-              robot={findRobotAt(state, pos)}
+              robot={findRobotAtPositionFromState(state, pos)}
               playerRobot={playerRobot}
               zoom={zoom}
               onTileClick={onTileClick}

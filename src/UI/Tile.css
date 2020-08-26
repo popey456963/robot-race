@@ -1,7 +1,4 @@
 body {
-  --tile-scale: 16;
-  --tile-offset: 0px;
-  --tile-size: 186px;
   background: #cbf0ff;
   margin: 0px;
   overflow: hidden;
@@ -23,34 +20,34 @@ td.iso_td {
   padding: 0px;
 }
 td.iso_td,
-td.iso_td .tile,
-td.iso_td .tile div {
+td.iso_td .cell,
+td.iso_td .cell div {
   font-size: 16px;
   border: none;
 }
 
-.tile {
+.cell {
   transform: translate3d(0em, 0em, 0em);
-  width: 4em;
-  height: 4em;
+  width: 0em;
+  height: 0em;
 
   transition: all 1s cubic-bezier(0.22, 0.6, 0.39, 1.42);
 }
 
-.tile.hide {
+.cell.hide {
   transform: translate3d(12em, 12em, 0em) !important;
   opacity: 0;
 
   transition: all 1s cubic-bezier(0.7, -0.4, 0.88, 0.51);
 }
 
-.tile .background {
+.cell .background {
   transform: rotateZ(-45deg) rotateY(-60deg) translate3d(-1.1em, -4.8em, 0em);
 
   width: 11.5em;
-  height: 10em;
+  height: 11.5em;
 
-  background-size: calc(100% * var(--tile-scale)) 100%;
+  background-size: 100% 100%;
   background-position: 0px 0px;
 }
 

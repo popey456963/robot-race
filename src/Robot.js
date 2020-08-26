@@ -1,6 +1,7 @@
 // a list of robot updates
 
 import { MAX_DAMAGE } from './Constants'
+import { isSamePosition } from './Position'
 
 export function createNewRobot(user, position, direction, colour) {
     return {
@@ -28,4 +29,17 @@ export function isRobotDead(robot) {
 
 export function setRobotPosition(robot, position) {
     robot.position = position
+}
+
+export function rawListRobots(robots, listDead) {
+    return Object.values(robots)
+        .filter(robot => listDead ? true : robot.damage !== MAX_DAMAGE)
+}
+
+export function rawFindRobotAtPosition(robots, position) {
+    for (const robot of rawListRobots(robots)) {
+        if (isSamePosition(robot.position, position)) {
+            return robot
+        }
+    }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Board.css'
 import './Card.css'
 import Map from './Map'
 import CardHand from './CardHand'

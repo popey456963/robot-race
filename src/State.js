@@ -3,7 +3,7 @@
 import { countAllMapTiles } from './Map'
 import { FLAG, MAX_DAMAGE } from './Constants'
 import { arrayToObject } from './utils'
-import { rawDamageRobot, isRobotDead, setRobotPosition } from './Robot'
+import { rawDamageRobot, isRobotDead, setRobotPosition, rawListRobots } from './Robot'
 import { isSamePosition } from './Position'
 
 export function initialiseState(map, robots, players, meta = {}) {
@@ -27,7 +27,7 @@ export function setPlayerRegisters(state, user, registers) {
     state.players[user].registers = registers
 }
 
-export function findRobotAt(state, position) {
+export function findRobotAtPositionFromState(state, position) {
     for (const robot of listRobots(state)) {
         if (isSamePosition(robot.position, position)) {
             return robot
@@ -36,8 +36,7 @@ export function findRobotAt(state, position) {
 }
 
 export function listRobots(state, listDead) {
-    return Object.values(state.robots)
-        .filter(robot => listDead ? true : robot.damage !== MAX_DAMAGE)
+    return rawListRobots(state.robot, listDead)
 }
 
 export function damageRobot(state, robot, amount) {
