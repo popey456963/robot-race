@@ -101,6 +101,9 @@ export default class NewMap extends React.Component {
                             key={rowId}
                             row={row}
                             index={rowId}
+
+                            onTileClick={this.props.onTileClick}
+                            onTileHover={this.props.onTileHover}
                         />
                     ))
                 }</tbody>

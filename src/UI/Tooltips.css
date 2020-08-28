@@ -2,27 +2,29 @@
     position: relative;
     z-index: 2;
     cursor: pointer;
-  }
-  
-  /* Hide the tooltip content by default */
-  [data-tooltip]:before,
-  [data-tooltip]:after {
+}
+
+/* Hide the tooltip content by default */
+
+[data-tooltip]:before,
+[data-tooltip]:after {
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     pointer-events: none;
-  }
-  
-  /* Position tooltip above the element */
-  [data-tooltip]:before {
+}
+
+/* Position tooltip above the element */
+
+[data-tooltip]:before {
     position: absolute;
     bottom: 150%;
     left: 50%;
     margin-bottom: 5px;
-    margin-left: -80px;
+    margin-left: -150px;
     padding: 7px;
-    width: 160px;
+    width: 300px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -31,12 +33,13 @@
     color: #fff;
     content: attr(data-tooltip);
     text-align: center;
-    font-size: 14px;
+    font-size: 28px;
     line-height: 1.2;
-  }
-  
-  /* Triangle hack to make tooltip look like a speech bubble */
-  [data-tooltip]:after {
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+
+[data-tooltip]:after {
     position: absolute;
     bottom: 150%;
     left: 50%;
@@ -49,13 +52,14 @@
     content: " ";
     font-size: 0;
     line-height: 0;
-  }
-  
-  /* Show tooltip content on hover */
-  [data-tooltip]:hover:before,
-  [data-tooltip]:hover:after {
+}
+
+/* Show tooltip content on hover */
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
     visibility: visible;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
-  }
+}

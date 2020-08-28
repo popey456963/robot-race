@@ -13,7 +13,7 @@ import './Card.css'
 import './GameBoard.css'
 import './index.css'
 import './MapEditor.css'
-import './Tile.css'
+import './Cell.css'
 import './Tooltips.css'
 
 export class DisplayState extends React.Component {
@@ -88,7 +88,7 @@ export class DisplayState extends React.Component {
         let displayMap = cloneDeep(G.map)
 
         for (let i = 0; i < rotationAmount; i++) {
-            displayMap = rotateMatrix(G.map)
+            displayMap = rotateMatrix(displayMap)
         }
 
         for (let rowIndex in displayMap) {
@@ -107,7 +107,7 @@ export class DisplayState extends React.Component {
             robot.checkpoint = rotateCoordinatesClockwise(robot.checkpoint, mapSize, rotationAmount)
         }
 
-        displayMap = getDisplayMap(displayMap, displayRobots, playerID)
+        displayMap = getDisplayMap(displayMap, displayRobots, playerID, this.state.rotation)
 
         const isPlayerActive = playerID in activePlayers
         const cardsInHand = G.players[playerID].hand

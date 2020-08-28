@@ -1,5 +1,5 @@
 import React from 'react'
-import './Tile.css'
+// import './Tile.css'
 import { NORTH, EAST, SOUTH, WEST } from '../Constants'
 import { FLAG, CONVEYOR, FAST_CONVEYOR, HOLE, GRILL, PLAIN, GEAR } from '../Constants'
 

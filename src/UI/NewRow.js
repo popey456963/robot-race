@@ -16,6 +16,9 @@ export default class NewRow extends React.PureComponent {
                         key={cellIndex}
                         cell={cell}
                         cellIndex={cellIndex}
+
+                        onTileClick={this.props.onTileClick}
+                        onTileHover={this.props.onTileHover}
                     />
                 ))
             }</tr>

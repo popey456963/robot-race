@@ -36,7 +36,7 @@ export function findRobotAtPositionFromState(state, position) {
 }
 
 export function listRobots(state, listDead) {
-    return rawListRobots(state.robot, listDead)
+    return rawListRobots(state.robots, listDead)
 }
 
 export function damageRobot(state, robot, amount) {

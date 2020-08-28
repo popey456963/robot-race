@@ -1,12 +1,11 @@
 import React from 'react'
 import Button from './Button'
-import './GameBoard.css'
+// import './GameBoard.css'
 import Map from './NewMap'
 import { InHandDeck } from './InHandDeck'
 import { Registers } from './Registers'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { CLOCKWISE, ANTICLOCKWISE } from '../Constants'
-
 
 const SubmitOrders = props => (
     <Button style={{ display: 'block' }} disabled={props.disabled} onClick={props.onClick} text='Submit Orders' />

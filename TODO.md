@@ -2,6 +2,14 @@ UI:
     == Lasers ==
     - Should display on the map
 
+    == Death ==
+    - Indication that you have died
+
+    == Cards ==
+    - Minumum of five cards
+    - Locked registers
+    
+
 Gameplay:
     == Server ==
     - We should allow more than two people to play together at once
@@ -10,15 +18,17 @@ Gameplay:
     - Grill (level 2) should give people an option card
 
     == Robots ==
-    - Should take damage
-    - Should have lives
+    - Let users choose which direction to face when respawning
 
     == Pushers ==
     - Should push robots
 
-Both:
     == Lasers ==
-    - Design & implement lasers
+    - Should hurt robots
+    - Should actually extend in the correct direction
+    - Should work with rotation
+
+Both:
 
     == Spawn Location ==
     - So that the map editor can define spawn locations
@@ -27,7 +37,7 @@ Both:
     - Design & implement power down
 
     == Timer ==
-    After programming, any player can start a 30 second 'timer' to force players to quickly make moves.
+    - After programming, any player can start a 30 second 'timer' to force players to quickly make moves.
 
 For much later
     == Lobby ==

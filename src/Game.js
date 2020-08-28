@@ -1,17 +1,13 @@
 import { PlayerView, TurnOrder, Stage } from 'boardgame.io/core'
 import {
-  NORTH, EAST, SOUTH, WEST,
-  FLAG, FAST_CONVEYOR, CONVEYOR, GRILL, GEAR,
-  CLOCKWISE,
-  MAX_DAMAGE, ROBOT_COLOURS
+  NORTH, EAST, SOUTH, WEST, FAST_CONVEYOR, CONVEYOR, MAX_DAMAGE, ROBOT_COLOURS
 } from './Constants'
 
 import Deck from './Deck'
 import { arrayToObject } from './utils'
 
-import { getMapTilesByType } from './Map'
-import { initialiseState, findRobotAtPositionFromState } from './State'
-import { rotateDirectionClockwise } from './Position'
+import { getMapTile } from './Map'
+import { initialiseState, listRobots } from './State'
 import { createNewRobot } from './Robot'
 
 import log from './Logger'
@@ -19,7 +15,8 @@ import log from './Logger'
 import createTestMap from './CustomMaps/TestMap'
 import createIslandHop from './CustomMaps/IslandHop'
 import createSingleTile from './CustomMaps/SingleTile'
-import { enactMoves, createMove, calculateConveyorMove } from './Moves'
+import { enactMoves, createMove, calculateConveyorMove, calculateFlagActivation, calculateGrillHealing, calculateGrillCheckpoint, calculateGearRotation } from './Moves'
+import { isTile } from './Tiles'
 
 function drawAllCards(G, ctx) {
   const deck = new Deck(ctx)
@@ -41,65 +38,38 @@ export function shouldTurnClockwise(dir, out) {
 }
 
 function enactEnvironment(state, register) {
-  for (const robot of Object.values(state.robots)) {
-    if (state.map[robot.position.y][robot.position.x].type === FAST_CONVEYOR) {
-      // move them by conveyor
-      calculateConveyorMove(state, robot)
+    let actions = []
+
+	// Set robot.prev_location = robot.location
+	
+    for (let robot of listRobots(state)) {
+        if (isTile(getMapTile(state.map, robot.position), [FAST_CONVEYOR])) {
+            actions = actions.concat(calculateConveyorMove(state, robot))
+        }
+	}
+	
+	// Loop through robots. Any that share a square set back to prev square
+
+    for (let robot of listRobots(state)) {
+        if (isTile(getMapTile(state.map, robot.position), [CONVEYOR, FAST_CONVEYOR])) {
+            actions = actions.concat(calculateConveyorMove(state, robot))
+        }
     }
-  }
 
-  for (const robot of Object.values(state.robots)) {
-    if ([FAST_CONVEYOR, CONVEYOR].includes(state.map[robot.position.y][robot.position.x].type)) {
-      // move them by conveyor
-      calculateConveyorMove(state, robot)
+    for (let robot of listRobots(state)) {
+        actions = actions.concat(calculateGearRotation(state, robot))
+        actions = actions.concat(calculateFlagActivation(state, robot))
+        actions = actions.concat(calculateGrillCheckpoint(state, robot))
     }
-  }
-
-  for (const robot of Object.values(state.robots)) {
-    let tile = state.map[robot.position.y][robot.position.x]
-    if (tile.type === GEAR) {
-	  // rotate them around
-      let rotationAmount = tile.meta.rotationDirection === CLOCKWISE ? 1 : 3
-
-      log.debug({ user: robot.user, rotationAmount }, `Player ${robot.user} is on a gear and is being rotated.`)
-      robot.direction = rotateDirectionClockwise(robot.direction, rotationAmount)
-    }
-  }
-
-  const flags = getMapTilesByType(state.map, FLAG)
-
-  for (const flag of flags) {
-    const robot = findRobotAtPositionFromState(state, flag.position)
-
-    if (robot) {
-      state.robots[robot.user].checkpoint = flag
-      log.debug({ flag }, `Updated Player ${robot.user} checkpoint`)
-      if (!state.robots[robot.user].flags.includes(flag.item.meta.flagNumber)) {
-        state.robots[robot.user].flags.push(flag.item.meta.flagNumber)
-        log.debug(`Player ${robot.user} picked up a new flag!`)
-      }
-    }
-  }
-
-  for (const robot of Object.values(state.robots)) {
-    let tile = state.map[robot.position.y][robot.position.x]
-    if (tile.type === GRILL) {
-      state.robots[robot.user].checkpoint = { ...tile, x: robot.position.x, y: robot.position.y }
-      log.debug({ tile }, `Updated Player ${robot.user} checkpoint`)
-    }
-  }
 }
 
-function enactCleanup(state) {
-  for (const robot of Object.values(state.robots)) {
-    let tile = state.map[robot.position.y][robot.position.x]
-    if (tile.type === GRILL) {
-      const oldHealth = robot.damage
-      robot.damage = Math.max(0, robot.damage - 1)
 
-      log.debug({ user: robot.user, oldHealth, newHealth: robot.damage }, `Player ${robot.user} is on a grill and is being healed.`)
+function enactCleanup(state) {
+    let actions = []
+
+    for (let robot of listRobots(state)) {
+        actions = actions.concat(calculateGrillHealing(state, robot))
     }
-  }
 }
 
 function getPlayerCardCounts(G) {
@@ -119,6 +89,10 @@ export const RobotFight = {
       [index, createNewRobot(player, { x: 5 + Number(index), y: 14 }, NORTH, ROBOT_COLOURS[Number(index)])]
     )
 
+    // const robots = Object.entries(ctx.playOrder).map(([index, player]) =>
+    //   [index, createNewRobot(player, { x: 0 + Number(index), y: 0 }, NORTH, ROBOT_COLOURS[Number(index)])]
+    // )
+
     const players = Object.values(ctx.playOrder)
     const state = initialiseState(map, robots, players)
 
@@ -130,19 +104,29 @@ export const RobotFight = {
   phases: {
     play: {
       onBegin: (G, ctx) => {
+		// Cards in registers need to be locked if damage
+		// is high enough
+		
         for (const player of ctx.playOrder) {
-          G.players[player].registers = undefined
+          G.players[player].registers = {
+			  "0": undefined, 
+			  "1": undefined, 
+			  "2": undefined, 
+			  "3": undefined, 
+			  "4": undefined
+		  }
         }
 
         drawAllCards(G, ctx)
         
         // Respawn robots
-        for (let robot in G.robots) {
+        for (let robot of listRobots(G, true)) {
+			console.log("robot state: ", robot)
           if (robot.damage === MAX_DAMAGE) {
             if (robot.lives > 1) {
               robot.lives -= 1
-              robot.damage = 0
-              robot.position = robot.checkpoint
+              robot.damage = 2 // Rules: page 9
+              robot.position = { ...robot.checkpoint }
             }
             else {
               robot.position = {x: -1, y: -1}
@@ -161,8 +145,10 @@ export const RobotFight = {
       },
       moves: {
         submitOrders: (G, ctx, selected, player) => {
-          log.info({ player, selected }, `${player} made a turn, playing ${selected.length} cards.`)
-          G.players[player].registers = selected
+		  log.info({ player, selected }, `${player} made a turn, playing ${selected.length} cards.`)
+		  for (let card of selected) {
+		  	G.players[player].registers[card.index] = card
+		  }
           ctx.events.endStage()
 
           if (Object.keys(ctx.activePlayers).length === 1) {

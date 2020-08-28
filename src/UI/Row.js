@@ -1,7 +1,7 @@
 import React from 'react'
 import Tile from './Tile'
 import { ROTATION_CONTEXT } from './ReactConstants'
-import './Tile.css'
+// import './Tile.css'
 import { findRobotAtPositionFromState } from '../State'
 
 const GameZoomManager = require('./GameZoomManager')

@@ -68,6 +68,13 @@ export const ANTICLOCKWISE = 'ANTICLOCKWISE'
 
 export const MAX_DAMAGE = 10
 
+export const LASER_HALF = 'LASER_HALF'
+export const LASER_FULL = 'LASER_FULL'
+export const LASER_SINGLE = 'LASER_SINGLE'
+export const LASER_DOUBLE = 'LASER_DOUBLE'
+export const LASER_SOURCE = 'LASER_SOURCE'
+export const LASER_BEAM = 'LASER_BEAM'
+
 export const ROBOT_MOVE = 'ROBOT_MOVE'
 export const ROBOT_TURN = 'ROBOT_TURN'
 export const ROBOT_CHECKPOINT = 'ROBOT_CHECKPOINT'

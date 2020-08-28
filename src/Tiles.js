@@ -56,7 +56,12 @@ export const createFastConveyorTile = (generic, { exitDirection, inputDirections
 
 export const createOutOfBoundsTile = (position) => ({
     type: OUT_OF_BOUNDS,
+    ...genericTileObject(),
     position   
 })
+
+export const isSideBlocked = (tile, direction) => {
+    return tile.walls[direction] || tile.lasers[direction] || tile.pushers[direction] ? true : false
+}
 
 export const isTile = (tile, types) => types.includes(tile.type)

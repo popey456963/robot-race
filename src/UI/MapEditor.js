@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import * as dg from 'dis-gui';
-import './Card.css'
-import './MapEditor.css'
+// import './Card.css'
+// import './MapEditor.css'
 import Map from './Map'
 import Button from './Button'
 import { ROTATION_CONTEXT } from './ReactConstants'
@@ -22,7 +22,6 @@ export class RobotFightMapEditor extends React.Component {
       robots: this.props.G.robots,
 
       inspect: true,
-
       walls: {
         [NORTH]: false,
         [EAST]: false,

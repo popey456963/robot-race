@@ -2,12 +2,14 @@
 
 import {
     ROBOT_MOVE, ROBOT_TURN, MOVE_ONE, MOVE_TWO, MOVE_THREE,
-    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL, ROBOT_HEALTH
+    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL, ROBOT_HEALTH, HOLE, OUT_OF_BOUNDS, MAX_DAMAGE
 } from './Constants'
 import { canMoveInDirection, getMapTile } from './Map'
 import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
 import { findRobotAtPositionFromState, getPlayerRobot, damageRobot } from './State'
 import { shouldTurnClockwise } from './Game'
+import { isTile } from './Tiles'
+import cloneDeep from 'clone-deep'
 
 export const createRobotMove = (robot, from, to) => ({
     type: ROBOT_MOVE,
@@ -54,12 +56,19 @@ export function calculateRobotMove(state, robot, direction, squares) {
         moves = moves.concat(...changes)
 
         for (let change of changes) {
-            enactRobotMoveEvent(state, change)
+            if (change.type === ROBOT_MOVE) {
+                enactRobotMoveEvent(state, change)
+            } else if (change.type === ROBOT_HEALTH) {
+                enactRobotHealthEvent(state, change)
+            } else {
+                throw new Error('unexpected return value from calcualteRobotMoveOneTile')
+            }
         }
     }
 
     return moves
 }
+
 
 export function calculateRobotMoveOneTile(state, robot, direction) {
     let moves = []
@@ -78,10 +87,18 @@ export function calculateRobotMoveOneTile(state, robot, direction) {
         } else {
             moves.push(robotMove)
         }
+
+        const newRobot = cloneDeep(robot)
+        newRobot.position = newPosition
+
+        if (calculateSafeSquare(state, newRobot).length) {
+            moves = moves.concat(calculateSafeSquare(state, newRobot))
+        }
     }
 
     return moves
 }
+
 
 export function calculateRobotRotate(state, robot, times) {
     const newAngle = rotateDirectionClockwise(robot.direction, times)
@@ -90,6 +107,17 @@ export function calculateRobotRotate(state, robot, times) {
     enactRobotTurnEvent(state, rotationEvent)
 
     return [rotationEvent]
+}
+
+export function calculateSafeSquare(state, robot) {
+    const tile = getMapTile(state.map, robot.position)
+
+
+    if (isTile(tile, [HOLE, OUT_OF_BOUNDS])) {
+        return [createRobotHealth(robot, -Infinity)]
+    }
+
+    return []
 }
 
 export function calculateConveyorMove(state, robot) {
