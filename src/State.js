@@ -39,12 +39,12 @@ export function listRobots(state, listDead) {
     return rawListRobots(state.robots, listDead)
 }
 
-export function damageRobot(state, robot, amount) {
+export function damageRobot(state, robot, amount, modifyHand = true) {
     rawDamageRobot(robot, amount)
 
     if (isRobotDead(robot)) {
         setRobotPosition(robot, { x: -1, y: -1 })
-        setPlayerRegisters(state, robot.user, [])
+        if (modifyHand) setPlayerRegisters(state, robot.user, [])
     }
 }
 

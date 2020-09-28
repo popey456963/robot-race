@@ -3,7 +3,7 @@ var isMobile = require('./MobileDetect');
 
 // GameZoomManager is a singleton.
 
-var ZOOM_THRESHOLD = 3.0;
+var ZOOM_THRESHOLD = 1.0;
 var LARGE_THRESHOLD = 2.5;
 var SMALL_THRESHOLD = 0.5;
 
@@ -17,10 +17,15 @@ var saveZoom = true;
 function onWheel(e) {
     e.preventDefault();
     wheel += e.deltaY;
-    if (Math.abs(wheel) > ZOOM_THRESHOLD) {
-        if (wheel < 0) zoomIn();
-        else zoomOut();
-        wheel = 0;
+    while (Math.abs(wheel) > ZOOM_THRESHOLD) {
+        if (wheel < 0) {
+            zoomIn();
+            wheel += 3
+        }
+        else {
+            zoomOut();
+            wheel -= 3
+        }
     }
 }
 

@@ -3,12 +3,12 @@ import Cell from './Cell'
 
 export default class NewRow extends React.PureComponent {
     render() {
-        const { row, index } = this.props
+        const { row, index, zoom } = this.props
 
         return (
             <tr
                 style={{
-                    transform: `translateY(${index * 4}em)`
+                    transform: `translateY(${index * 4 * zoom}em)`
                 }}
             >{
                 row.map((cell, cellIndex) => (
@@ -16,6 +16,7 @@ export default class NewRow extends React.PureComponent {
                         key={cellIndex}
                         cell={cell}
                         cellIndex={cellIndex}
+                        zoom={zoom}
 
                         onTileClick={this.props.onTileClick}
                         onTileHover={this.props.onTileHover}

@@ -1,0 +1,47 @@
+.message-box {
+    width: 440px;
+    border-radius: 6px;
+    margin: 20px auto;
+    padding: auto 0;
+    position: relative;
+  }
+  .message-box i {
+    vertical-align: middle;
+    padding: 20px;
+  }
+  .message-box i.exit-button {
+    float: right;
+    opacity: .4;
+  }
+  .message-box i.exit-button:hover {
+    opacity: .8;
+  }
+  
+  .message-text {
+    vertical-align: middle;
+  }
+  
+  .message-box-info {
+    background-color: #CDE8F6;
+    border: #2697d1 2px solid;
+    color: #447EAF;
+  }
+  
+  .message-box-warn {
+    background-color: #F8F4D5;
+    border: #e9dd7e 2px solid;
+    color: #96722E;
+  }
+  
+  .message-box-error {
+    background-color: #ECC8C5;
+    border: #d37f78 2px solid;
+    color: #B83C37;
+  }
+  
+  .message-box-success {
+    background-color: #DDF3D5;
+    border: #9ddc86 2px solid;
+    color: #597151;
+  }
+  

@@ -101,6 +101,7 @@ export default class NewMap extends React.Component {
                             key={rowId}
                             row={row}
                             index={rowId}
+                            zoom={GameZoomManager.percentSize()}
 
                             onTileClick={this.props.onTileClick}
                             onTileHover={this.props.onTileHover}

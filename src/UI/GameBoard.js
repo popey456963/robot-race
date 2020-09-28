@@ -4,6 +4,8 @@ import Button from './Button'
 import Map from './NewMap'
 import { InHandDeck } from './InHandDeck'
 import { Registers } from './Registers'
+import Gameover from './Gameover'
+import Death from './Death'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { CLOCKWISE, ANTICLOCKWISE } from '../Constants'
 
@@ -70,12 +72,14 @@ export class GameBoard extends React.Component {
     }
 
     render() {
-        const { currentPlayer, isPlayerActive, playerRobot, cardsInHand, cardsInRegisters } = this.props
+        const { currentPlayer, isPlayerActive, playerRobot, cardsInHand, cardsInRegisters, gameover } = this.props
         const { map, robots } = this.props
         const { rotateBoard } = this.props
 
         return (
             <span className="ui">
+                <Gameover playerRobot={playerRobot} gameover={gameover} />
+                <Death playerRobot={playerRobot}/>
                 <DragDropContext onDragEnd={this.onMoveCardDragEnd}>
                     <InHandDeck
                         cards={cardsInHand}

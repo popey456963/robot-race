@@ -47,12 +47,12 @@ export default class Cell extends React.Component {
 
     render() {
         const { cellIndex, onTileClick, onTileHover } = this.props
-        let { cell } = this.props
+        let { cell, zoom } = this.props
 
         if (onTileHover && this.state.hover) {
             cell = onTileHover(cell)
 
-            console.log('updated cell', cell)
+            // console.log('updated cell', cell)
         }
 
         const { tile, robot } = cell
@@ -74,7 +74,7 @@ export default class Cell extends React.Component {
         return (
             <td
                 style={{
-                    transform: `translateX(${cellIndex * 4}em)`
+                    transform: `translateX(${cellIndex * 4 * zoom}em)`
                 }}
             >{
                 <div
@@ -84,22 +84,22 @@ export default class Cell extends React.Component {
                     onMouseLeave={() => this.setState({ hover: false })}
 
                     style={{
-                        transform: this.state.hover ? 'translate3d(-2em, -2em, -2em)' : ''
+                        transform: this.state.hover ? `translate3d(${-2 * zoom}em, ${-2 * zoom}em, ${-2 * zoom}em)` : ''
                     }}
                 >
                     <div
                         data-tooltip={tooltip}
                         className='background'
                         style={{
-                            width: '11.5em',
-                            height: '11.5em',
+                            width: `${11.5 * zoom}em`,
+                            height: `${11.5 * zoom}em`,
                         }}
                     >
                         <Tile cell={cell} />
                         <Walls cell={cell} />
                         <Pushers cell={cell} />
                         <Lasers cell={cell} />
-                        <Robot cell={cell} />
+                        <Robot cell={cell} zoom={zoom} />
                     </div>
                 </div>
             }</td>

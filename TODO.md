@@ -2,12 +2,12 @@ UI:
     == Lasers ==
     - Should display on the map
 
-    == Death ==
-    - Indication that you have died
-
     == Cards ==
     - Minumum of five cards
     - Locked registers
+
+    == Fix Map Editor ==
+    - Because holy shit is it broken
     
 
 Gameplay:

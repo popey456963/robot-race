@@ -1,5 +1,6 @@
 import React from 'react'
 import TileImage from './TileImage'
+import Error from './Error'
 import { FAST_CONVEYOR, NORTH, EAST, SOUTH, WEST } from '../Constants'
 import { getDirectionIndex } from '../Position'
 
@@ -13,6 +14,15 @@ export default class Conveyor extends React.Component {
         let dir = 'SE'
         let conveyor = 'straight_conveyor'
         let inverse = false
+
+
+        if (![1, 2].includes(inputDirectionCount) || inputDirections[exitDirection]) {
+            console.log(`Tile error for conveyor belt!`, tile)
+
+            return (
+                <Error />
+            )
+        }
 
         if (inputDirectionCount === 1) {
             // we only have one input

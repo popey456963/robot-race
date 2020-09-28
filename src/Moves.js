@@ -2,7 +2,7 @@
 
 import {
     ROBOT_MOVE, ROBOT_TURN, MOVE_ONE, MOVE_TWO, MOVE_THREE,
-    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL, ROBOT_HEALTH, HOLE, OUT_OF_BOUNDS, MAX_DAMAGE
+    ROTATE_LEFT, ROTATE_RIGHT, U_TURN, BACK_UP, CONVEYOR, FAST_CONVEYOR, GEAR, CLOCKWISE, ROBOT_CHECKPOINT, FLAG, GRILL, ROBOT_HEALTH, HOLE, OUT_OF_BOUNDS, MAX_DAMAGE, ROBOT_DEATH
 } from './Constants'
 import { canMoveInDirection, getMapTile } from './Map'
 import { calculateMoveDestination, rotateDirectionClockwise, isRightAngle } from './Position'
@@ -39,6 +39,11 @@ export const createRobotHealth = (robot, healthGain) => ({
     healthGain
 })
 
+export const createRobotDeath = (robot) => ({
+    type: ROBOT_DEATH,
+    robot: { ...robot }
+})
+
 export const createMove = (type, user, priority) => ({
     type,
     user,
@@ -73,7 +78,9 @@ export function calculateRobotMove(state, robot, direction, squares) {
 export function calculateRobotMoveOneTile(state, robot, direction) {
     let moves = []
 
+    console.log(`can we move`, canMoveInDirection(state.map, robot.position, direction))
     if (canMoveInDirection(state.map, robot.position, direction)) {
+
         // we can move in that direction.
         const newPosition = calculateMoveDestination(robot.position, direction)
         const otherRobot = findRobotAtPositionFromState(state, newPosition)
@@ -92,7 +99,9 @@ export function calculateRobotMoveOneTile(state, robot, direction) {
         newRobot.position = newPosition
 
         if (calculateSafeSquare(state, newRobot).length) {
+            console.log('square is not safe')
             moves = moves.concat(calculateSafeSquare(state, newRobot))
+            console.log(moves)
         }
     }
 
@@ -114,47 +123,71 @@ export function calculateSafeSquare(state, robot) {
 
 
     if (isTile(tile, [HOLE, OUT_OF_BOUNDS])) {
-        return [createRobotHealth(robot, -Infinity)]
+        return [createRobotHealth(robot, -9999999)]
     }
 
     return []
 }
 
 export function calculateConveyorMove(state, robot) {
+    console.log('running calculate conveyor move')
+
     const conveyor = getMapTile(state.map, robot.position)
 
     if (![CONVEYOR, FAST_CONVEYOR].includes(conveyor.type)) {
         // this tile does not appear to be a conveyor
+        console.log(`we do not think we're on a conveyor belt`)
+
         return []
     }
 
-    let moves = calculateRobotMove(state, robot, conveyor.meta.exitDirection)
+
+    let moves = calculateRobotMove(state, robot, conveyor.meta.exitDirection, 1)
+
+    console.log(`robot moves`, moves)
 
     if (!moves.length) {
         // this robot was stuck on something
+        console.log(`robot got stuck :( :(`)
+
         return []
     }
+
+    console.log('robot was not stuck')
 
     const robotMoves = getMovesByRobot(moves, robot)
     const newPosition = robotMoves[robotMoves.length - 1]
     const newTile = getMapTile(state.map, newPosition)
 
+    console.log(`new conveyor tile`, newTile)
+
     if (![CONVEYOR, FAST_CONVEYOR].includes(newTile.type)) {
         // new tile is not a conveyor
+        console.log(`new tile not a conveyor`)
+
         return moves
     }
 
     const inDirection = rotateDirectionClockwise(conveyor.meta.exitDirection, 2)
+
+    console.log(`is heading in in right direction?`)
     if (newTile.meta.inputDirections[inDirection]) {
+        console.log(`is right angle?`)
         if (isRightAngle(inDirection, newTile.meta.exitDirection)) {
             const rotations = shouldTurnClockwise(inDirection, newTile.meta.exitDirection) ? 1 : 3
             const newDirection = rotateDirectionClockwise(robot.direction, rotations)
             const rotationEvent = createRobotRotation(robot, robot.direction, newDirection)
             moves.push(rotationEvent)
 
+            console.log('new moves', moves)
+
             enactRobotTurnEvent(state, rotationEvent)
         }
     }
+
+    console.log('returned moves', moves)
+
+    return moves
 }
 
 export function calculateGearRotation(state, robot) {
@@ -241,29 +274,47 @@ export function enactMove(state, move) {
     }
 }
 
-export function enactRobotMoveEvent(state, move) {
-    const robot = getPlayerRobot(state, move.robot.user)
+export function enactRobotMoveEvent(state, event) {
+    const robot = getPlayerRobot(state, event.robot.user)
 
-    robot.position = move.to
+    robot.position = event.to
 }
 
-export function enactRobotTurnEvent(state, move) {
-    const robot = getPlayerRobot(state, move.robot.user)
+export function enactRobotTurnEvent(state, event) {
+    const robot = getPlayerRobot(state, event.robot.user)
 
-    robot.direction = move.to
+    robot.direction = event.to
 }
 
-export function enactRobotCheckpointEvent(state, move) {
-    const robot = getPlayerRobot(state, move.robot.user)
+export function enactRobotCheckpointEvent(state, event) {
+    const robot = getPlayerRobot(state, event.robot.user)
     
-    robot.checkpoint = move.at
-    if (move.isNewFlag) robot.flags.push(move.flag)
+    robot.checkpoint = event.at
+    if (event.isNewFlag) robot.flags.push(event.flag)
 }
 
-export function enactRobotHealthEvent(state, move) {
-    const robot = getPlayerRobot(state, move.robot.user)
+export function enactRobotHealthEvent(state, event, modifyHand = true) {
+    const robot = getPlayerRobot(state, event.robot.user)
 
-    damageRobot(state, robot, -(move.healthGain))
+    console.log(event)
+    console.log('damaging a robot for', event.healthGain, 'health.')
+
+    damageRobot(state, robot, -(event.healthGain), modifyHand)
+}
+
+export function enactRobotDeathEvent(state, event) {
+    const robot = getPlayerRobot(state, event.robot.user)
+
+    if (robot.lives > 0) {
+        robot.lives -= 1
+    }
+
+    if (robot.lives > 0) {
+        robot.damage = 2
+        robot.position = { ...robot.checkpoint }
+    } else {
+        robot.position = { x: -1, y: -1 }
+    }
 }
 
 export function enactMoves(state, moves) {
@@ -275,4 +326,5 @@ export function enactMoves(state, moves) {
     }
 
     // results can be used to see what happened.
+    return results
 }

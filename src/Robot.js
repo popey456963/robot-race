@@ -13,7 +13,7 @@ export function createNewRobot(user, position, direction, colour) {
         upgrades: [],
         flags: [],
         checkpoint: position,
-        lives: 3,
+        lives: 1,
         user
     }
 }

@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GameBoard } from './GameBoard'
-import { NE, CLOCKWISE } from '../Constants'
+import { NE, CLOCKWISE, ROBOT_MOVE, ROBOT_TURN, ROBOT_CHECKPOINT, ROBOT_HEALTH, ROBOT_DEATH } from '../Constants'
 import { ROTATION_CONTEXT } from './ReactConstants'
 import { rotateMatrix } from '../utils'
 import cloneDeep from 'clone-deep'
+import deepEqual from 'deep-equal'
 import { rotateAngleClockwise, getAngleIndex, rotateCoordinatesClockwise } from '../Position'
 import { getDisplayMap } from '../Map'
 
@@ -15,6 +16,7 @@ import './index.css'
 import './MapEditor.css'
 import './Cell.css'
 import './Tooltips.css'
+import { enactRobotCheckpointEvent, enactRobotHealthEvent, enactRobotMoveEvent, enactRobotTurnEvent, enactRobotDeath, enactRobotDeathEvent } from '../Moves'
 
 export class DisplayState extends React.Component {
     constructor(props) {
@@ -22,7 +24,11 @@ export class DisplayState extends React.Component {
 
         this.state = {
             rotation: NE,
-            registers: []
+            registers: [],
+
+            robots: props.G.robots,
+            moves: [],
+            currentTurn: -1
         }
     }
 
@@ -34,6 +40,51 @@ export class DisplayState extends React.Component {
         isActive: PropTypes.bool,
         isMultiplayer: PropTypes.bool
     }
+
+    componentDidMount() {
+        this.displayTimer = setInterval(this.checkMoves.bind(this), 500)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.displayTime)
+    }
+
+    checkMoves() {
+        if (this.state.moves.length) {
+            const move = this.state.moves[0]
+
+            const tmpState = {
+                robots: cloneDeep(this.state.robots)
+            }
+
+            console.log(tmpState)
+
+            switch (move.type) {
+                case ROBOT_MOVE:
+                    enactRobotMoveEvent(tmpState, move)  
+                    break                  
+                case ROBOT_TURN:
+                    enactRobotTurnEvent(tmpState, move)
+                    break                  
+                case ROBOT_CHECKPOINT:
+                    enactRobotCheckpointEvent(tmpState, move)
+                    break                  
+                case ROBOT_HEALTH:
+                    console.log("Health move: ", move)
+                    enactRobotHealthEvent(tmpState, move, false)
+                    break
+                case ROBOT_DEATH:
+                    enactRobotDeathEvent(tmpState, move)
+                    break   
+            }
+
+            console.log('simulating', move)
+
+            this.setState({ moves: this.state.moves.slice(1), robots: tmpState.robots })
+            console.log("this.state.moves", this.state.moves)
+        }
+    }
+
 
     rotateBoard(direction) {
         const rotationAmount = direction === CLOCKWISE ? 1 : 3
@@ -77,12 +128,30 @@ export class DisplayState extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        const { G, ctx } = newProps
+
+        const newState = {}
+
+        if (this.state.robots.length === 0) {
+            newState.robots = G.robots
+        }
+
+        /* do we have actions to simulate */
+        if (this.state.currentTurn !== ctx.turn) {
+            // a new turn has happened, let's see if there are any moves to simulate
+            newState.currentTurn = ctx.turn
+            newState.moves = this.state.moves.concat(G.robotMoves || [])
+        }
+
+        this.setState(newState)
+    }
+
     render() {
         const { G, ctx, playerID } = this.props
         const activePlayers = ctx.activePlayers || {}
         const rotationAmount = getAngleIndex(this.state.rotation)
         const mapSize = { y: G.map.length, x: G.map[0].length }
-
 
         /* rotate map */
         let displayMap = cloneDeep(G.map)
@@ -100,7 +169,7 @@ export class DisplayState extends React.Component {
         }
 
         /* rotate robots */
-        const displayRobots = cloneDeep(G.robots)
+        const displayRobots = cloneDeep(this.state.robots)
         for (let robotId in displayRobots) {
             const robot = displayRobots[robotId]
             robot.position = rotateCoordinatesClockwise(robot.position, mapSize, rotationAmount)
@@ -125,6 +194,7 @@ export class DisplayState extends React.Component {
                     playerRobot={displayRobots[playerID]}
                     cardsInHand={cardsInHand}
                     cardsInRegisters={this.state.registers}
+                    gameover={ctx.gameover}
 
                     map={displayMap}
                     robots={displayRobots}

@@ -5,7 +5,7 @@ import { ANGLES } from '../Constants'
 
 export default class Plain extends React.Component {
     render() {
-        const { cell: { robot } } = this.props
+        const { cell: { robot }, zoom } = this.props
 
         if (!robot) return null
 
@@ -17,7 +17,7 @@ export default class Plain extends React.Component {
                 tile={`robot_${robot.colour}`}
                 dir={direction}
                 style={{
-                    top: '-6em'
+                    top: `-${6 * zoom}em`
                 }}
             />
         )

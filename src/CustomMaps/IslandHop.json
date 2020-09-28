@@ -310,7 +310,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -517,7 +517,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -704,7 +704,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -778,10 +778,10 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
-          "WEST": true
+          "SOUTH": true,
+          "WEST": false
         },
-        "exitDirection": "WEST"
+        "exitDirection": "NORTH"
       },
       "position": {
         "x": 8,
@@ -870,7 +870,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -966,10 +966,10 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
-          "WEST": true
+          "SOUTH": true,
+          "WEST": false
         },
-        "exitDirection": "WEST"
+        "exitDirection": "NORTH"
       }
     },
     {
@@ -1049,7 +1049,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -1238,7 +1238,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -1316,10 +1316,10 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
-          "WEST": true
+          "SOUTH": true,
+          "WEST": false
         },
-        "exitDirection": "WEST"
+        "exitDirection": "NORTH"
       }
     },
     {
@@ -1401,7 +1401,7 @@
         "inputDirections": {
           "NORTH": false,
           "EAST": false,
-          "SOUTH": false,
+          "SOUTH": true,
           "WEST": false
         },
         "exitDirection": "NORTH"
@@ -2217,15 +2217,24 @@
       }
     },
     {
-      "type": "PLAIN",
-      "walls": {},
-      "lasers": {},
-      "pushers": {},
-      "position": {
-        "y": 13,
-        "x": 6
-      }
-    },
+        "type": "CONVEYOR",
+        "walls": {},
+        "lasers": {},
+        "pushers": {},
+        "position": {
+          "y": 2,
+          "x": 2
+        },
+        "meta": {
+          "inputDirections": {
+            "NORTH": false,
+            "EAST": false,
+            "SOUTH": false,
+            "WEST": false
+          },
+          "exitDirection": "NORTH"
+        }
+      },
     {
       "type": "PLAIN",
       "walls": {},

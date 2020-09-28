@@ -15,7 +15,7 @@ import log from './Logger'
 import createTestMap from './CustomMaps/TestMap'
 import createIslandHop from './CustomMaps/IslandHop'
 import createSingleTile from './CustomMaps/SingleTile'
-import { enactMoves, createMove, calculateConveyorMove, calculateFlagActivation, calculateGrillHealing, calculateGrillCheckpoint, calculateGearRotation } from './Moves'
+import { enactMoves, createMove, calculateConveyorMove, calculateFlagActivation, calculateGrillHealing, calculateGrillCheckpoint, calculateGearRotation, createRobotDeath, enactRobotDeathEvent } from './Moves'
 import { isTile } from './Tiles'
 
 function drawAllCards(G, ctx) {
@@ -61,6 +61,8 @@ function enactEnvironment(state, register) {
         actions = actions.concat(calculateFlagActivation(state, robot))
         actions = actions.concat(calculateGrillCheckpoint(state, robot))
     }
+
+    return actions
 }
 
 
@@ -70,6 +72,8 @@ function enactCleanup(state) {
     for (let robot of listRobots(state)) {
         actions = actions.concat(calculateGrillHealing(state, robot))
     }
+
+    return actions
 }
 
 function getPlayerCardCounts(G) {
@@ -118,27 +122,17 @@ export const RobotFight = {
         }
 
         drawAllCards(G, ctx)
-        
-        // Respawn robots
-        for (let robot of listRobots(G, true)) {
-			console.log("robot state: ", robot)
-          if (robot.damage === MAX_DAMAGE) {
-            if (robot.lives > 1) {
-              robot.lives -= 1
-              robot.damage = 2 // Rules: page 9
-              robot.position = { ...robot.checkpoint }
-            }
-            else {
-              robot.position = {x: -1, y: -1}
-            }
-          }
-        }
 
         log.info({ handSizes: getPlayerCardCounts(G) }, 'Dealt out cards to players.')
 
+        const activePlayers = arrayToObject(
+          Object.keys(ctx.playOrder)
+            .filter(playerId => G.robots[playerId].lives)
+            .map(key => ([key, Stage.NULL]))
+        )
+
         ctx.events.setActivePlayers({
-          all: Stage.NULL
-          // moveLimit: 1 //
+          value: activePlayers
         })
 
         log.info('Set all players to be active, allowing them to play.')
@@ -158,11 +152,13 @@ export const RobotFight = {
         }
       },
       onEnd: (G, ctx) => {
+        let moves = []
+
         for (let i = 0; i < 5; i++) {
           const register = []
 
           for (const [playerId, player] of Object.entries(G.players)) {
-            if (player.registers[i]) {
+            if (player.registers && player.registers[i]) {
               register.push({
                 player: playerId,
                 move: { type: player.registers[i].type, priority: player.registers[i].priority }
@@ -175,16 +171,27 @@ export const RobotFight = {
           const moveRegister = register.map(move => createMove(move.move.type, move.player, move.priority))
 
           log.debug({ moveRegister }, `Simulating register ${i}.`)
-          enactMoves(G, moveRegister)
+          moves = moves.concat(enactMoves(G, moveRegister))
 
           log.debug(`Enacting environmental map changes.`)
-          enactEnvironment(G, i)
+          moves = moves.concat(enactEnvironment(G, i))
+
+          // Respawn robots
+          for (let robot of listRobots(G, true)) {
+            if (robot.damage === MAX_DAMAGE) {
+              const event = createRobotDeath(robot)
+              moves = moves.concat(event)
+              enactRobotDeathEvent(G, event)
+            }
+          }
 
           log.debug(`End of phase.`)
         }
 
         log.debug(`Enacting cleanup stage.`)
-        enactCleanup(G)
+        moves = moves.concat(enactCleanup(G))
+
+        G.robotMoves = moves
       },
       turn: {
         order: TurnOrder.ONCE
@@ -197,15 +204,30 @@ export const RobotFight = {
     }
   },
 
-  endIf: (G, ctx) => {
-    for (const robot of Object.values(G.robots)) {
-      if (robot.flags.length === G.meta.flagCount) {
-        return {
-          winner: robot
+    endIf: (G, ctx) => {
+        // winner by flags?
+        for (const robot of Object.values(G.robots)) {
+            if (robot.flags.length === G.meta.flagCount) {
+                return {
+                    winner: robot
+                }
+            }
         }
-      }
-    }
 
-    return undefined
-  }
+        // winer by death?
+        const alivePlayers = Object.values(G.robots).filter(robot => robot.lives)
+        if (alivePlayers.length === 0) {
+          return {
+            draw: true
+          }
+        }
+
+        if (alivePlayers.length === 1) {
+          return {
+            winner: alivePlayers[0]
+          }
+        }
+
+        return undefined
+    }
 }
